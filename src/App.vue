@@ -1,26 +1,36 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <v-app>
+    <Sidebar v-if="rightSidebar"/>
+    <Navbar/>
+
+    <!-- Sizes your content based upon application components -->
+    <v-content>
+      <!-- Provides the application the proper gutter -->
+      <v-container fluid>
+        <!-- If using vue-router -->
+        <router-view/>
+      </v-container>
+    </v-content>
+    <Footer/>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+<script>
+  import Footer from "./components/Footer"
+  import Sidebar from "./components/RightSidebar"
+  import Navbar from "./components/Navbar"
 
-#nav {
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  export default {
+    name: 'App',
+    components: {
+      Footer,
+      Sidebar,
+      Navbar,
+    },
+    computed: {
+      rightSidebar() {
+        return this.$store.getters.rightSidebar
+      }
+    },
   }
-}
-</style>
+</script>
