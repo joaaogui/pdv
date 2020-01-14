@@ -5,6 +5,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'pdv',
+    component: () => import('../components/Cards.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation>
+  <v-bottom-navigation app>
     <v-card v-for="(shortcut, i) in shortcuts" :key="i">
       <v-icon text-center>{{shortcut.icon}}</v-icon>
       <v-card-actions>

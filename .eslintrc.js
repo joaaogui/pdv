@@ -9,6 +9,7 @@ module.exports = {
   ],
   rules: {
     'indent': 'off',
+    'comma-spacing': 'off',
     'quotes': 'off',
     'no-trailing-spaces': 'off',
     'space-before-blocks': 'off',

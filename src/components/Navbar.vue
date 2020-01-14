@@ -1,10 +1,9 @@
 <template>
-  <v-app-bar>
-    <v-app-bar-nav-icon @click="toggleLeftSidebar" />
+  <v-app-bar app height="90px">
+    <v-app-bar-nav-icon @click="toggleLeftSidebar"/>
     <v-btn @click="toggleRightSidebar" icon>
       <v-icon>mdi-heart</v-icon>
     </v-btn>
-
   </v-app-bar>
 </template>
 
