@@ -1,18 +1,17 @@
 <template>
   <v-navigation-drawer
-    :value="rightSidebar"
+    :value="leftSidebar"
     fixed
-    :right="true"
     app
   />
 </template>
 
 <script>
   export default {
-    name: 'Sidebar',
+    name: 'LeftSidebar',
     computed: {
-      sidebar() {
-        return this.$store.getters.rightSidebar
+      leftSidebar() {
+        return this.$store.getters.leftSidebar
       }
     },
   }
