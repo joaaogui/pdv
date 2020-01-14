@@ -1,19 +1,22 @@
 <template>
   <v-navigation-drawer
-    :value="leftSidebar"
     fixed
     app
-  />
+  >
+  <v-btn @click="toggleLeftSidebar" icon>
+    <v-icon>mdi-arrow-left</v-icon>
+  </v-btn>
+  </v-navigation-drawer>
 </template>
 
 <script>
   export default {
     name: 'LeftSidebar',
-    computed: {
-      leftSidebar() {
-        return this.$store.getters.leftSidebar
+    methods: {
+      toggleLeftSidebar() {
+        this.$store.commit('toggleLeftSidebar')
       }
-    },
+    }
   }
 </script>
 

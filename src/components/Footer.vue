@@ -1,18 +1,12 @@
 <template>
-  <v-footer dark absolute padless>
-    <router-link
-      :to="{name: shortcut.path}"
-      v-for="(shortcut, i) in shortcuts"
-      :key="i"
-    >
-      <v-card>
-        <v-icon text-center>{{shortcut.icon}}</v-icon>
-        <v-card-actions>
-          {{shortcut.text}}
-        </v-card-actions>
-      </v-card>
-    </router-link>
-  </v-footer>
+  <v-bottom-navigation>
+    <v-card v-for="(shortcut, i) in shortcuts" :key="i">
+      <v-icon text-center>{{shortcut.icon}}</v-icon>
+      <v-card-actions>
+        {{shortcut.text}}
+      </v-card-actions>
+    </v-card>
+  </v-bottom-navigation>
 </template>
 
 <script>

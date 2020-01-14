@@ -1,8 +1,10 @@
 <template>
   <v-app>
-    <Sidebar v-if="rightSidebar"/>
-    <Navbar/>
-
+    <RightSidebar v-if="rightSidebar"/>
+    <LeftSidebar v-if="leftSidebar"/>
+    <div>
+      <Navbar/>
+    </div>
     <!-- Sizes your content based upon application components -->
     <v-content>
       <!-- Provides the application the proper gutter -->
@@ -16,20 +18,25 @@
 </template>
 
 <script>
-  import Footer from "./components/Footer"
-  import Sidebar from "./components/RightSidebar"
-  import Navbar from "./components/Navbar"
+  import Footer from './components/Footer'
+  import RightSidebar from './components/RightSidebar'
+  import LeftSidebar from './components/LeftSidebar'
+  import Navbar from './components/Navbar'
 
   export default {
     name: 'App',
     components: {
       Footer,
-      Sidebar,
+      RightSidebar,
+      LeftSidebar,
       Navbar,
     },
     computed: {
       rightSidebar() {
         return this.$store.getters.rightSidebar
+      },
+      leftSidebar() {
+        return this.$store.getters.leftSidebar
       }
     },
   }

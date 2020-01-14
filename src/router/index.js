@@ -5,21 +5,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/tables',
-    name: 'tables',
-    component: () => import('../components/Tables.vue')
-  },
-  {
-    path: '/menu',
-    name: 'menu',
-    component: () => import('../components/Menu.vue')
-  },
-  {
-    path: '/orders',
-    name: 'orders',
-    component: () => import('../components/Orders.vue')
-  },
 ]
 
 const router = new VueRouter({

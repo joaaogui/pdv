@@ -1,16 +1,11 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" class="navbar">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
-      <v-btn
-        color="pink"
-        dark
-        @click="toggleRightSidebar"
-      >
-        Toggle
-      </v-btn>
-    </b-navbar>
-  </div>
+  <v-app-bar>
+    <v-app-bar-nav-icon @click="toggleLeftSidebar" />
+    <v-btn @click="toggleRightSidebar" icon>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
+
+  </v-app-bar>
 </template>
 
 <script>
@@ -19,6 +14,9 @@
     methods: {
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
+      },
+      toggleLeftSidebar() {
+        this.$store.commit('toggleLeftSidebar')
       }
     }
   }
