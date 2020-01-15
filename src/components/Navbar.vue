@@ -1,10 +1,12 @@
 <template>
-  <v-app-bar app height="90px">
-    <v-app-bar-nav-icon @click="toggleLeftSidebar"/>
-    <v-btn @click="toggleRightSidebar" icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-  </v-app-bar>
+  <div>
+    <v-app-bar app height="90px" color="#343d63">
+      <v-app-bar-nav-icon color="white" @click="toggleLeftSidebar"/>
+      <v-btn @click="toggleRightSidebar" icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>

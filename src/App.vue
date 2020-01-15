@@ -2,14 +2,9 @@
   <v-app>
     <RightSidebar v-if="rightSidebar"/>
     <LeftSidebar v-if="leftSidebar"/>
-    <div>
-      <Navbar/>
-    </div>
-    <!-- Sizes your content based upon application components -->
+    <Navbar/>
     <v-content>
-      <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <!-- If using vue-router -->
         <router-view/>
       </v-container>
     </v-content>
