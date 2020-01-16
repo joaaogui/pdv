@@ -18,6 +18,7 @@ module.exports = {
     'object-curly-spacing': 'off',
     'no-debugger': 'off',
     'comma-dangle': 'off',
+    'vue/require-default-prop': 'off',
     'vue/comma-dangle': 'off',
     'vue/mustache-interpolation-spacing': 'off',
     'vue/max-attributes-per-line': 'off',

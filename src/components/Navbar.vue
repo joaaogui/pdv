@@ -1,10 +1,11 @@
 <template>
   <div>
-    <v-app-bar app height="90px" color="#343d63">
+    <v-app-bar app height="90" class="navbar">
       <v-app-bar-nav-icon color="white" @click="toggleLeftSidebar"/>
       <v-btn @click="toggleRightSidebar" icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
+      <div class="new-order-button">Novo pedido</div>
     </v-app-bar>
   </div>
 </template>
@@ -23,9 +24,14 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .navbar {
-    height: 89px;
     background-color: #343d63;
+  }
+
+  .new-order-button {
+    font-size: 2em;
+    width: $rightSidebarWidth;
+    background-color: #003cff;
   }
 </style>

@@ -1,14 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'pdv',
-    component: () => import('../components/Cards.vue')
+    path: '/tables',
+    name: 'tables',
+    component: () => import('../components/Tables/Tables.vue')
+  },
+  {
+    path: '/menu',
+    name: 'menu',
+    component: () => import('../components/Menu/Menu.vue')
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    component: () => import('../components/Orders/Orders.vue')
   },
 ]
 

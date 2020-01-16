@@ -5,3 +5,10 @@ $card-table-main-content-text-align: center;
 $card-table-footer-font-size: 0.8em;
 
 $card-border-radius: 6px;
+
+$rightSidebarWidth: 375px;
+
+
+:export {
+  rightSidebarWidth: $rightSidebarWidth;
+}

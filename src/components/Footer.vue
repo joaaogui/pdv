@@ -1,11 +1,13 @@
 <template>
-  <v-bottom-navigation app>
-    <v-card v-for="(shortcut, i) in shortcuts" :key="i">
+  <v-bottom-navigation app height="90">
+    <router-link v-for="(shortcut, i) in shortcuts" :key="i" :to="shortcut.path">
+    <v-card >
       <v-icon text-center>{{shortcut.icon}}</v-icon>
       <v-card-actions>
         {{shortcut.text}}
       </v-card-actions>
     </v-card>
+    </router-link>
   </v-bottom-navigation>
 </template>
 
