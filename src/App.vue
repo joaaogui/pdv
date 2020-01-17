@@ -3,8 +3,8 @@
     <RightSidebar v-if="rightSidebar"/>
     <LeftSidebar v-if="leftSidebar"/>
     <Navbar/>
-    <v-content>
-      <v-container fluid>
+    <v-content class="main-app">
+      <v-container fluid class="ma-0 pa-0">
         <router-view/>
       </v-container>
     </v-content>
@@ -36,3 +36,9 @@
     },
   }
 </script>
+
+<style scoped lang="scss">
+  .main-app {
+    background-color: #f5f6fa;
+  }
+</style>

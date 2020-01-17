@@ -1,9 +1,7 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="auto" v-for="card in cards" :key="card">
+    <v-row class="tables">
+      <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
         <v-menu
-          v-model="menu"
           :close-on-content-click="false"
           :nudge-width="200"
           offset-x
@@ -15,7 +13,6 @@
         </v-menu>
       </v-col>
     </v-row>
-  </v-container>
 </template>
 
 <script>
@@ -29,7 +26,16 @@
       Popover
     },
     data: () => ({
-      cards: ['01', '02', '03', '04', '05', '11', '72', '33', '44', '75', '231', '22', '343', '21', '105', '12', '32', '13', '43', '53', '91', '92', '93', '94', '95',]
+      cards: [...Array(50).keys()]
     }),
   }
 </script>
+
+<style scoped lang="scss">
+  .tables {
+    padding-left: $main-content-padding;
+    margin-bottom: $table-card-margin;
+    margin-right: 0;
+    margin-left: 0;
+  }
+</style>

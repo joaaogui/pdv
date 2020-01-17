@@ -1,5 +1,7 @@
 <template>
-<div>MENU</div>
+  <v-row>
+
+  </v-row>
 </template>
 
 <script>

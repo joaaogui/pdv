@@ -6,9 +6,22 @@ $card-table-footer-font-size: 0.8em;
 
 $card-border-radius: 6px;
 
-$rightSidebarWidth: 375px;
+$right-sidebar-width: 375px;
+$right-sidebar-padding: 30px;
+$right-sidebar-text-color: #2f3447;
 
+$toolbar-content-padding-y: 0;
+$toolbar-content-padding-x: 0;
+
+$navbar-border-radius: 20px;
+$navbar-height: 90px;
+
+$main-content-padding: 80px;
+
+$table-card-margin: 80px;
+$table-card-size: 125px;
 
 :export {
-  rightSidebarWidth: $rightSidebarWidth;
+  rightSidebarWidth: $right-sidebar-width;
+  navbarHeight: $navbar-height;
 }

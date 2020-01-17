@@ -19,7 +19,7 @@
     components: {TimeCard},
     props: {
       card: Number,
-      on: Boolean
+      on: Object
     }
   }
 </script>
@@ -41,10 +41,11 @@
   }
 
   .card {
-    height: 125px;
-    width: 125px;
-    margin: 30px;
+    height: $table-card-size;
+    width: $table-card-size;
     position: relative;
+    margin-top: $table-card-margin;
+    margin-right: $table-card-margin;
   }
 
 </style>

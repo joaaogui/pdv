@@ -1,18 +1,25 @@
 <template>
   <div>
-    <v-app-bar app height="90" class="navbar">
-      <v-app-bar-nav-icon color="white" @click="toggleLeftSidebar"/>
-      <v-btn @click="toggleRightSidebar" icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <div class="new-order-button">Novo pedido</div>
+    <v-app-bar app :height="navbarHeight" class="navbar">
+      <div class="hamburguer-background centered-container">
+        <v-app-bar-nav-icon x-large color="white" @click="toggleLeftSidebar"/>
+      </div>
+      <div @click="toggleRightSidebar" class="new-order-button centered-container">
+        <div class="text">
+          Novo pedido
+        </div>
+      </div>
     </v-app-bar>
   </div>
 </template>
 
 <script>
+  import variables from '../scss/variables.scss'
   export default {
     name: 'Navbar',
+    data: () => ({
+      navbarHeight: variables.navbarHeight
+    }),
     methods: {
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
@@ -30,8 +37,28 @@
   }
 
   .new-order-button {
-    font-size: 2em;
-    width: $rightSidebarWidth;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    font-size: 1.5em;
+    width: $right-sidebar-width;
     background-color: #003cff;
+    font-weight: bold;
+    color: white;
+    border-top-left-radius: $navbar-border-radius;
+    border-bottom-left-radius: $navbar-border-radius;
+    cursor: pointer;
+  }
+
+  .v-toolbar__content {
+    padding: 0;
+  }
+
+  .hamburguer-background {
+    height: 100%;
+    width: $main-content-padding;
+    background-color: #586e98;
+    border-top-right-radius: $navbar-border-radius;
+    border-bottom-right-radius: $navbar-border-radius;
   }
 </style>

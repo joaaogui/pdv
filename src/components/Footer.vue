@@ -1,13 +1,13 @@
 <template>
-  <v-bottom-navigation app height="90">
-    <router-link v-for="(shortcut, i) in shortcuts" :key="i" :to="shortcut.path">
-    <v-card >
-      <v-icon text-center>{{shortcut.icon}}</v-icon>
-      <v-card-actions>
-        {{shortcut.text}}
-      </v-card-actions>
-    </v-card>
-    </router-link>
+  <v-bottom-navigation class="footer" app height="90">
+    <div class="footer-buttons">
+      <div v-for="(shortcut, i) in shortcuts" :key="i" class="footer-button centered-container">
+        <v-btn height="90" width="125" :to="shortcut.path" active-class="footer-button-active">
+          <span class="icon-text">{{shortcut.text}}</span>
+          <v-icon large text-center>{{shortcut.icon}}</v-icon>
+        </v-btn>
+      </div>
+    </div>
   </v-bottom-navigation>
 </template>
 
@@ -23,3 +23,31 @@
     }),
   }
 </script>
+
+<style scoped lang="scss">
+  .footer-buttons {
+    margin-left: $main-content-padding;
+    display: flex;
+  }
+
+  .footer-button {
+    width: $table-card-size;
+    margin-right: 60px;
+  }
+
+  .footer-button-active {
+    border-top: #003cff 2px solid;
+  }
+
+  .footer {
+    display: inherit;
+    justify-content: left !important;
+    height: 100%;
+  }
+
+  .icon-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.38;
+  }
+</style>
