@@ -1,5 +1,5 @@
 <template>
-  <v-row class="menu">
+  <v-row class="submenu">
     <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
       <Card :card="card"/>
     </v-col>
@@ -10,18 +10,18 @@
   import Card from './Card'
 
   export default {
-    name: 'Menu',
+    name: 'Submenu',
     components: {
       Card,
     },
     data: () => ({
       cards: [...Array(50).keys()]
-    })
+    }),
   }
 </script>
 
 <style scoped lang="scss">
-  .menu {
+  .submenu {
     padding-left: $main-content-padding;
     margin-bottom: $menu-card-margin;
     margin-right: 0;
