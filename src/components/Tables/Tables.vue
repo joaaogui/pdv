@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import Popover from './Popover'
+  import Popover from './Popover/Popover'
   import Card from './Card'
 
   export default {

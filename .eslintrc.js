@@ -19,13 +19,15 @@ module.exports = {
     'no-debugger': 'off',
     'comma-dangle': 'off',
     'vue/require-default-prop': 'off',
+    'vue/no-unused-components': 'off',
     'vue/comma-dangle': 'off',
     'vue/mustache-interpolation-spacing': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/html-closing-bracket-spacing': 'off',
     'vue/html-indent': 'warning',
     'vue/singleline-html-element-content-newline': 'off',
-    'vue/multiline-html-element-content-newline': 'off'
+    'vue/multiline-html-element-content-newline': 'off',
+
   },
   parserOptions: {
     parser: 'babel-eslint'

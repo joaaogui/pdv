@@ -14,7 +14,7 @@
 
 <script>
   import Footer from './components/Footer'
-  import RightSidebar from './components/RightSidebar'
+  import RightSidebar from './components/RightSidebar/RightSidebar'
   import LeftSidebar from './components/LeftSidebar'
   import Navbar from './components/Navbar'
 

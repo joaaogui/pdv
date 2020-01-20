@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.horizontally-centered-element {
+  margin: 0 auto;
+}
+
 .vertically-centered-container {
   display: flex;
   align-items: center;
@@ -20,4 +24,38 @@
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.bottom-content {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-right: $right-sidebar-padding;
+  padding-left: $right-sidebar-padding;
+  padding-bottom: $right-sidebar-padding;
+}
+
+.bottom-content-lines {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+}
+
+.bottom-content-values {
+  text-align: right;
+  font-weight: bold;
+}
+
+.bottom-button {
+  padding: 15px;
+  height: 65px;
+  color: white;
+  background-color: blue;
+  border-radius: $navbar-border-radius;
+  font-size: 1.125em;
+  font-weight: bold;
+  cursor: pointer;
+  padding-left: 25px;
+  padding-right: 25px;
 }
