@@ -8,8 +8,8 @@
     </v-col>
     <v-col cols="4">
       <div class="order">
-        <v-badge color="green" dot>
-          #00519
+        <v-badge v-if="activeOrder" color="green" dot>
+          #{{activeOrder}}
         </v-badge>
       </div>
     </v-col>
@@ -23,6 +23,11 @@
     data: () => ({
       rightSidebarTextColor: variables.rightSidebartextColor
     }),
+    computed: {
+      activeOrder() {
+        return this.$store.getters.activeOrder
+      }
+    }
   }
 </script>
 <style scoped lang="scss">

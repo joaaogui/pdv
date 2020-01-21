@@ -2,6 +2,10 @@
   border: 1px solid red;
 }
 
+.empty-class {
+
+}
+
 .centered-container {
   display: flex;
   justify-content: center;
@@ -51,11 +55,17 @@
   padding: 15px;
   height: 65px;
   color: white;
-  background-color: blue;
+  background-color: $strong-blue;
   border-radius: $navbar-border-radius;
   font-size: 1.125em;
   font-weight: bold;
   cursor: pointer;
   padding-left: 25px;
   padding-right: 25px;
+}
+
+.right-sidebar-list-title {
+  font-weight: 500;
+  font-size: 1.25em;
+  color: $right-sidebar-text-color;
 }

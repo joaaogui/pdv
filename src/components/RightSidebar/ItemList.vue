@@ -1,20 +1,18 @@
 <template>
   <v-card>
-    <v-list class="list">
-      <v-list-group>
+    <v-list flat class="list">
+      <v-list-group :ripple="false" flat active-class="active-class">
         <template v-slot:activator>
-          <v-avatar size="30" class="item-amount">
-            <span>5</span>
+          <v-avatar size="40" class="mr-3 ml-3 all-item-amount">
+            5
           </v-avatar>
-          <v-list-item-content class="ml-3">Itens</v-list-item-content>
+          <v-list-item-title class="right-sidebar-list-title">Itens</v-list-item-title>
         </template>
-        <v-list subheader>
+        <v-list subheader class="pt-1">
           <v-list-item v-for="item in items" :key="item.title">
-            <v-list-item-avatar>
-              <v-avatar size="30" class="item-amount">
-                <span>1</span>
-              </v-avatar>
-            </v-list-item-avatar>
+            <v-avatar size="30" class="mr-3 item-amount">
+              <span>1</span>
+            </v-avatar>
             <v-list-item-content>
               Marguerita
             </v-list-item-content>
@@ -58,6 +56,15 @@
 <style scoped>
   .item-amount {
     border: solid 1px #d3d3d3;
+  }
+
+  .v-list-item--active{
+    color: white
+
+  }
+  .all-item-amount {
+    border: solid 1px #d3d3d3;
+    font-size: 1.3em;
   }
 
   .list {

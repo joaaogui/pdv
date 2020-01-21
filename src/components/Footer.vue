@@ -16,9 +16,9 @@
     name: 'Footer',
     data: () => ({
       shortcuts: [
-        {text: 'Mesas', icon: 'mdi-table-chair', path: 'tables'},
-        {text: 'Menu', icon: 'mdi-book-open-page-variant', path: 'menu'},
-        {text: 'Pedidos', icon: 'mdi-clipboard-list', path: 'orders'}
+        {text: 'Mesas', icon: 'mdi-table-chair', path: '/tables'},
+        {text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/menu'},
+        {text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/orders'}
       ]
     }),
   }

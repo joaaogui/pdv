@@ -7,8 +7,8 @@
         </v-card-text>
       </div>
     </v-card>
-    <div class="shadow"></div>
-    <div class="smaller-shadow"></div>
+    <div class="shadow"/>
+    <div class="smaller-shadow"/>
   </div>
 </template>
 
@@ -35,6 +35,7 @@
     border-radius: 10px !important;
     position: relative;
     z-index: 2;
+    cursor: pointer;
   }
 
   .smaller-card {

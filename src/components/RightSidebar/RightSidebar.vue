@@ -8,8 +8,6 @@
     <v-container fluid class="ma-0 pa-0 main-container">
       <TableOrderInfo/>
       <MainContent/>
-      <ItemList/>
-      <Payment/>
       <BottomContent/>
     </v-container>
   </v-navigation-drawer>

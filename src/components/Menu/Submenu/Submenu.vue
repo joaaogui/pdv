@@ -1,7 +1,7 @@
 <template>
   <v-row class="submenu">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
-      <Card :card="card"/>
+    <v-col class="ma-0 pa-0" cols="auto" v-for="(card, i) in cards" :key="card">
+      <Card :card="card" :backButton="i === 0"/>
     </v-col>
   </v-row>
 </template>

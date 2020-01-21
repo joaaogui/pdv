@@ -24,7 +24,12 @@
 </template>
 <script>
   export default {
-    name: 'BottomContent'
+    name: 'BottomContent',
+    methods: {
+      toggleRightSidebar() {
+        this.$store.commit('toggleRightSidebar')
+      }
+    }
   }
 </script>
 <style scoped lang="scss">

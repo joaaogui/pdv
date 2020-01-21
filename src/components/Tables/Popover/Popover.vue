@@ -5,7 +5,7 @@
         <v-tab>Restaurante</v-tab>
         <v-tab>App Onearby</v-tab>
       </v-tabs>
-      <Orders :orders="orders"/>
+      <Orders/>
       <BottomContent/>
     </v-card>
   </v-container>
@@ -18,9 +18,7 @@
   export default {
     name: 'Popover',
     components: {Orders, BottomContent},
-    data: () => ({
-      orders: [...Array(7).keys()],
-    }),
+
   }
 </script>
 
