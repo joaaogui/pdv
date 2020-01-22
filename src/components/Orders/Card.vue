@@ -1,26 +1,42 @@
 <template>
   <v-card v-if="backButton" @click="goTo" class="card centered-container">
-    <v-icon large>mdi-arrow-left</v-icon>
+    <v-icon x-large>mdi-plus</v-icon>
   </v-card>
   <v-card v-else class="card">
     <div class="header">
-      {{item}}
+      <v-row no-gutters>
+        <v-col class="header-text" cols="8">
+          <div class="horizontally-centered-element vertically-centered-container">12 min</div>
+        </v-col>
+        <v-col class="circle horizontally-centered-element" cols="4">
+          <v-avatar size="40" :color="orderBadgeColor">
+            4
+          </v-avatar>
+        </v-col>
+      </v-row>
     </div>
-    <v-card-text class="main-content">
-      Marguerita
+    <v-card-text class="main-content pl-0">
+      #0159
     </v-card-text>
-    <div class="footer">
-      R$ 49,90
+    <div class="footer vertically-centered-container">
+      <v-icon :color="iconColor">mdi-table-chair</v-icon>
+      0254
     </div>
   </v-card>
 </template>
 
 <script>
+  import variables from '@/scss/variables.scss'
+
   export default {
     name: 'Card',
     props: {
       backButton: Boolean,
     },
+    data: () => ({
+      orderBadgeColor: variables.pinkyRed,
+      iconColor: variables.rightSidebarTextColor
+    }),
     computed: {
       item() {
         return this.$route.params.item
@@ -36,33 +52,42 @@
 
 <style scoped lang="scss">
   .card {
-    height: $menu-card-size;
-    width: $menu-card-size;
+    height: $order-card-height;
+    width: $order-card-width;
     margin-top: $menu-card-margin;
     margin-right: $submenu-card-margin;
     border-radius: 10px !important;
-    padding: 10px;
+    padding: 15px;
   }
 
-  .header {
-    font-size: 1em;
+  .header-text {
+    font-size: 1.125em;
+    font-weight: 600;
+    color: $pinky-red;
+  }
+
+  .circle {
+    font-size: 1.3em;
     font-weight: bold;
-    text-align: center;
-    color: #aeb1b8;
+    color: white;
+    text-align: right;
   }
 
   .main-content {
+    font-size: 2em;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
     color: $right-sidebar-text-color !important;
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.4em;
-    padding-top: 25%;
-    padding-bottom: 30%;
   }
 
   .footer {
-    text-align: center;
-    font-size: 1em;
-    color: $right-sidebar-text-color;
+    text-align: left;
+    height: 50%;
+    font-size: 1.375em;
+    font-weight: bold;
+    padding-top: 0;
+    color: $right-sidebar-text-color !important;
   }
 </style>

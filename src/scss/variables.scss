@@ -19,17 +19,22 @@ $navbar-height: 90px;
 $main-content-padding: 80px;
 
 $table-card-margin: 80px;
-$table-card-size: 125px;
+$table-card-size: 200px;
 
 $menu-card-size: 190px;
 $menu-card-margin: 65px;
 
 $submenu-card-margin: 25px;
 
+$order-card-width: 270px;
+$order-card-height: 180px;
+
 $strong-blue: #003cff;
+$pinky-red: #fe4f70;
 
 :export {
   rightSidebarWidth: $right-sidebar-width;
   rightSidebartextColor: $right-sidebar-text-color;
   navbarHeight: $navbar-height;
+  pinkyRed: $pinky-red;
 }

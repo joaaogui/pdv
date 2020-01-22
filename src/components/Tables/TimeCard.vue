@@ -21,8 +21,8 @@
     align-items: center;
     background-color: #586e98;
     position: absolute;
-    right: -20px;
-    top: -20px;
+    right: 15px;
+    top: 15px;
   }
 
   .text {

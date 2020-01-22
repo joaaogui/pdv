@@ -9,7 +9,7 @@
       </v-col>
 
       <v-col class="pl-2" :class="isActiveOrder(order) ? 'white-order-text' : 'order-text'" cols="8">
-        <v-badge v-if="activeOrder" offset-x="-1"
+        <v-badge offset-x="-1"
                  offset-y="-1" color="green" dot>
           #{{order}}
         </v-badge>
