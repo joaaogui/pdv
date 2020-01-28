@@ -1,39 +1,44 @@
 <template>
-  <v-row no-gutters class="ma-0 pa-0">
-    <v-card class="name-card vertically-centered-container">
+    <v-card>
       <v-list flat class="list">
-        <v-list-group :ripple="false" flat>
+        <v-list-group :ripple="false" flat active-class="active-class">
           <template v-slot:activator>
             <v-avatar size="40" color="grey" class="mr-3 ml-3">
               <v-icon dark size="32">mdi-account</v-icon>
             </v-avatar>
             <v-list-item-title class="right-sidebar-list-title">Rafael Rascovit</v-list-item-title>
           </template>
-          <ItemList/>
-          <Payment/>
+          <UserActions/>
         </v-list-group>
       </v-list>
     </v-card>
-  </v-row>
 </template>
 <script>
-  import ItemList from './ItemList'
-  import Payment from './Payment'
+  import UserActions from "./UserActions"
 
   export default {
-    name: 'MainContent',
-    components: {Payment, ItemList},
+    name: 'User',
+    components: {UserActions}
   }
 </script>
 
 <style scoped lang="scss">
-  .name-card {
-    height: 90px;
-    width: $right-sidebar-width;
+  .item-amount {
+    border: solid 1px #d3d3d3;
+  }
+
+  .v-list-item--active {
+    color: white
+
+  }
+
+  .all-item-amount {
+    border: solid 1px #d3d3d3;
+    font-size: 1.3em;
   }
 
   .list {
     width: 100%;
-    height: 50px;
+    margin-bottom: 10px;
   }
 </style>

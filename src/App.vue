@@ -4,7 +4,7 @@
     <LeftSidebar v-if="leftSidebar"/>
     <Navbar/>
     <v-content class="main-app">
-      <v-container fluid class="ma-0 pa-0">
+      <v-container fluid class="ma-0 pa-0 container">
         <router-view/>
       </v-container>
     </v-content>
@@ -40,5 +40,9 @@
 <style scoped lang="scss">
   .main-app {
     background-color: #f5f6fa;
+  }
+
+  .container {
+    height: 100%;
   }
 </style>

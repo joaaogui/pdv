@@ -27,7 +27,10 @@
   height: 100%;
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .bottom-content {
@@ -49,6 +52,13 @@
 .bottom-content-values {
   text-align: right;
   font-weight: bold;
+}
+
+.reduced-container {
+  margin-right: $right-sidebar-width;
+  height: 100%;
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0.5);
 }
 
 .bottom-button {

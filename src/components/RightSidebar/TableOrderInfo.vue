@@ -1,15 +1,19 @@
 <template>
   <v-row no-gutters class="table-number-order-container vertically-centered-container">
-    <v-col cols="8" class="table-number-order-element">
-      <div class="table-number">
+    <v-col cols="8" class="table-number-order-element ">
+      <div class="table-number vertically-centered-container">
         <v-icon large :color="rightSidebarTextColor">mdi-table-chair</v-icon>
-        07
+        <span class="ml-1" v-if="activeTable">{{activeTable}}</span>
+        <span class="ml-1" v-else>-</span>
       </div>
     </v-col>
     <v-col cols="4">
       <div class="order">
         <v-badge v-if="activeOrder" color="green" dot>
           #{{activeOrder}}
+        </v-badge>
+        <v-badge v-else color="green" dot>
+          # -
         </v-badge>
       </div>
     </v-col>
@@ -26,6 +30,9 @@
     computed: {
       activeOrder() {
         return this.$store.getters.activeOrder
+      },
+      activeTable() {
+        return this.$store.getters.activeTable
       }
     }
   }

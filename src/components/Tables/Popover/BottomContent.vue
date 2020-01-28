@@ -2,7 +2,7 @@
   <div class="bottom-content">
     <div>
       <v-row no-gutters class="bottom-content-lines">
-        <v-col cols="8">Consumação Total:</v-col>
+        <v-col cols="8">Consumação Total Da Mesa:</v-col>
         <v-col class="bottom-content-values" cols="4">R$ 189,60</v-col>
       </v-row>
       <v-row no-gutters class="bottom-content-lines">
@@ -13,7 +13,7 @@
     <div @click="toggleRightSidebar" class="bottom-button vertically-centered-container">
       <v-row>
         <v-col cols="7">
-          Fechar Conta
+          Fechar conta da mesa
         </v-col>
         <v-col class="bottom-content-values" cols="5">
           R$ 299,60

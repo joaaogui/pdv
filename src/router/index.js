@@ -24,6 +24,11 @@ const routes = [
     name: 'orders',
     component: () => import('../components/Orders/Orders.vue')
   },
+  {
+    path: '/payment-confirmation',
+    name: 'payment-confirmation',
+    component: () => import('../components/PaymentConfirmation.vue')
+  },
 ]
 
 const router = new VueRouter({

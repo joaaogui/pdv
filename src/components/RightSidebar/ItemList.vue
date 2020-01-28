@@ -1,15 +1,15 @@
 <template>
   <v-card>
     <v-list flat class="list">
-      <v-list-group :ripple="false" flat active-class="active-class">
+      <v-list-group :ripple="false" flat class="sublist" active-class="active-class">
         <template v-slot:activator>
           <v-avatar size="40" class="mr-3 ml-3 all-item-amount">
             5
           </v-avatar>
           <v-list-item-title class="right-sidebar-list-title">Itens</v-list-item-title>
         </template>
-        <v-list subheader class="pt-1">
-          <v-list-item v-for="item in items" :key="item.title">
+        <div v-for="(item, index) in items" :key="item.title">
+          <v-list-item>
             <v-avatar size="30" class="mr-3 item-amount">
               <span>1</span>
             </v-avatar>
@@ -30,7 +30,19 @@
               </v-menu>
             </v-list-item-icon>
           </v-list-item>
-        </v-list>
+          <div class="observations" v-if="index === 1">
+            <div class="observation-title">Alergias</div>
+            <v-textarea
+              rows="1"
+              row-height="20"
+            />
+            <div class="observation-title">Observações</div>
+            <v-textarea
+              rows="1"
+              row-height="20"
+            />
+          </div>
+        </div>
       </v-list-group>
     </v-list>
   </v-card>
@@ -58,16 +70,39 @@
     border: solid 1px #d3d3d3;
   }
 
-  .v-list-item--active{
+  .v-list-item--active {
     color: white
 
   }
+
   .all-item-amount {
     border: solid 1px #d3d3d3;
     font-size: 1.3em;
   }
 
   .list {
-    width: 100%
+    width: 100%;
+  }
+
+  .sublist {
+    max-height: 350px;
+    overflow: auto;
+  }
+
+  .observations {
+    margin-left: 58px;
+    margin-right: 58px;
+  }
+
+  .observation-title {
+    font-size: 0.875em;
+    font-weight: bold;
+    color: #828799;
+  }
+
+  .observation-text {
+    font-size: 0.8125em;
+    letter-spacing: normal;
+    color: #828799;
   }
 </style>
