@@ -1,9 +1,9 @@
 <template>
-  <v-card v-on="on" class="card" :ripple="false">
+  <v-card @click="changeActiveTable" v-on="on" :class="activeCard ? 'active-card' : 'card'" :ripple="false">
     <TimeCard/>
-    <v-card-text class="main-content">
+    <div class="main-content">
       {{card}}
-    </v-card-text>
+    </div>
     <div class="footer">
       21 itens
       <br>
@@ -20,6 +20,19 @@
     props: {
       card: Number,
       on: Object
+    },
+    computed: {
+      activeTable() {
+        return this.$store.getters.activeTable
+      },
+      activeCard() {
+        return this.$store.getters.activeTable === this.card.toString()
+      }
+    },
+    methods: {
+      changeActiveTable() {
+        this.$store.commit('changeActiveTable', this.card.toString())
+      },
     }
   }
 </script>
@@ -28,7 +41,7 @@
     font-size: $card-table-main-content-font-size;
     font-weight: $card-table-main-content-font-weight;
     text-align: $card-table-main-content-text-align;
-    padding-top: 40%;
+    padding-top: 38%;
   }
 
   .footer {
@@ -36,6 +49,7 @@
     font-weight: 500;
     display: block;
     margin-left: 45px;
+    margin-top: 10px;
   }
 
   .card {
@@ -49,5 +63,20 @@
     margin-top: $table-card-margin;
     margin-right: $table-card-margin;
     background-image: url("../../assets/Images/Table.svg");
+    color: $right-sidebar-text-color
+  }
+
+  .active-card {
+    height: $table-card-size;
+    width: $table-card-size;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    background-size: cover;
+    position: relative;
+    margin-top: $table-card-margin;
+    margin-right: $table-card-margin;
+    background-image: url("../../assets/Images/BlueTable.svg");
+    color: white;
   }
 </style>

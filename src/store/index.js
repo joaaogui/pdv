@@ -9,7 +9,8 @@ export default new Vuex.Store({
     leftSidebar: false,
     tablePopover: false,
     activePaymentForm: 'card',
-    activeOrder: ''
+    activeOrder: '',
+    activeTable: ''
   },
   mutations: {
     toggleRightSidebar(state) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     changeActiveOrder(state, order) {
       state.activeOrder = order
+    },
+    changeActiveTable(state, table) {
+      state.activeTable = table
     }
   },
   getters: {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
     },
     activeOrder(state) {
       return state.activeOrder
+    },
+    activeTable(state) {
+      return state.activeTable
     }
   },
   actions: {},

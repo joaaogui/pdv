@@ -17,6 +17,10 @@
       <v-col class="bottom-content-values" cols="4">R$ 1,60</v-col>
     </v-row>
 
+    <div @click="toggleRightSidebar" class="mb-2 end-order-button centered-container">
+      Finalizar Pedido
+    </div>
+
     <div @click="toggleRightSidebar" class="bottom-button vertically-centered-container">
       <v-row>
         <v-col cols="7">
@@ -39,3 +43,19 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .end-order-button {
+    border: 2px solid $strong-blue;
+    padding: 15px;
+    height: 65px;
+    color: $strong-blue;
+    background-color: white;
+    border-radius: $navbar-border-radius;
+    font-size: 1.125em;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+</style>
