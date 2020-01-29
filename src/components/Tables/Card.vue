@@ -31,7 +31,11 @@
     },
     methods: {
       changeActiveTable() {
-        this.$store.commit('changeActiveTable', this.card.toString())
+        if (this.card.toString() === this.activeTable){
+          this.$store.commit('changeActiveTable', '')
+        } else {
+          this.$store.commit('changeActiveTable', this.card.toString())
+        }
       },
     }
   }

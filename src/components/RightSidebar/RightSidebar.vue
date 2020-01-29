@@ -42,7 +42,7 @@
   }
 
   .content {
-    max-height: 50%;
+    max-height: 40%;
     overflow: auto;
   }
 
@@ -50,5 +50,6 @@
     border-top-left-radius: $navbar-border-radius;
     border-bottom-left-radius: $navbar-border-radius;
     box-shadow: -4px 0 8px 0 rgba(0, 0, 0, 0.08);
+    z-index: 20;
   }
 </style>

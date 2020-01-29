@@ -1,18 +1,19 @@
 <template>
-    <v-row class="tables">
-      <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
-        <v-menu
-          :close-on-content-click="false"
-          :nudge-width="200"
-          offset-x
-        >
-          <template v-slot:activator="{ on }">
-            <Card :card="card" :on="on"/>
-          </template>
-          <Popover/>
-        </v-menu>
-      </v-col>
-    </v-row>
+  <v-row class="tables">
+    <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
+      <v-menu
+        :close-on-content-click="false"
+        :nudge-width="200"
+        left
+        offset-x
+      >
+        <template v-slot:activator="{ on }">
+          <Card :card="card" :on="on"/>
+        </template>
+        <Popover/>
+      </v-menu>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

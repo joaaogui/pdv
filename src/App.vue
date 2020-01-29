@@ -8,7 +8,6 @@
         <router-view/>
       </v-container>
       <v-overlay
-        :absolute="absolute"
         :value="contentOverlay"
         opacity="0.7"
       >

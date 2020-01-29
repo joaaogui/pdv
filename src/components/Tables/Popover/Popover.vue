@@ -28,7 +28,8 @@
     height: 630px;
     border-radius: 10px;
     background-color: #ffffff;
-    padding: 15px
+    padding: 15px;
+    z-index: 1;
   }
 
   .popover-main-card {
