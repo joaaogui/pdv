@@ -1,27 +1,42 @@
 <template>
-  <div class="reduced-container">
-    <div class="upper-text">Deseja realizar o pagamento ?</div>
+  <div class="content">
+    <div class="upper-text mb-7">Deseja realizar o pagamento ?</div>
     <div class="buttons">
-      <div class="cancel-button centered-container mr-2">Cancelar</div>
-      <div class="confirm-button centered-container">Confirmar Pagamento</div>
+      <div @click="toggleContentOverlay" class="cancel-button centered-container mr-3">Cancelar</div>
+      <div @click="goTo" class="confirm-button centered-container">Confirmar Pagamento</div>
     </div>
-    <div class="bottom-text">Os produtos em andamento neste pedido ainda aparecerão na lista de entrega.</div>
+    <div class="bottom-text mt-7">Os produtos em andamento neste pedido ainda aparecerão na lista de entrega.</div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "PaymentConfirmation"
+    name: "PaymentConfirmation",
+    methods: {
+      goTo() {
+        this.toggleContentOverlay()
+        this.$router.push({path: `/payment-confirmed`})
+      },
+      toggleRightSidebar() {
+        this.$store.commit('toggleRightSidebar')
+      },
+      toggleContentOverlay() {
+        this.$store.commit('toggleContentOverlay')
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
+  .content {
+    margin-right: $right-sidebar-width;
+  }
+
   .upper-text {
     color: white;
     font-weight: bold;
     font-size: 2em;
-    margin-bottom: 3%;
-    padding-top: 25%;
+    text-align: center;
   }
 
   .cancel-button {
@@ -31,37 +46,34 @@
     height: 85px;
     width: 100%;
     border-radius: $navbar-border-radius;
-    font-size: 1.125em;
+    font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    padding-left: 25px;
-    padding-right: 25px;
+    text-align: center;
   }
 
   .confirm-button {
     color: white;
-    background-color: forestgreen;
+    background-color: $pastel-green;
     padding: 15px;
     height: 85px;
     width: 100%;
     border-radius: $navbar-border-radius;
-    font-size: 1.125em;
+    font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    padding-left: 25px;
-    padding-right: 25px;
+    text-align: center;
   }
 
   .bottom-text {
-    padding-left: 40%;
-    padding-right: 40%;
+    padding-left: 20%;
+    padding-right: 20%;
+    text-align: center;
+    font-weight: 500;
     color: white;
-    font-size: 1em;
   }
 
   .buttons {
-    display: inline-flex;
-    margin-bottom: 3%;
-    width: 80%;
+    display: flex;
   }
 </style>

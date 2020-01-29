@@ -16,12 +16,11 @@
       <v-col cols="8">Desconto</v-col>
       <v-col class="bottom-content-values" cols="4">R$ 1,60</v-col>
     </v-row>
-
-    <div @click="toggleRightSidebar" class="mb-2 end-order-button centered-container">
+    <div @click="toggleContentOverlay" class="mb-2 blue-overlay-button centered-container">
       Finalizar Pedido
     </div>
 
-    <div @click="toggleRightSidebar" class="bottom-button vertically-centered-container">
+    <div @click="toggleRightSidebar" class="blue-button vertically-centered-container">
       <v-row>
         <v-col cols="7">
           Fechar Conta
@@ -34,28 +33,23 @@
   </div>
 </template>
 <script>
+  import PaymentConfirmation from "../PaymentConfirmation"
+
   export default {
     name: 'BottomContent',
+    components: {PaymentConfirmation},
+    computed: {
+      contentOverlay() {
+        return this.$store.getters.contentoverlay
+      }
+    },
     methods: {
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
+      },
+      toggleContentOverlay() {
+        this.$store.commit('toggleContentOverlay')
       }
     }
   }
 </script>
-
-<style lang="scss">
-  .end-order-button {
-    border: 2px solid $strong-blue;
-    padding: 15px;
-    height: 65px;
-    color: $strong-blue;
-    background-color: white;
-    border-radius: $navbar-border-radius;
-    font-size: 1.125em;
-    font-weight: bold;
-    cursor: pointer;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-</style>

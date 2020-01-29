@@ -10,7 +10,7 @@
         <v-col class="bottom-content-values" cols="4">R$ 19,60</v-col>
       </v-row>
     </div>
-    <div @click="toggleRightSidebar" class="bottom-button vertically-centered-container">
+    <div @click="toggleRightSidebar" class="blue-button vertically-centered-container">
       <v-row>
         <v-col cols="7">
           Fechar conta da mesa

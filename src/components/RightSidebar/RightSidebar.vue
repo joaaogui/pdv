@@ -4,13 +4,14 @@
     right
     :width="rightSidebarWidth"
     class="right-sidebar"
+    permanent
   >
     <v-container fluid class="ma-0 pa-0 main-container">
       <TableOrderInfo/>
       <div class="content">
-      <User/>
-      <ItemList/>
-      <Payment/>
+        <User/>
+        <ItemList/>
+        <Payment/>
       </div>
       <BottomContent/>
     </v-container>
@@ -39,10 +40,12 @@
     position: relative;
     height: 100%;
   }
+
   .content {
-    max-height: 60%;
+    max-height: 50%;
     overflow: auto;
   }
+
   .right-sidebar {
     border-top-left-radius: $navbar-border-radius;
     border-bottom-left-radius: $navbar-border-radius;

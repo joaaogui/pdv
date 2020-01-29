@@ -1,24 +1,30 @@
 <template>
   <div class="pt-3 orders-list">
-    <v-row @click="changeActiveOrder(order)" no-gutters class="vertically-centered-container"
-           :class="isActiveOrder(order) ? 'active-order' : 'order'" v-for="order in orders" :key="order">
-      <v-col class="ma-0 pa-0" cols="2">
-        <v-avatar size="40" color="grey">
-          <v-icon dark size="32">mdi-account</v-icon>
-        </v-avatar>
-      </v-col>
+    <div v-for="(order, index) in orders" :key="order">
+      <v-row @click="newOrder" v-if="index===0" no-gutters class="centered-container order">
+        <v-icon>mdi-plus</v-icon>
+      </v-row>
+      <v-row @click="changeActiveOrder(order)" no-gutters class="vertically-centered-container"
+             :class="isActiveOrder(order) ? 'active-order' : 'order'">
+        <v-col class="ma-0 pa-0" cols="2">
+          <v-avatar size="40" color="grey">
+            <v-icon dark size="32">mdi-account</v-icon>
+          </v-avatar>
+        </v-col>
 
-      <v-col class="pl-2" :class="isActiveOrder(order) ? 'white-order-text' : 'order-text'" cols="8">
-        <v-badge offset-x="-1"
-                 offset-y="-1" color="green" dot>
-          #{{order}}
-        </v-badge>
-      </v-col>
-      <v-col class="order-action ma-0 pa-0" cols="2">
-        <v-icon large v-if="isActiveOrder(order)" color="white">mdi-chevron-left</v-icon>
-        <v-icon large v-else :color="rightSidebarTextColor">mdi-chevron-right</v-icon>
-      </v-col>
-    </v-row>
+        <v-col class="pl-2" :class="isActiveOrder(order) ? 'white-order-text' : 'order-text'" cols="8">
+          <v-badge offset-x="-1"
+                   offset-y="-1" color="green" dot
+          >
+            #{{order}}
+          </v-badge>
+        </v-col>
+        <v-col class="order-action ma-0 pa-0" cols="2">
+          <v-icon large v-if="isActiveOrder(order)" color="white">mdi-chevron-left</v-icon>
+          <v-icon large v-else :color="rightSidebarTextColor">mdi-chevron-right</v-icon>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 <script>
@@ -39,9 +45,13 @@
       }
     },
     methods: {
+      newOrder(){
+      //  Start new order
+        this.$store.commit('changeActiveOrder', '')
+      },
       changeActiveOrder(order) {
         this.$store.commit('changeActiveOrder', order.toString())
-        if (!this.rightSidebar){
+        if (!this.rightSidebar) {
           this.toggleRightSidebar()
         }
       },
@@ -62,6 +72,11 @@
     height: 64px;
     border-radius: 10px;
     cursor: pointer;
+  }
+
+  .add-order {
+    width: 100%;
+    height: 64px;
   }
 
   .active-order {

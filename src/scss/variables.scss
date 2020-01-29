@@ -15,6 +15,7 @@ $toolbar-content-padding-x: 0;
 
 $navbar-border-radius: 20px;
 $navbar-height: 90px;
+$navbar-color: #343d63;
 
 $main-content-padding: 80px;
 
@@ -31,10 +32,13 @@ $order-card-height: 180px;
 
 $strong-blue: #003cff;
 $pinky-red: #fe4f70;
+$pastel-green: #4aa970;
+$deactivated-gray: #aeb1b8;
 
 :export {
   rightSidebarWidth: $right-sidebar-width;
   rightSidebartextColor: $right-sidebar-text-color;
   navbarHeight: $navbar-height;
   pinkyRed: $pinky-red;
+  pastelGreen: $pastel-green;
 }

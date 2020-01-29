@@ -57,11 +57,9 @@
 .reduced-container {
   margin-right: $right-sidebar-width;
   height: 100%;
-  text-align: center;
-  background-color:rgba(0, 0, 0, 0.5);
 }
 
-.bottom-button {
+.blue-button {
   padding: 15px;
   height: 65px;
   color: white;
@@ -72,6 +70,22 @@
   cursor: pointer;
   padding-left: 25px;
   padding-right: 25px;
+  width: 100%;
+}
+
+.blue-overlay-button {
+  border: 2px solid $strong-blue;
+  padding: 15px;
+  height: 65px;
+  color: $strong-blue;
+  background-color: white;
+  border-radius: $navbar-border-radius;
+  font-size: 1.125em;
+  font-weight: bold;
+  cursor: pointer;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 100%;
 }
 
 .right-sidebar-list-title {

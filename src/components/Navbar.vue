@@ -33,7 +33,7 @@
 
 <style scoped lang="scss">
   .navbar {
-    background-color: #343d63;
+    background-color: $navbar-color;
   }
 
   .new-order-button {

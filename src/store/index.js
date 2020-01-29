@@ -10,7 +10,8 @@ export default new Vuex.Store({
     tablePopover: false,
     activePaymentForm: 'card',
     activeOrder: '',
-    activeTable: ''
+    activeTable: '',
+    contentOverlay: false
   },
   mutations: {
     toggleRightSidebar(state) {
@@ -30,7 +31,10 @@ export default new Vuex.Store({
     },
     changeActiveTable(state, table) {
       state.activeTable = table
-    }
+    },
+    toggleContentOverlay(state) {
+      state.contentOverlay = !state.contentOverlay
+    },
   },
   getters: {
     rightSidebar(state) {
@@ -50,7 +54,10 @@ export default new Vuex.Store({
     },
     activeTable(state) {
       return state.activeTable
-    }
+    },
+    contentOverlay(state) {
+      return state.contentOverlay
+    },
   },
   actions: {},
   modules: {}
