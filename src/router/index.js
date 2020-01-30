@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../components/Menu/Menu.vue')
   },
   {
-    path: '/menu/:item',
+    path: '/menu/:category',
     name: 'submenu',
     component: () => import('../components/Menu/Submenu/Submenu.vue')
   },

@@ -1,9 +1,9 @@
 <template>
-  <div @click="goTo(card)">
+  <div @click="goTo(category)">
     <v-card class="card centered-container">
       <div class="smaller-card centered-container">
         <v-card-text class="main-content">
-          {{card}}
+          {{category}}
         </v-card-text>
       </div>
     </v-card>
@@ -16,11 +16,11 @@
   export default {
     name: 'Card',
     props: {
-      card: Number,
+      category: String,
     },
     methods: {
-      goTo(item) {
-        this.$router.push({path: `/menu/${item}`})
+      goTo(category) {
+        this.$router.push({path: `/menu/${category}`})
       }
     }
   }

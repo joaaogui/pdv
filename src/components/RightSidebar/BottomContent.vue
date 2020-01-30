@@ -40,7 +40,7 @@
     components: {PaymentConfirmation},
     computed: {
       contentOverlay() {
-        return this.$store.getters.contentoverlay
+        return this.$store.state.contentoverlay
       }
     },
     methods: {

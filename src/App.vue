@@ -26,6 +26,7 @@
   import PaymentConfirmation from "./components/PaymentConfirmation"
 
   export default {
+
     name: 'App',
     components: {
       PaymentConfirmation,
@@ -36,13 +37,13 @@
     },
     computed: {
       rightSidebar() {
-        return this.$store.getters.rightSidebar
+        return this.$store.state.rightSidebar
       },
       leftSidebar() {
-        return this.$store.getters.leftSidebar
+        return this.$store.state.leftSidebar
       },
       contentOverlay() {
-        return this.$store.getters.contentOverlay
+        return this.$store.state.contentOverlay
       }
     },
   }

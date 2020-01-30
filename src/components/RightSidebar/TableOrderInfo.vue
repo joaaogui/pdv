@@ -9,8 +9,8 @@
     </v-col>
     <v-col cols="4">
       <div class="order">
-        <v-badge v-if="activeOrder" color="green" dot>
-          #{{activeOrder}}
+        <v-badge v-if="activeOrderNumber" color="green" dot>
+          #{{activeOrderNumber}}
         </v-badge>
         <v-badge v-else color="green" dot>
           # -
@@ -28,11 +28,11 @@
       rightSidebarTextColor: variables.rightSidebartextColor
     }),
     computed: {
-      activeOrder() {
-        return this.$store.getters.activeOrder
+      activeOrderNumber() {
+        return this.$store.state.activeOrder.number
       },
       activeTable() {
-        return this.$store.getters.activeTable
+        return this.$store.state.activeTable
       }
     }
   }

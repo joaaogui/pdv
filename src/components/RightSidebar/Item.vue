@@ -14,6 +14,9 @@
             <v-icon v-on="on" color="indigo">mdi-dots-vertical</v-icon>
           </template>
           <v-list>
+            <v-list-item @click="removeItem">
+              Remover item
+            </v-list-item>
             <v-list-item>
               <v-list-item-title v-if="!observations" @click="observations = !observations">Adicionar observação</v-list-item-title>
               <v-list-item-title v-else @click="observations = !observations">Remover observação</v-list-item-title>
@@ -21,7 +24,6 @@
             <v-list-item>
               <v-list-item-title v-if="!alergy" @click="alergy = !alergy">Adicionar alergia</v-list-item-title>
               <v-list-item-title v-else @click="alergy = !alergy">Remover alergia</v-list-item-title>
-
             </v-list-item>
           </v-list>
         </v-menu>
@@ -48,12 +50,12 @@
     data: () => ({
       observations: false,
       alergy: false,
-      items: [
-        {name: 'Marguerita', price: '45.80'},
-        {name: 'Pizza', price: '15.80'},
-        {name: 'Hamburguer', price: '35.30'},
-      ]
     }),
+    methods: {
+      removeItem() {
+
+      }
+    }
   }
 </script>
 <style scoped>

@@ -4,7 +4,7 @@
       <v-row @click="newOrder" v-if="index===0" no-gutters class="centered-container order">
         <v-icon>mdi-plus</v-icon>
       </v-row>
-      <v-row @click="changeActiveOrder(order)" no-gutters class="vertically-centered-container"
+      <v-row @click="changeOrderNumber(order)" no-gutters class="vertically-centered-container"
              :class="isActiveOrder(order) ? 'active-order' : 'order'">
         <v-col class="ma-0 pa-0" cols="2">
           <v-avatar size="40" color="grey">
@@ -38,25 +38,25 @@
     }),
     computed: {
       activeOrder() {
-        return this.$store.getters.activeOrder
+        return this.$store.state.activeOrder
       },
       rightSidebar() {
-        return this.$store.getters.rightSidebar
+        return this.$store.state.rightSidebar
       }
     },
     methods: {
       newOrder(){
       //  Start new order
-        this.$store.commit('changeActiveOrder', '')
+        this.$store.commit('changeOrderNumber', '')
       },
-      changeActiveOrder(order) {
-        this.$store.commit('changeActiveOrder', order.toString())
+      changeOrderNumber(order) {
+        this.$store.commit('changeOrderNumber', order.toString())
         if (!this.rightSidebar) {
           this.toggleRightSidebar()
         }
       },
       isActiveOrder(order) {
-        return this.$store.getters.activeOrder === order
+        return this.$store.state.activeOrder.number === order
       },
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')

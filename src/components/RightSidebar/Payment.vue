@@ -2,16 +2,16 @@
   <div>
     <div class="payment-text">Forma de pagamento</div>
     <div class="icons horizontally-centered-element centered-container">
-      <div class="centered-container" @click="changeActivePaymentForm('phone')"
-           :class="activePaymentForm === 'phone' ? 'active-icon' : 'icon'">
+      <div class="centered-container" @click="changePaymentMethod('phone')"
+           :class="paymentMethod === 'phone' ? 'active-icon' : 'icon'">
         <v-icon large>mdi-cellphone</v-icon>
       </div>
-      <div class="icon centered-container" @click="changeActivePaymentForm('card')"
-           :class="activePaymentForm === 'card' ? 'active-icon' : 'icon'">
+      <div class="icon centered-container" @click="changePaymentMethod('card')"
+           :class="paymentMethod === 'card' ? 'active-icon' : 'icon'">
         <v-icon large>mdi-credit-card</v-icon>
       </div>
-      <div class="icon centered-container" @click="changeActivePaymentForm('cash')"
-           :class="activePaymentForm === 'cash' ? 'active-icon' : 'icon'">
+      <div class="icon centered-container" @click="changePaymentMethod('cash')"
+           :class="paymentMethod === 'cash' ? 'active-icon' : 'icon'">
         <v-icon large>mdi-cash</v-icon>
       </div>
     </div>
@@ -26,13 +26,13 @@
   export default {
     name: 'Payment',
     computed: {
-      activePaymentForm() {
-        return this.$store.getters.activePaymentForm
+      paymentMethod() {
+        return this.$store.state.activeOrder.paymentMethod
       }
     },
     methods: {
-      changeActivePaymentForm(paymentForm) {
-        this.$store.commit('changeActivePaymentForm', paymentForm)
+      changePaymentMethod(paymentMethod) {
+        this.$store.commit('changePaymentMethod', paymentMethod)
       }
     }
   }

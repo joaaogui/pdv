@@ -1,18 +1,20 @@
 <template>
-  <v-card v-if="backButton" @click="goTo" class="card centered-container">
-    <v-icon large>mdi-arrow-left</v-icon>
-  </v-card>
-  <v-card v-else class="card">
-    <div class="header">
-      {{item}}
-    </div>
-    <v-card-text class="main-content">
-      Marguerita
-    </v-card-text>
-    <div class="footer">
-      R$ 49,90
-    </div>
-  </v-card>
+  <div>
+    <v-card v-if="backButton" @click="goTo" class="card centered-container">
+      <v-icon large>mdi-arrow-left</v-icon>
+    </v-card>
+    <v-card @click="addToOrder" class="card">
+      <div class="header">
+        {{category}}
+      </div>
+      <v-card-text class="main-content">
+        {{item.name}}
+      </v-card-text>
+      <div class="footer">
+        R$ {{item.price}}
+      </div>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -20,15 +22,19 @@
     name: 'Card',
     props: {
       backButton: Boolean,
+      item: Object
     },
     computed: {
-      item() {
-        return this.$route.params.item
+      category() {
+        return this.$route.params.category
       }
     },
     methods: {
       goTo() {
         this.$router.go(-1)
+      },
+      addToOrder() {
+        this.$store.commit('addItemToOrder', this.item)
       }
     }
   }

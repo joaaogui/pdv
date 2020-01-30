@@ -16,7 +16,7 @@
   export default {
     name: 'Footer',
     data: () => ({
-      pastelGreen: variables.pastelGreen,
+      deactivatedGray: variables.deactivatedGray,
       shortcuts: [
         {text: 'Mesas', icon: 'mdi-table-chair', path: '/tables'},
         {text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/menu'},

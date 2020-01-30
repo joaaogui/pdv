@@ -1,14 +1,15 @@
 <template>
-  <v-card>
+  <v-card v-if="itensLength > 0">
     <v-list flat class="list">
       <v-list-group :ripple="false" flat class="sublist" active-class="active-class">
         <template v-slot:activator>
           <v-avatar size="40" class="mr-3 ml-3 all-item-amount">
-            5
+            {{itensLength}}
           </v-avatar>
-          <v-list-item-title class="right-sidebar-list-title">Itens</v-list-item-title>
+          <v-list-item-title v-if="itensLength === 1" class="right-sidebar-list-title">Item</v-list-item-title>
+          <v-list-item-title v-else class="right-sidebar-list-title">Itens</v-list-item-title>
         </template>
-        <div v-for="item in items" :key="item.name">
+        <div v-for="item in itens" :key="item.name">
           <Item :item="item"/>
         </div>
       </v-list-group>
@@ -22,13 +23,15 @@
   export default {
     name: 'ItemList',
     components: {Item},
-    data: () => ({
-      items: [
-        {name: 'Marguerita', price: '45.80'},
-        {name: 'Pizza', price: '15.80'},
-        {name: 'Hamburguer', price: '35.30'},
-      ]
-    }),
+    computed: {
+      itens() {
+        return this.$store.state.itens
+      },
+      itensLength(){
+        console.log(this.$store.getters.itensLength)
+        return this.$store.getters.itensLength
+      }
+    },
   }
 </script>
 

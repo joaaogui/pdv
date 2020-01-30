@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    activeOrder: {
+      number: '',
+      itens: {},
+      customer: '',
+      paymentMethod: 'phone'
+    },
     rightSidebar: false,
     leftSidebar: false,
     tablePopover: false,
-    activePaymentForm: 'card',
-    activeOrder: '',
     activeTable: '',
     contentOverlay: false
   },
@@ -23,11 +27,11 @@ export default new Vuex.Store({
     toggleTablePopover(state) {
       state.tablePopover = !state.tablePopover
     },
-    changeActivePaymentForm(state, paymentForm) {
-      state.activePaymentForm = paymentForm
+    changePaymentMethod(state, paymentMethod) {
+      state.activeOrder.paymentMethod = paymentMethod
     },
-    changeActiveOrder(state, order) {
-      state.activeOrder = order
+    changeOrderNumber(state, orderNumber) {
+      state.activeOrder.number = orderNumber
     },
     changeActiveTable(state, table) {
       state.activeTable = table
@@ -35,29 +39,19 @@ export default new Vuex.Store({
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
     },
+    addItemToOrder(state, item) {
+      if (item.id in state.activeOrder.itens){
+        state.activeOrder.itens[item.id].count += 1
+      } else {
+        state.activeOrder.itens[item.id] = item
+        state.activeOrder.itens[item.id]['count'] = 1
+      }
+    }
   },
   getters: {
-    rightSidebar(state) {
-      return state.rightSidebar
-    },
-    leftSidebar(state) {
-      return state.leftSidebar
-    },
-    tablePopover(state) {
-      return state.leftSidebar
-    },
-    activePaymentForm(state) {
-      return state.activePaymentForm
-    },
-    activeOrder(state) {
-      return state.activeOrder
-    },
-    activeTable(state) {
-      return state.activeTable
-    },
-    contentOverlay(state) {
-      return state.contentOverlay
-    },
+    itensLength(state){
+      return Object.values(state.activeOrder.itens)
+    }
   },
   actions: {},
   modules: {}

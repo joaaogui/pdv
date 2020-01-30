@@ -1,7 +1,7 @@
 <template>
   <v-row class="menu">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
-      <Card :card="card"/>
+    <v-col class="ma-0 pa-0" cols="auto" v-for="category in categories" :key="category">
+      <Card :category="category"/>
     </v-col>
   </v-row>
 </template>
@@ -15,7 +15,7 @@
       Card,
     },
     data: () => ({
-      cards: [...Array(50).keys()]
+      categories: ['Pizza', 'Bebidas', 'Sobremesas']
     })
   }
 </script>

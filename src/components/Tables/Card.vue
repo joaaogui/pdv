@@ -23,10 +23,10 @@
     },
     computed: {
       activeTable() {
-        return this.$store.getters.activeTable
+        return this.$store.state.activeTable
       },
       activeCard() {
-        return this.$store.getters.activeTable === this.card.toString()
+        return this.$store.state.activeTable === this.card.toString()
       }
     },
     methods: {
