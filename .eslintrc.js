@@ -11,6 +11,8 @@ module.exports = {
     'indent': 'off',
     'comma-spacing': 'off',
     'quotes': 'off',
+    'no-new': 'off',
+    'import/first': 'off',
     'no-trailing-spaces': 'off',
     'space-before-blocks': 'off',
     'space-before-function-paren': 'off',

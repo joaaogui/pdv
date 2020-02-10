@@ -1,13 +1,13 @@
 <template>
   <v-card @click="changeActiveTable" v-on="on" :class="activeCard ? 'active-card' : 'card'" :ripple="false">
-    <TimeCard/>
+    <TimeCard :duration="table.duration"/>
     <div class="main-content">
-      {{card}}
+      {{table.number}}
     </div>
     <div class="footer">
-      21 itens
+      {{table.itens}} itens
       <br>
-      9 pedidos
+      {{table.orders}} pedidos
     </div>
   </v-card>
 </template>
@@ -18,7 +18,7 @@
     name: 'Card',
     components: {TimeCard},
     props: {
-      card: Number,
+      table: Object,
       on: Object
     },
     computed: {
@@ -26,15 +26,15 @@
         return this.$store.state.activeTable
       },
       activeCard() {
-        return this.$store.state.activeTable === this.card.toString()
+        return this.$store.state.activeTable === this.table.id.toString()
       }
     },
     methods: {
       changeActiveTable() {
-        if (this.card.toString() === this.activeTable){
+        if (this.table.id.toString() === this.activeTable){
           this.$store.commit('changeActiveTable', '')
         } else {
-          this.$store.commit('changeActiveTable', this.card.toString())
+          this.$store.commit('changeActiveTable', this.table.id.toString())
         }
       },
     }

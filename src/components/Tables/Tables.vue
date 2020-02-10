@@ -1,6 +1,6 @@
 <template>
   <v-row class="tables">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="card in cards" :key="card">
+    <v-col class="ma-0 pa-0" cols="auto" v-for="(table, index) in tables" :key="index">
       <v-menu
         :close-on-content-click="false"
         :nudge-width="200"
@@ -8,7 +8,7 @@
         offset-x
       >
         <template v-slot:activator="{ on }">
-          <Card :card="card" :on="on"/>
+          <Table :table="table" :on="on"/>
         </template>
         <Popover/>
       </v-menu>
@@ -18,17 +18,22 @@
 
 <script>
   import Popover from './Popover/Popover'
-  import Card from './Card'
+  import Table from './Table'
 
   export default {
-    name: 'Cards',
+    name: 'Tables',
     components: {
-      Card,
+      Table,
       Popover
     },
-    data: () => ({
-      cards: [...Array(50).keys()]
-    }),
+    computed: {
+      tables() {
+        return this.$store.state.tables
+      }
+    },
+    beforeCreate: function () {
+      this.$store.dispatch("getTables")
+    }
   }
 </script>
 

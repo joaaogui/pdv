@@ -1,28 +1,43 @@
 <template>
-  <v-card class="container">
+  <v-card class="container" :class="delayedTable ? 'delayed' : 'normal'">
     <div class="text">
-      12 <br> min
+      {{duration}} <br> min
     </div>
   </v-card>
 </template>
 
 <script>
-    export default {
-        name: 'TimeCard'
+  export default {
+    name: 'TimeCard',
+    props: {
+      duration: String,
+    },
+    computed: {
+      delayedTable (){
+        return this.duration > 30
+      }
     }
+  }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .container {
     width: 42px;
     height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #586e98;
     position: absolute;
     right: 15px;
     top: 15px;
+  }
+
+  .normal {
+    background-color: $gray-blue;
+  }
+
+  .delayed {
+    background-color: $pinky-red;
   }
 
   .text {

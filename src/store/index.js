@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { getOrders } from "@/api/orders"
+import { getTables } from "@/api/tables"
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    orders: [],
     activeOrder: {
       number: '',
       itens: {},
@@ -18,6 +21,12 @@ export default new Vuex.Store({
     contentOverlay: false
   },
   mutations: {
+    setOrders(state, orders){
+      state.orders = orders
+    },
+    setTables(state, tables){
+      state.tables = tables
+    },
     toggleRightSidebar(state) {
       state.rightSidebar = !state.rightSidebar
     },
@@ -53,6 +62,23 @@ export default new Vuex.Store({
       return Object.values(state.activeOrder.itens)
     }
   },
-  actions: {},
+  actions: {
+    async getOrders({ commit }) {
+      try {
+        const orders = await getOrders()
+        commit('setOrders', orders)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getTables({ commit }) {
+      try {
+        const response = await getTables()
+        commit('setTables', response.data.tables)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
   modules: {}
 })
