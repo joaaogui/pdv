@@ -1,5 +1,5 @@
 <template>
-  <v-card @click="changeActiveTable" v-on="on" :class="activeCard ? 'active-card' : 'card'" :ripple="false">
+  <v-card @click="changeTable" v-on="on" :class="isActiveTable ? 'active-card' : 'card'" :ripple="false">
     <TimeCard :duration="table.duration"/>
     <div class="main-content">
       {{table.number}}
@@ -22,19 +22,19 @@
       on: Object
     },
     computed: {
-      activeTable() {
-        return this.$store.state.activeTable
+      tableNumber() {
+        return this.$store.state.table.number
       },
-      activeCard() {
-        return this.$store.state.activeTable === this.table.id.toString()
+      isActiveTable() {
+        return this.$store.state.table.number === this.table.number.toString()
       }
     },
     methods: {
-      changeActiveTable() {
-        if (this.table.id.toString() === this.activeTable){
-          this.$store.commit('changeActiveTable', '')
+      changeTable() {
+        if (this.table.number.toString() === this.tableNumber){
+          this.$store.commit('changeTableNumber', '')
         } else {
-          this.$store.commit('changeActiveTable', this.table.id.toString())
+          this.$store.commit('changeTableNumber', this.table.id.toString())
         }
       },
     }

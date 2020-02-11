@@ -3,14 +3,14 @@
     <v-col cols="8" class="table-number-order-element ">
       <div class="table-number vertically-centered-container">
         <v-icon large :color="rightSidebarTextColor">mdi-table-chair</v-icon>
-        <span class="ml-1" v-if="activeTable">{{activeTable}}</span>
+        <span class="ml-1" v-if="tableNumber">{{tableNumber}}</span>
         <span class="ml-1" v-else>-</span>
       </div>
     </v-col>
     <v-col cols="4">
       <div class="order">
-        <v-badge v-if="activeOrderNumber" color="green" dot>
-          #{{activeOrderNumber}}
+        <v-badge v-if="orderNumber" color="green" dot>
+          #{{orderNumber}}
         </v-badge>
         <v-badge v-else color="green" dot>
           # -
@@ -28,11 +28,11 @@
       rightSidebarTextColor: variables.rightSidebartextColor
     }),
     computed: {
-      activeOrderNumber() {
-        return this.$store.state.activeOrder.number
+      orderNumber() {
+        return this.$store.state.order.number
       },
-      activeTable() {
-        return this.$store.state.activeTable
+      tableNumber() {
+        return this.$store.state.table.number
       }
     }
   }

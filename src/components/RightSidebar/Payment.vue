@@ -27,7 +27,7 @@
     name: 'Payment',
     computed: {
       paymentMethod() {
-        return this.$store.state.activeOrder.paymentMethod
+        return this.$store.state.order.paymentMethod
       }
     },
     methods: {

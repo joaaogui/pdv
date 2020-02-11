@@ -31,7 +31,7 @@
         return this.$store.state.tables
       }
     },
-    beforeCreate: function () {
+    created() {
       this.$store.dispatch("getTables")
     }
   }

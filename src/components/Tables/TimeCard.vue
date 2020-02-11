@@ -10,7 +10,7 @@
   export default {
     name: 'TimeCard',
     props: {
-      duration: String,
+      duration: Number,
     },
     computed: {
       delayedTable (){

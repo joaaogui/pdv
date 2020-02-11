@@ -1,22 +1,22 @@
 <template>
   <div class="pt-3 orders-list">
-    <div v-for="(order, index) in orders" :key="order">
+    <div v-for="(order, index) in orders" :key="index">
       <v-row @click="newOrder" v-if="index===0" no-gutters class="centered-container order">
         <v-icon>mdi-plus</v-icon>
       </v-row>
-      <v-row @click="changeOrderNumber(order)" no-gutters class="vertically-centered-container"
-             :class="isActiveOrder(order) ? 'active-order' : 'order'">
+      <v-row @click="changeOrderNumber(order.id)" no-gutters class="vertically-centered-container"
+             :class="isActiveOrder(order.id) ? 'active-order' : 'order'">
         <v-col class="ma-0 pa-0" cols="2">
           <v-avatar size="40" color="grey">
             <v-icon dark size="32">mdi-account</v-icon>
           </v-avatar>
         </v-col>
 
-        <v-col class="pl-2" :class="isActiveOrder(order) ? 'white-order-text' : 'order-text'" cols="8">
+        <v-col class="pl-2" :class="isActiveOrder(order.id) ? 'white-order-text' : 'order-text'" cols="8">
           <v-badge offset-x="-1"
                    offset-y="-1" color="green" dot
           >
-            #{{order}}
+            #{{order.number}}
           </v-badge>
         </v-col>
         <v-col class="order-action ma-0 pa-0" cols="2">
@@ -29,24 +29,36 @@
 </template>
 <script>
   import variables from '../../../scss/variables.scss'
+  import {getTableOrders} from "@/api/tables"
 
   export default {
     name: 'Orders',
     data: () => ({
       rightSidebarTextColor: variables.rightSidebarTextColor,
-      orders: ['00159', '00160', '00161', '00162', '00163', '00164', '00165'],
+      orders: [],
     }),
     computed: {
-      activeOrder() {
-        return this.$store.state.activeOrder
+      table() {
+        return this.$store.state.table
       },
       rightSidebar() {
         return this.$store.state.rightSidebar
       }
     },
+    created() {
+      this.getTableOrders()
+    },
     methods: {
-      newOrder(){
-      //  Start new order
+      async getTableOrders() {
+        try {
+          let orders = await getTableOrders(this.table.number)
+          this.orders = orders.data.orders
+        } catch (error) {
+          console.log(error)
+        }
+      },
+      newOrder() {
+        //  Start new order
         this.$store.commit('changeOrderNumber', '')
       },
       changeOrderNumber(order) {
@@ -56,7 +68,7 @@
         }
       },
       isActiveOrder(order) {
-        return this.$store.state.activeOrder.number === order
+        return this.$store.state.order.number === order
       },
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')

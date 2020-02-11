@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     orders: [],
-    activeOrder: {
+    order: {
       number: '',
       itens: {},
       customer: '',
@@ -17,8 +17,11 @@ export default new Vuex.Store({
     rightSidebar: false,
     leftSidebar: false,
     tablePopover: false,
-    activeTable: '',
-    contentOverlay: false
+    table: {
+      number: '',
+    },
+    contentOverlay: false,
+    tables: []
   },
   mutations: {
     setOrders(state, orders){
@@ -37,29 +40,29 @@ export default new Vuex.Store({
       state.tablePopover = !state.tablePopover
     },
     changePaymentMethod(state, paymentMethod) {
-      state.activeOrder.paymentMethod = paymentMethod
+      state.order.paymentMethod = paymentMethod
     },
     changeOrderNumber(state, orderNumber) {
-      state.activeOrder.number = orderNumber
+      state.order.number = orderNumber
     },
-    changeActiveTable(state, table) {
-      state.activeTable = table
+    changeTableNumber(state, tableNumber) {
+      state.table.number = tableNumber
     },
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
     },
     addItemToOrder(state, item) {
-      if (item.id in state.activeOrder.itens){
-        state.activeOrder.itens[item.id].count += 1
+      if (item.id in state.order.itens){
+        state.order.itens[item.id].count += 1
       } else {
-        state.activeOrder.itens[item.id] = item
-        state.activeOrder.itens[item.id]['count'] = 1
+        state.order.itens[item.id] = item
+        state.order.itens[item.id]['count'] = 1
       }
     }
   },
   getters: {
     itensLength(state){
-      return Object.values(state.activeOrder.itens)
+      return Object.values(state.order.itens)
     }
   },
   actions: {
