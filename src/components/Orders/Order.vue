@@ -6,21 +6,21 @@
     <div class="header">
       <v-row no-gutters>
         <v-col class="header-text" cols="8">
-          <div class="horizontally-centered-element vertically-centered-container">12 min</div>
+          <div class="horizontally-centered-element vertically-centered-container">{{order.duration}} min</div>
         </v-col>
         <v-col class="circle horizontally-centered-element" cols="4">
           <v-avatar size="40" :color="orderBadgeColor">
-            4
+            {{order.itens}}
           </v-avatar>
         </v-col>
       </v-row>
     </div>
     <v-card-text class="main-content pl-0">
-      #0159
+      #{{order.number}}
     </v-card-text>
     <div class="footer vertically-centered-container">
       <v-icon :color="iconColor">mdi-table-chair</v-icon>
-      0254
+      {{order.tables}}
     </div>
   </v-card>
 </template>
@@ -29,8 +29,9 @@
   import variables from '@/scss/variables.scss'
 
   export default {
-    name: 'Card',
+    name: 'Order',
     props: {
+      order: Object,
       backButton: Boolean,
     },
     data: () => ({

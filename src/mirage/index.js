@@ -58,6 +58,18 @@ export default function(){
 
           return Math.floor(Math.random() * (max - min + 1)) + min
         },
+        tables() {
+          let min = 1
+          let max = 20
+
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        },
+        itens() {
+          let min = 1
+          let max = 20
+
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        },
       }),
       category: Factory.extend({
         name(i){
@@ -89,6 +101,17 @@ export default function(){
       this.get("/table/:id/orders", (schema, request) => {
         let table = schema.tables.find(request.params.id)
         return table.order
+      })
+
+      // Orders
+      this.get("/orders")
+      this.get("/orders/:id")
+      this.post("/orders")
+      this.patch("/orders/:id")
+      this.del("/orders/:id")
+      this.get("/order/:id/itens", (schema, request) => {
+        let order = schema.orders.find(request.params.id)
+        return order.iten
       })
 
       // Menu

@@ -1,6 +1,6 @@
 import axios from './index'
 
-const endpoint = '/order'
+const endpoint = '/orders'
 
 const getOrders = () => axios.get(endpoint)
 

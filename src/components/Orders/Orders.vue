@@ -1,22 +1,27 @@
 <template>
   <v-row class="orders">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="(card, i) in cards" :key="card">
-      <Card :card="card" :backButton="i === 0"/>
+    <v-col class="ma-0 pa-0" cols="auto" v-for="(order, i) in orders" :key="i">
+      <Order :order="order" :backButton="i === 0"/>
     </v-col>
   </v-row>
 </template>
 
 <script>
-  import Card from './Card'
+  import Order from './Order'
 
   export default {
     name: 'Orders',
     components: {
-      Card,
+      Order,
     },
-    data: () => ({
-      cards: [...Array(50).keys()]
-    }),
+    computed: {
+      orders() {
+        return this.$store.state.orders
+      }
+    },
+    created() {
+      this.$store.dispatch("getOrders")
+    }
   }
 </script>
 
