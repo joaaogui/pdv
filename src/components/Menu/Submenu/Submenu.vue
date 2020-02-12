@@ -15,7 +15,7 @@
       Card,
     },
     data: () => ({
-      itens: [{id: '1', name: 'Marguerita', price: '50,23'}, {id: '2', name: 'Portuguesa', price: '10,04'}, {id: '3', name: 'Calabresa', price: '102,58'}]
+      itens: [{id: '1', name: 'Marguerita', price: 50.23, amount: 1}, {id: '2', name: 'Portuguesa', price: 10.04, amount: 1}, {id: '3', name: 'Calabresa', price: 102.58, amount: 1}]
     }),
   }
 </script>

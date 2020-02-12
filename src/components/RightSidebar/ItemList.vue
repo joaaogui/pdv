@@ -9,7 +9,7 @@
           <v-list-item-title v-if="itensLength === 1" class="right-sidebar-list-title">Item</v-list-item-title>
           <v-list-item-title v-else class="right-sidebar-list-title">Itens</v-list-item-title>
         </template>
-        <div v-for="item in itens" :key="item.name">
+        <div v-for="(item, index) in itens" :key="index">
           <Item :item="item"/>
         </div>
       </v-list-group>
@@ -28,7 +28,6 @@
         return this.$store.state.itens
       },
       itensLength(){
-        console.log(this.$store.getters.itensLength)
         return this.$store.getters.itensLength
       }
     },

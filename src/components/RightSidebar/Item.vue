@@ -2,21 +2,18 @@
   <div>
     <v-list-item>
       <v-avatar size="30" class="mr-3 item-amount">
-        <span>1</span>
+        <span>{{item.amount}}</span>
       </v-avatar>
       <v-list-item-content>
         {{item.name}}
       </v-list-item-content>
       <v-list-item-icon>
-        R$ {{item.price}}
+        R$ {{totalPrice}}
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-icon v-on="on" color="indigo">mdi-dots-vertical</v-icon>
           </template>
           <v-list>
-            <v-list-item @click="removeItem">
-              Remover item
-            </v-list-item>
             <v-list-item>
               <v-list-item-title v-if="!observations" @click="observations = !observations">Adicionar observação</v-list-item-title>
               <v-list-item-title v-else @click="observations = !observations">Remover observação</v-list-item-title>
@@ -24,6 +21,15 @@
             <v-list-item>
               <v-list-item-title v-if="!alergy" @click="alergy = !alergy">Adicionar alergia</v-list-item-title>
               <v-list-item-title v-else @click="alergy = !alergy">Remover alergia</v-list-item-title>
+            </v-list-item>
+            <v-list-item v-if="item.amount > 1" @click="removeUnit">
+              Remover uma unidade
+            </v-list-item>
+            <v-list-item v-else @click="removeUnit">
+              Remover item
+            </v-list-item>
+            <v-list-item @click="removeItem">
+              Remover todos os itens
             </v-list-item>
           </v-list>
         </v-menu>
@@ -51,9 +57,17 @@
       observations: false,
       alergy: false,
     }),
+    computed: {
+      totalPrice(){
+        return (this.item.amount * this.item.price).toFixed(2)
+      }
+    },
     methods: {
+      removeUnit() {
+        this.$store.commit('removeUnit', this.item.id)
+      },
       removeItem() {
-
+        this.$store.commit('removeItem', this.item.id)
       }
     }
   }

@@ -10,8 +10,6 @@ export default new Vuex.Store({
     orders: [],
     order: {
       number: '',
-      itens: {},
-      customer: '',
       paymentMethod: 'phone'
     },
     rightSidebar: false,
@@ -21,7 +19,8 @@ export default new Vuex.Store({
       number: '',
     },
     contentOverlay: false,
-    tables: []
+    tables: [],
+    itens: []
   },
   mutations: {
     setOrders(state, orders){
@@ -51,18 +50,36 @@ export default new Vuex.Store({
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
     },
-    addItemToOrder(state, item) {
-      if (item.id in state.order.itens){
-        state.order.itens[item.id].count += 1
+    addItem(state, item) {
+      let oldItem = state.itens.find(i => i.id === item.id)
+      if (oldItem){
+        oldItem.amount += 1
       } else {
-        state.order.itens[item.id] = item
-        state.order.itens[item.id]['count'] = 1
+        state.itens.push(item)
       }
+    },
+    removeItem(state, id) {
+      state.itens = state.itens.filter(i => i.id !== id)
+    },
+    removeUnit(state, id) {
+      let oldItem = state.itens.find(i => i.id === id)
+      oldItem.amount -= 1
     }
   },
   getters: {
     itensLength(state){
-      return Object.values(state.order.itens)
+      if (state.itens.length){
+        return state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
+      } else {
+        return 0
+      }
+    },
+    itensPrice(state){
+      if (state.itens.length){
+        return state.itens.map(item => item.price).reduce((prev, next) => prev + next)
+      } else {
+        return 0
+      }
     }
   },
   actions: {

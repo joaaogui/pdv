@@ -28,6 +28,18 @@ export default function(){
 
           return Math.floor(Math.random() * (max - min + 1)) + min
         },
+        itens() {
+          let min = 0
+          let max = 60
+
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        },
+        orders() {
+          let min = 0
+          let max = 60
+
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        },
       }),
       order: Factory.extend({
         number(i) {
@@ -64,6 +76,10 @@ export default function(){
       this.get("/table/:id/orders", (schema, request) => {
         let table = schema.tables.find(request.params.id)
         return table.order
+      })
+      this.get("/order/:id/itens", (schema, request) => {
+        let order = schema.orders.find(request.params.id)
+        return order.item
       })
     },
   })

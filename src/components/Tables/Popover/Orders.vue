@@ -63,6 +63,7 @@
       },
       changeOrderNumber(order) {
         this.$store.commit('changeOrderNumber', order.toString())
+
         if (!this.rightSidebar) {
           this.toggleRightSidebar()
         }

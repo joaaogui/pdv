@@ -34,7 +34,7 @@
         this.$router.go(-1)
       },
       addToOrder() {
-        this.$store.commit('addItemToOrder', this.item)
+        this.$store.commit('addItem', this.item)
       }
     }
   }
