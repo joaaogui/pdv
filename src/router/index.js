@@ -17,7 +17,8 @@ const routes = [
   {
     path: '/menu/:category',
     name: 'submenu',
-    component: () => import('../components/Menu/Submenu/Submenu.vue')
+    component: () => import('../components/Menu/Submenu/Submenu.vue'),
+    props: true
   },
   {
     path: '/orders',

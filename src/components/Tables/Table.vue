@@ -22,19 +22,19 @@
       on: Object
     },
     computed: {
-      tableNumber() {
-        return this.$store.state.table.number
+      tableId() {
+        return this.$store.state.table.id
       },
       isActiveTable() {
-        return this.$store.state.table.number === this.table.number.toString()
+        return this.$store.state.table.id === this.table.id.toString()
       }
     },
     methods: {
       changeTable() {
-        if (this.table.number.toString() === this.tableNumber){
-          this.$store.commit('changeTableNumber', '')
+        if (this.table.number.toString() === this.tableId){
+          this.$store.commit('changeTable', '')
         } else {
-          this.$store.commit('changeTableNumber', this.table.id.toString())
+          this.$store.commit('changeTable', this.table.id.toString())
         }
       },
     }

@@ -1,21 +1,39 @@
 <template>
   <v-row class="submenu">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(item, index) in itens" :key="index">
-      <Card :item="item" :backButton="index === 0"/>
+      <Card :item="item" :categoryName="category.name" :backButton="index === 0"/>
     </v-col>
   </v-row>
 </template>
 
 <script>
   import Card from './Card'
+  import {getCategoryItens} from "@/api/categories"
 
   export default {
     name: 'Submenu',
     components: {
       Card,
     },
+    props: {
+      category: Object
+    },
+    created() {
+      this.getCategoryItens()
+    },
+    methods: {
+      async getCategoryItens() {
+        try {
+          let itens = await getCategoryItens(this.category.id)
+          console.log(itens)
+          this.itens = itens.data.itens
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    },
     data: () => ({
-      itens: [{id: '1', name: 'Marguerita', price: 50.23, amount: 1}, {id: '2', name: 'Portuguesa', price: 10.04, amount: 1}, {id: '3', name: 'Calabresa', price: 102.58, amount: 1}]
+      itens: []
     }),
   }
 </script>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { getOrders } from "@/api/orders"
 import { getTables } from "@/api/tables"
+import {getCategories} from "@/api/categories"
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ export default new Vuex.Store({
   state: {
     orders: [],
     order: {
+      id: '',
       number: '',
       paymentMethod: 'phone'
     },
@@ -16,11 +18,13 @@ export default new Vuex.Store({
     leftSidebar: false,
     tablePopover: false,
     table: {
+      id: '',
       number: '',
     },
     contentOverlay: false,
     tables: [],
-    itens: []
+    itens: [],
+    categories: [],
   },
   mutations: {
     setOrders(state, orders){
@@ -28,6 +32,9 @@ export default new Vuex.Store({
     },
     setTables(state, tables){
       state.tables = tables
+    },
+    setCategories(state, categories){
+      state.categories = categories
     },
     toggleRightSidebar(state) {
       state.rightSidebar = !state.rightSidebar
@@ -44,8 +51,8 @@ export default new Vuex.Store({
     changeOrderNumber(state, orderNumber) {
       state.order.number = orderNumber
     },
-    changeTableNumber(state, tableNumber) {
-      state.table.number = tableNumber
+    changeTable(state, tableId) {
+      state.table.id = tableId
     },
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
@@ -57,6 +64,7 @@ export default new Vuex.Store({
       } else {
         state.itens.push(item)
       }
+      console.log(state.itens)
     },
     removeItem(state, id) {
       state.itens = state.itens.filter(i => i.id !== id)
@@ -69,6 +77,8 @@ export default new Vuex.Store({
   getters: {
     itensLength(state){
       if (state.itens.length){
+        let amount = state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
+        console.log(amount)
         return state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
       } else {
         return 0
@@ -95,6 +105,14 @@ export default new Vuex.Store({
       try {
         const response = await getTables()
         commit('setTables', response.data.tables)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getCategories({ commit }) {
+      try {
+        const response = await getCategories()
+        commit('setCategories', response.data.categories)
       } catch (error) {
         console.log(error)
       }

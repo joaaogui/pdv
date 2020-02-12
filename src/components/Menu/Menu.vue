@@ -1,6 +1,6 @@
 <template>
   <v-row class="menu">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="category in categories" :key="category">
+    <v-col class="ma-0 pa-0" cols="auto" v-for="(category, index) in categories" :key="index">
       <Card :category="category"/>
     </v-col>
   </v-row>
@@ -14,9 +14,14 @@
     components: {
       Card,
     },
-    data: () => ({
-      categories: ['Pizza', 'Bebidas', 'Sobremesas']
-    })
+    computed: {
+      categories(){
+        return this.$store.state.categories
+      }
+    },
+    created() {
+      this.$store.dispatch("getCategories")
+    }
   }
 </script>
 

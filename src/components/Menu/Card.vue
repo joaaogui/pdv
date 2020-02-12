@@ -3,7 +3,7 @@
     <v-card class="card centered-container">
       <div class="smaller-card centered-container">
         <v-card-text class="main-content">
-          {{category}}
+          {{category.name}}
         </v-card-text>
       </div>
     </v-card>
@@ -16,11 +16,11 @@
   export default {
     name: 'Card',
     props: {
-      category: String,
+      category: Object,
     },
     methods: {
       goTo(category) {
-        this.$router.push({path: `/menu/${category}`})
+        this.$router.push({name: 'submenu', params: {category}})
       }
     }
   }

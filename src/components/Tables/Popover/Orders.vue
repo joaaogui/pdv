@@ -51,7 +51,7 @@
     methods: {
       async getTableOrders() {
         try {
-          let orders = await getTableOrders(this.table.number)
+          let orders = await getTableOrders(this.table.id)
           this.orders = orders.data.orders
         } catch (error) {
           console.log(error)
