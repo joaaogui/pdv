@@ -2,11 +2,8 @@ import axios from './index'
 
 const endpoint = '/configs'
 
-const getTables = () => axios.get(endpoint)
-
-const getTableOrders = (tableId) => axios.get(`/table/${tableId}/orders`)
+const getConfigs = () => axios.get(endpoint)
 
 export {
-  getTables,
-  getTableOrders
+  getConfigs
 }

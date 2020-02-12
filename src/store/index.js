@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { getOrders } from "@/api/orders"
 import { getTables } from "@/api/tables"
 import {getCategories} from "@/api/categories"
+import {getConfigs} from "@/api/configs"
 
 Vue.use(Vuex)
 
@@ -11,7 +12,6 @@ export default new Vuex.Store({
     orders: [],
     order: {
       id: '',
-      number: '',
       paymentMethod: 'phone'
     },
     rightSidebar: false,
@@ -19,12 +19,13 @@ export default new Vuex.Store({
     tablePopover: false,
     table: {
       id: '',
-      number: '',
     },
     contentOverlay: false,
     tables: [],
     itens: [],
     categories: [],
+    couvertPrice: 0,
+    tipPercentage: 0
   },
   mutations: {
     setOrders(state, orders){
@@ -35,6 +36,10 @@ export default new Vuex.Store({
     },
     setCategories(state, categories){
       state.categories = categories
+    },
+    setConfigs(state, configs){
+      state.couvertPrice = configs.couvertPrice
+      state.tipPercentage = configs.tipPercentage
     },
     toggleRightSidebar(state) {
       state.rightSidebar = !state.rightSidebar
@@ -113,6 +118,14 @@ export default new Vuex.Store({
       try {
         const response = await getCategories()
         commit('setCategories', response.data.categories)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getConfigs({ commit }) {
+      try {
+        const response = await getConfigs()
+        commit('setConfigs', response.data)
       } catch (error) {
         console.log(error)
       }

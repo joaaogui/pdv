@@ -124,6 +124,14 @@ export default function(){
         let category = schema.categories.find(request.params.id)
         return category.iten
       })
+
+      // Configs
+      this.get("/configs", () => {
+        return {
+          tipPercentage: 10,
+          couvetPrice: 8.50
+        }
+      })
     },
   })
 }

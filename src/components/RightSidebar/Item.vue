@@ -25,7 +25,7 @@
             <v-list-item v-if="item.amount > 1" @click="removeUnit">
               Remover uma unidade
             </v-list-item>
-            <v-list-item v-else @click="removeUnit">
+            <v-list-item v-else @click="removeItem">
               Remover item
             </v-list-item>
             <v-list-item @click="removeItem">
