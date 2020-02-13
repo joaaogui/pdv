@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="text-box">O cliente será notificado e
-      o valor de <b>R$ 226,00</b> será cobrado
+      o valor de <b>R$ {{totalPrice | money}}</b> será cobrado
       no cartão de crédito.
     </div>
   </div>
@@ -28,6 +28,9 @@
     computed: {
       paymentMethod() {
         return this.$store.state.order.paymentMethod
+      },
+      totalPrice() {
+        return this.$store.getters.totalPrice
       }
     },
     methods: {
@@ -75,8 +78,8 @@
 
   .text-box {
     padding-top: 30px;
-    padding-left: $right-sidebar-padding;
-    padding-right: $right-sidebar-padding;
+    padding-left: $right-sidebar-padding + 20;
+    padding-right: $right-sidebar-padding + 20;
     text-align: center;
     color: $right-sidebar-text-color
   }

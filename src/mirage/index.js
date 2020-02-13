@@ -128,7 +128,7 @@ export default function(){
       // Configs
       this.get("/configs", () => {
         return {
-          tipPercentage: 0.1,
+          tipPercentage: 10,
           couvertPrice: 8.50
         }
       })

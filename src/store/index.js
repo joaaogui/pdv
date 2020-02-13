@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getOrders } from "@/api/orders"
-import { getTables } from "@/api/tables"
+import {getOrders} from "@/api/orders"
+import {getTables} from "@/api/tables"
 import {getCategories} from "@/api/categories"
 import {getConfigs} from "@/api/configs"
 
@@ -27,21 +27,29 @@ export default new Vuex.Store({
     itens: [],
     categories: [],
     couvertPrice: 0,
-    tipPercentage: 0
+    couvertAmount: 0,
+    tipPercentage: 0,
+    discount: 0
   },
   mutations: {
-    setOrders(state, orders){
+    setOrders(state, orders) {
       state.orders = orders
     },
-    setTables(state, tables){
+    setTables(state, tables) {
       state.tables = tables
     },
-    setCategories(state, categories){
+    setCategories(state, categories) {
       state.categories = categories
     },
-    setConfigs(state, configs){
+    setConfigs(state, configs) {
       state.couvertPrice = configs.couvertPrice
       state.tipPercentage = configs.tipPercentage
+    },
+    setDiscount(state, discount){
+      state.discount = discount
+    },
+    setTip(state, tipPercentage){
+      state.tipPercentage = tipPercentage
     },
     toggleRightSidebar(state) {
       state.rightSidebar = !state.rightSidebar
@@ -67,9 +75,9 @@ export default new Vuex.Store({
       state.contentOverlay = !state.contentOverlay
     },
     addItem(state, item) {
-      let oldItem = state.itens.find(i => i.id === item.id)
-      if (oldItem){
-        oldItem.amount += 1
+      let existingItem = state.itens.find(i => i.id === item.id)
+      if (existingItem) {
+        existingItem.amount += 1
       } else {
         state.itens.push(item)
       }
@@ -79,37 +87,49 @@ export default new Vuex.Store({
       state.itens = state.itens.filter(i => i.id !== id)
     },
     removeUnit(state, id) {
-      let oldItem = state.itens.find(i => i.id === id)
-      oldItem.amount -= 1
+      let existingItem = state.itens.find(i => i.id === id)
+      existingItem.amount -= 1
+    },
+    addCouvert(state) {
+      state.couvertAmount += 1
+    },
+    removeCouvert(state) {
+      if (state.couvertAmount > 0) {
+        state.couvertAmount -= 1
+      }
     }
   },
   getters: {
-    itensLength(state){
-      if (state.itens.length){
-        let amount = state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
-        console.log(amount)
+    itensLength(state) {
+      if (state.itens.length) {
         return state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
       } else {
         return 0
       }
     },
-    itensPrice(state){
-      if (state.itens.length){
+    itensPrice(state) {
+      if (state.itens.length) {
         return state.itens.map(item => item.price * item.amount).reduce((prev, next) => prev + next)
       } else {
         return 0
       }
     },
-    tipValue(state, getters){
-      if (state.itens.length){
-      return getters.itensPrice * state.tipPercentage
+    tipValue(state, getters) {
+      if (state.itens.length) {
+        return getters.itensPrice * (state.tipPercentage / 100)
       } else {
         return 0
       }
+    },
+    couvertTotalPrice(state) {
+      return state.couvertAmount * state.couvertPrice
+    },
+    totalPrice(state, getters) {
+      return getters.itensPrice + getters.tipValue + getters.couvertTotalPrice - state.discount
     }
   },
   actions: {
-    async getOrders({ commit }) {
+    async getOrders({commit}) {
       try {
         const response = await getOrders()
         commit('setOrders', response.data.orders)
@@ -117,7 +137,7 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    async getTables({ commit }) {
+    async getTables({commit}) {
       try {
         const response = await getTables()
         commit('setTables', response.data.tables)
@@ -125,7 +145,7 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    async getCategories({ commit }) {
+    async getCategories({commit}) {
       try {
         const response = await getCategories()
         commit('setCategories', response.data.categories)
@@ -133,7 +153,7 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    async getConfigs({ commit }) {
+    async getConfigs({commit}) {
       try {
         const response = await getConfigs()
         commit('setConfigs', response.data)
