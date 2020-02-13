@@ -12,6 +12,7 @@ export default new Vuex.Store({
     orders: [],
     order: {
       id: '',
+      number: '',
       paymentMethod: 'phone'
     },
     rightSidebar: false,
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     tablePopover: false,
     table: {
       id: '',
+      number: ''
     },
     contentOverlay: false,
     tables: [],
@@ -53,11 +55,13 @@ export default new Vuex.Store({
     changePaymentMethod(state, paymentMethod) {
       state.order.paymentMethod = paymentMethod
     },
-    changeOrderNumber(state, orderNumber) {
-      state.order.number = orderNumber
+    changeOrder(state, order) {
+      state.order.id = order.id
+      state.order.number = order.number
     },
-    changeTable(state, tableId) {
-      state.table.id = tableId
+    changeTable(state, table) {
+      state.table.id = table.id
+      state.table.number = table.number
     },
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
@@ -91,7 +95,14 @@ export default new Vuex.Store({
     },
     itensPrice(state){
       if (state.itens.length){
-        return state.itens.map(item => item.price).reduce((prev, next) => prev + next)
+        return state.itens.map(item => item.price * item.amount).reduce((prev, next) => prev + next)
+      } else {
+        return 0
+      }
+    },
+    tipValue(state, getters){
+      if (state.itens.length){
+      return getters.itensPrice * state.tipPercentage
       } else {
         return 0
       }

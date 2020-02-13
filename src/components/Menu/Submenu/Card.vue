@@ -11,7 +11,7 @@
         {{item.name}}
       </v-card-text>
       <div class="footer">
-        R$ {{item.price}}
+        R$ {{item.price | money}}
       </div>
     </v-card>
   </div>
@@ -25,7 +25,6 @@
       item: Object,
       categoryName: String
     },
-
     methods: {
       goTo() {
         this.$router.go(-1)

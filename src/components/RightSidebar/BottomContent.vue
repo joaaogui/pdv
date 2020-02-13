@@ -2,11 +2,11 @@
   <div class="bottom-content">
     <v-row no-gutters class="bottom-content-lines">
       <v-col cols="8">Subtotal</v-col>
-      <v-col class="bottom-content-values" cols="4">R$ 199,60</v-col>
+      <v-col class="bottom-content-values" cols="4">R$ {{itensPrice | money}}</v-col>
     </v-row>
     <v-row no-gutters class="bottom-content-lines">
       <v-col cols="8">Taxa de serviço (10%)</v-col>
-      <v-col class="bottom-content-values" cols="4">R$ 19,60</v-col>
+      <v-col class="bottom-content-values" cols="4">R$ {{tipValue | money}}</v-col>
     </v-row>
     <v-row no-gutters class="bottom-content-lines">
       <v-col cols="8">Couvert Artístico</v-col>
@@ -41,6 +41,12 @@
     computed: {
       contentOverlay() {
         return this.$store.state.contentoverlay
+      },
+      itensPrice(){
+        return this.$store.getters.itensPrice
+      },
+      tipValue(){
+        return this.$store.getters.tipValue
       }
     },
     methods: {

@@ -27,7 +27,7 @@ export default function(){
     factories: {
       table: Factory.extend({
         number(i) {
-          return `${i + 1}`
+          return `${i + 2}`
         },
         duration() {
           let min = 0
@@ -50,7 +50,7 @@ export default function(){
       }),
       order: Factory.extend({
         number(i) {
-          return `${i + 1}`
+          return `${i + 2}`
         },
         duration() {
           let min = 0
@@ -128,8 +128,8 @@ export default function(){
       // Configs
       this.get("/configs", () => {
         return {
-          tipPercentage: 10,
-          couvetPrice: 8.50
+          tipPercentage: 0.1,
+          couvertPrice: 8.50
         }
       })
     },

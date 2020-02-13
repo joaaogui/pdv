@@ -31,10 +31,10 @@
     },
     methods: {
       changeTable() {
-        if (this.table.number.toString() === this.tableId){
+        if (this.table.id.toString() === this.tableId){
           this.$store.commit('changeTable', '')
         } else {
-          this.$store.commit('changeTable', this.table.id.toString())
+          this.$store.commit('changeTable', this.table)
         }
       },
     }
