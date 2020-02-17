@@ -47,6 +47,12 @@ export default function(){
 
           return Math.floor(Math.random() * (max - min + 1)) + min
         },
+        totalSpending() {
+          let min = 0
+          let max = 3060
+
+          return Math.floor(Math.random() * (max - min + 1)) + min
+        }
       }),
       order: Factory.extend({
         number(i) {

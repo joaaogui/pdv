@@ -38,8 +38,8 @@
       orders: [],
     }),
     computed: {
-      table() {
-        return this.$store.state.table
+      tableId() {
+        return this.$store.state.table.id
       },
       rightSidebar() {
         return this.$store.state.rightSidebar
@@ -51,7 +51,7 @@
     methods: {
       async getTableOrders() {
         try {
-          let orders = await getTableOrders(this.table.id)
+          let orders = await getTableOrders(this.tableId)
           this.orders = orders.data.orders
         } catch (error) {
           console.log(error)
@@ -119,7 +119,7 @@
   }
 
   .orders-list {
-    max-height: 60%;
+    max-height: 75%;
     overflow: auto;
     padding: 5px;
   }
