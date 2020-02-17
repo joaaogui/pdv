@@ -10,6 +10,8 @@ require('@/scss/main.scss')
 
 // Mirage
 import mirage from './mirage/index.js'
+
+import './registerServiceWorker'
 mirage()
 
 Vue.config.productionTip = false
