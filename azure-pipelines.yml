@@ -23,12 +23,12 @@ steps:
 - task: FtpUpload@2
   inputs:
     credentialsOption: 'inputs'
-    serverUrl: 'ftp://waws-prod-sn1-093.ftp.azurewebsites.windows.net/site/'
+    serverUrl: 'ftp://waws-prod-sn1-093.ftp.azurewebsites.windows.net/'
     username: 'onearby-dev-pdv\$onearby-dev-pdv'
     password: 'XdkePkAc4XeqxkAABg48p7jsu4sszvlo9FBJD1lwawN3haqQqDNzjCq5qDui'
     rootDirectory: '$(Build.Repository.LocalPath)/dist'
     filePatterns: '**'
-    remoteDirectory: 'wwwroot'
+    remoteDirectory: 'site/wwwroot'
     clean: false
     cleanContents: true
     preservePaths: false
