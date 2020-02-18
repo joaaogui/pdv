@@ -76,6 +76,10 @@ export default function(){
 
           return Math.floor(Math.random() * (max - min + 1)) + min
         },
+        origin() {
+          let origins = ['app', 'restaurant']
+          return origins[Math.floor(Math.random() * origins.length)]
+        }
       }),
       category: Factory.extend({
         name(i){

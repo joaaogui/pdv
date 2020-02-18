@@ -1,14 +1,18 @@
 <template>
   <div class="pt-3 orders-list">
     <div v-for="(order, index) in orders" :key="index">
-      <v-row @click="newOrder" v-if="index===0" no-gutters class="centered-container order">
+      <v-row @click="newOrder" v-if="index===0 && !app" no-gutters class="centered-container order">
         <v-icon>mdi-plus</v-icon>
       </v-row>
       <v-row @click="changeOrder(order)" no-gutters class="vertically-centered-container"
              :class="isActiveOrder(order.id) ? 'active-order' : 'order'">
         <v-col class="ma-0 pa-0" cols="2">
           <v-avatar size="40" color="grey">
-            <v-icon dark size="32">mdi-account</v-icon>
+            <v-icon v-if="!app" dark size="32">mdi-account</v-icon>
+            <img v-else
+                 src="https://cdn.vuetifyjs.com/images/john.jpg"
+                 alt="John"
+            >
           </v-avatar>
         </v-col>
 
@@ -37,6 +41,9 @@
       rightSidebarTextColor: variables.rightSidebarTextColor,
       orders: [],
     }),
+    props: {
+      app: Boolean
+    },
     computed: {
       tableId() {
         return this.$store.state.table.id
@@ -52,7 +59,12 @@
       async getTableOrders() {
         try {
           let orders = await getTableOrders(this.tableId)
-          this.orders = orders.data.orders
+          if (this.app){
+            this.orders = orders.data.orders.filter(order => order.origin === 'app')
+            console.log(this.orders)
+          } else {
+            this.orders = orders.data.orders.filter(order => order.origin === 'restaurant')
+          }
         } catch (error) {
           console.log(error)
         }
@@ -119,7 +131,6 @@
   }
 
   .orders-list {
-    max-height: 75%;
     overflow: auto;
     padding: 5px;
   }

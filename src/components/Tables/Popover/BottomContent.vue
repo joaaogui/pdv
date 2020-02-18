@@ -15,8 +15,8 @@
         <v-col cols="7">
           Fechar conta da mesa
         </v-col>
-        <v-col class="bottom-content-values centered-container" cols="5">
-         R$ {{table.totalSpending | money}}
+        <v-col v-if="totalSpending" class="bottom-content-values centered-container" cols="5">
+         R$ {{totalSpending | money}}
         </v-col>
       </v-row>
     </div>
@@ -34,6 +34,9 @@
       tableId() {
         return this.$store.state.table.id
       },
+      totalSpending() {
+        return this.table.totalSpending
+      }
     },
     created() {
       this.getTable()
