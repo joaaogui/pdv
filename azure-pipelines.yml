@@ -28,7 +28,7 @@ steps:
     password: 'XdkePkAc4XeqxkAABg48p7jsu4sszvlo9FBJD1lwawN3haqQqDNzjCq5qDui'
     rootDirectory: 'dist'
     filePatterns: '**'
-    remoteDirectory: '/upload/$(Build.BuildId)/'
+    remoteDirectory: '/'
     clean: true
     preservePaths: false
     trustSSL: true
