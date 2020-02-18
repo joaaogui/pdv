@@ -1,7 +1,7 @@
 <template>
   <v-row class="submenu">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(item, index) in itens" :key="index">
-      <Card :item="item" :categoryName="category.name" :backButton="index === 0"/>
+      <Card :item="item" :backButton="index === 0"/>
     </v-col>
   </v-row>
 </template>
@@ -15,8 +15,10 @@
     components: {
       Card,
     },
-    props: {
-      category: Object
+    computed: {
+      categoryId() {
+        return this.$store.state.category.id
+      },
     },
     created() {
       this.getCategoryItens()
@@ -24,7 +26,7 @@
     methods: {
       async getCategoryItens() {
         try {
-          let itens = await getCategoryItens(this.category.id)
+          let itens = await getCategoryItens(this.categoryId)
           console.log(itens)
           this.itens = itens.data.itens
         } catch (error) {

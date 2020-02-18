@@ -1,7 +1,7 @@
 <template>
   <v-card v-if="itensLength > 0">
     <v-list flat class="list">
-      <v-list-group :ripple="false" flat class="sublist" active-class="active-class">
+      <v-list-group :ripple="false" :value="true" flat class="sublist" active-class="active-class">
         <template v-slot:activator>
           <v-avatar size="40" class="mr-3 ml-3 all-item-amount">
             {{itensLength}}

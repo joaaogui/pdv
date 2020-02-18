@@ -5,7 +5,7 @@
     </v-card>
     <v-card @click="addToOrder" class="card">
       <div class="header">
-        {{categoryName}}
+        {{category.name}}
       </div>
       <v-card-text class="main-content">
         {{item.name}}
@@ -23,7 +23,11 @@
     props: {
       backButton: Boolean,
       item: Object,
-      categoryName: String
+    },
+    computed: {
+      category() {
+        return this.$store.state.category
+      },
     },
     methods: {
       goTo() {

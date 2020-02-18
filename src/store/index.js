@@ -4,6 +4,7 @@ import {getOrders} from "@/api/orders"
 import {getTables} from "@/api/tables"
 import {getCategories} from "@/api/categories"
 import {getConfigs} from "@/api/configs"
+import {getOrderItens} from "../api/orders"
 
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ export default new Vuex.Store({
     couvertPrice: 0,
     couvertAmount: 0,
     tipPercentage: 0,
-    discount: 0
+    discount: 0,
+    category: ''
   },
   mutations: {
     setOrders(state, orders) {
@@ -41,12 +43,18 @@ export default new Vuex.Store({
     setCategories(state, categories) {
       state.categories = categories
     },
+    setItens(state, itens) {
+      state.itens = itens
+    },
     setConfigs(state, configs) {
       state.couvertPrice = configs.couvertPrice
       state.tipPercentage = configs.tipPercentage
     },
     setDiscount(state, discount){
       state.discount = discount
+    },
+    setCategory(state, category){
+      state.category = category
     },
     setTip(state, tipPercentage){
       state.tipPercentage = tipPercentage
@@ -81,7 +89,6 @@ export default new Vuex.Store({
       } else {
         state.itens.push(item)
       }
-      console.log(state.itens)
     },
     removeItem(state, id) {
       state.itens = state.itens.filter(i => i.id !== id)
@@ -96,6 +103,18 @@ export default new Vuex.Store({
     removeCouvert(state) {
       if (state.couvertAmount > 0) {
         state.couvertAmount -= 1
+      }
+    },
+    startNewOrder(state, newTable = false) {
+      state.order.id = ''
+      state.order.number = ''
+      state.itens = []
+      if (newTable){
+        state.table.number = ''
+        state.table.id = ''
+      }
+      if (!state.rightSidebar){
+        state.rightSidebar = !state.rightSidebar
       }
     }
   },
@@ -157,6 +176,14 @@ export default new Vuex.Store({
       try {
         const response = await getConfigs()
         commit('setConfigs', response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async getOrderItens({commit}, orderId) {
+      try {
+        const response = await getOrderItens(orderId)
+        commit('setItens', response.data)
       } catch (error) {
         console.log(error)
       }

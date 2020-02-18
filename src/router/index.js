@@ -15,7 +15,7 @@ const routes = [
     component: () => import('../components/Menu/Menu.vue')
   },
   {
-    path: '/menu/:category',
+    path: '/menu/:id/submenu',
     name: 'submenu',
     component: () => import('../components/Menu/Submenu/Submenu.vue'),
     props: true

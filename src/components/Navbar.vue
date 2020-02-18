@@ -4,7 +4,7 @@
       <div class="hamburguer-background centered-container">
         <v-app-bar-nav-icon x-large color="white" @click="toggleLeftSidebar"/>
       </div>
-      <div @click="toggleRightSidebar" class="new-order-button centered-container">
+      <div @click="startNewOrder" class="new-order-button centered-container">
         <div class="text">
           Novo pedido
         </div>
@@ -21,8 +21,8 @@
       navbarHeight: variables.navbarHeight
     }),
     methods: {
-      toggleRightSidebar() {
-        this.$store.commit('toggleRightSidebar')
+      startNewOrder() {
+        this.$store.commit('startNewOrder', true)
       },
       toggleLeftSidebar() {
         this.$store.commit('toggleLeftSidebar')

@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="backButton" @click="goTo" class="card centered-container">
+  <v-card v-if="backButton" @click="startNewOrder" class="card centered-container">
     <v-icon x-large>mdi-plus</v-icon>
   </v-card>
   <v-card v-else class="card">
@@ -46,7 +46,10 @@
     methods: {
       goTo() {
         this.$router.go(-1)
-      }
+      },
+      startNewOrder() {
+        this.$store.commit('startNewOrder', true)
+      },
     }
   }
 </script>

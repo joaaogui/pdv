@@ -7,13 +7,15 @@ export default function(){
         order: hasMany()
       }),
       order: Model.extend({
-        table: belongsTo()
+        table: belongsTo(),
+        iten: hasMany()
       }),
       category: Model.extend({
         iten: hasMany()
       }),
       iten: Model.extend({
-        category: belongsTo()
+        category: belongsTo(),
+        order: hasMany()
       }),
     },
     seeds(server) {
@@ -119,7 +121,7 @@ export default function(){
       this.post("/orders")
       this.patch("/orders/:id")
       this.del("/orders/:id")
-      this.get("/order/:id/itens", (schema, request) => {
+      this.get("/orders/:id/itens", (schema, request) => {
         let order = schema.orders.find(request.params.id)
         return order.iten
       })

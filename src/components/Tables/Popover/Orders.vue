@@ -59,9 +59,8 @@
       async getTableOrders() {
         try {
           let orders = await getTableOrders(this.tableId)
-          if (this.app){
+          if (this.app) {
             this.orders = orders.data.orders.filter(order => order.origin === 'app')
-            console.log(this.orders)
           } else {
             this.orders = orders.data.orders.filter(order => order.origin === 'restaurant')
           }
@@ -71,10 +70,12 @@
       },
       newOrder() {
         //  Start new order
-        this.$store.commit('changeOrder', '')
+        this.$store.commit('startNewOrder')
       },
       changeOrder(order) {
+        console.log(order)
         this.$store.commit('changeOrder', order)
+        this.$store.dispatch("getOrderItens", order.id)
 
         if (!this.rightSidebar) {
           this.toggleRightSidebar()

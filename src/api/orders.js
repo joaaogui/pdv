@@ -6,7 +6,7 @@ const getOrders = () => axios.get(endpoint)
 
 const getOrder = (orderId) => axios.get(endpoint, {orderId})
 
-const getOrderItens = (orderId) => axios.get(`/table/${orderId}/orders`)
+const getOrderItens = (orderId) => axios.get(`/orders/${orderId}/itens`)
 
 export {
   getOrders,

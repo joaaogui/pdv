@@ -1,5 +1,5 @@
 <template>
-  <div @click="goTo(category)">
+  <div @click="setCategory(category)">
     <v-card class="card centered-container">
       <div class="smaller-card centered-container">
         <v-card-text class="main-content">
@@ -19,8 +19,9 @@
       category: Object,
     },
     methods: {
-      goTo(category) {
-        this.$router.push({name: 'submenu', params: {category}})
+      setCategory(category) {
+        this.$store.commit('setCategory', category)
+        this.$router.push({path: `/menu/${category.id}/submenu`})
       }
     }
   }
