@@ -183,7 +183,7 @@ export default new Vuex.Store({
     async getOrderItens({commit}, orderId) {
       try {
         const response = await getOrderItens(orderId)
-        commit('setItens', response.data)
+        commit('setItens', response.data.itens)
       } catch (error) {
         console.log(error)
       }

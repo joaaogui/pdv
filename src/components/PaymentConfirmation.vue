@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="open-sidebar-content">
     <div class="upper-text mb-7">Deseja realizar o pagamento ?</div>
     <div class="buttons">
       <div @click="toggleContentOverlay" class="cancel-button centered-container mr-3">Cancelar</div>
@@ -28,10 +28,6 @@
 </script>
 
 <style scoped lang="scss">
-  .content {
-    margin-right: $right-sidebar-width;
-  }
-
   .upper-text {
     color: white;
     font-weight: bold;

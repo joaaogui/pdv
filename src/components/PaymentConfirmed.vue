@@ -1,5 +1,5 @@
 <template>
-  <div class="content ">
+  <div class="open-sidebar-content">
     <div class="confirmation centered-container">
       <div class="upper-text mb-7 ">
         <v-icon class="horizontally-centered-element" size="90" :color="pastelGreen">mdi-check</v-icon>
@@ -27,10 +27,6 @@
 <style scoped lang="scss">
   .button {
     height: 90px !important;
-  }
-  .content {
-    margin-right: $right-sidebar-width;
-    height: 100%;
   }
 
   .upper-text {

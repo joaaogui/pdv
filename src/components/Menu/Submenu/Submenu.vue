@@ -27,7 +27,6 @@
       async getCategoryItens() {
         try {
           let itens = await getCategoryItens(this.categoryId)
-          console.log(itens)
           this.itens = itens.data.itens
         } catch (error) {
           console.log(error)

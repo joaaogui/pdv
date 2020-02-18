@@ -1,5 +1,5 @@
 <template>
-  <v-row class="tables">
+  <v-row class="tables" :class="rightSidebar ? 'open-sidebar-content' : ''">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(table, index) in tables" :key="index">
       <v-menu
         :close-on-content-click="false"
@@ -29,6 +29,9 @@
     computed: {
       tables() {
         return this.$store.state.tables
+      },
+      rightSidebar(){
+        return this.$store.state.rightSidebar
       }
     },
     created() {
@@ -41,7 +44,6 @@
   .tables {
     padding-left: $main-content-padding;
     margin-bottom: $table-card-margin;
-    margin-right: 0;
     margin-left: 0;
   }
 </style>
