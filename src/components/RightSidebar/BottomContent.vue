@@ -1,8 +1,8 @@
 <template>
   <div class="bottom-content">
     <v-row no-gutters class="bottom-content-lines">
-      <v-col cols="8">Subtotal</v-col>
-      <v-col class="bottom-content-values" cols="4">R$ {{itensPrice | money}}</v-col>
+      <v-col cols="7">Subtotal</v-col>
+      <v-col class="bottom-content-values" cols="5">R$ {{itensPrice | money}}</v-col>
     </v-row>
     <v-row no-gutters class="bottom-content-lines pb-0">
 
@@ -45,7 +45,7 @@
       </v-col>
     </v-row>
     <div @click="toggleContentOverlay" class="mb-2 blue-overlay-button centered-container">
-      Finalizar Pedido
+      Fazer Pedido
     </div>
 
     <div @click="toggleRightSidebar" class="blue-button vertically-centered-container">

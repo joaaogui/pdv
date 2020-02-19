@@ -4,7 +4,7 @@
       <div v-for="(shortcut, i) in shortcuts" :key="i" class="footer-button centered-container">
         <v-btn :ripple="false" height="90" width="125" :to="shortcut.path" active-class="footer-button-active">
           <span class="icon-text">{{shortcut.text}}</span>
-          <v-icon height="20" :color="deactivatedGray" text-center>{{shortcut.icon}}</v-icon>
+          <v-icon height="20" text-center>{{shortcut.icon}}</v-icon>
         </v-btn>
       </div>
     </div>
@@ -18,9 +18,9 @@
     data: () => ({
       deactivatedGray: variables.deactivatedGray,
       shortcuts: [
-        {text: 'Mesas', icon: 'mdi-table-chair', path: '/tables'},
-        {text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/menu'},
-        {text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/orders'}
+        {text: 'Mesas', icon: 'mdi-table-chair', path: '/pdv/tables'},
+        {text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/pdv/menu'},
+        {text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/pdv/orders'}
       ]
     }),
   }
@@ -44,7 +44,6 @@
     display: inherit;
     justify-content: left !important;
     height: 100%;
-    color: $deactivated-gray;
   }
 
   .icon-text {

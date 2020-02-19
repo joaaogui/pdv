@@ -1,10 +1,10 @@
 <template>
   <v-card @click="changeTable" v-on="on" :class="isActiveTable ? 'active-card' : 'card'" :ripple="false">
-    <TimeCard :duration="table.duration"/>
+    <TimeCard :duration="table.duration" v-if="!emptyTable"/>
     <div class="main-content">
       {{table.number}}
     </div>
-    <div class="footer">
+    <div class="footer" v-if="!emptyTable">
       {{table.itens}} itens
       <br>
       {{table.orders}} pedidos
@@ -27,6 +27,9 @@
       },
       isActiveTable() {
         return this.$store.state.table.id === this.table.id.toString()
+      },
+      emptyTable() {
+        return this.table.itens === 0
       }
     },
     methods: {

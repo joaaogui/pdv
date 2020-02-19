@@ -19,6 +19,7 @@ export default function(){
       }),
     },
     seeds(server) {
+      server.create("table", { number: '1', orders: 0, itens: 0 })
       server.createList("table", 20).forEach(table => {
         server.createList("order", 10, { table })
       })
