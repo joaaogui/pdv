@@ -10,7 +10,7 @@
           <v-avatar size="40" color="grey">
             <v-icon v-if="!app" dark size="32">mdi-account</v-icon>
             <img v-else
-                 src="https://cdn.vuetifyjs.com/images/john.jpg"
+                 src="../../../assets/Images/icon.png"
                  alt="John"
             >
           </v-avatar>
@@ -73,9 +73,9 @@
         this.$store.commit('startNewOrder')
       },
       changeOrder(order) {
-        console.log(order)
         this.$store.commit('changeOrder', order)
         this.$store.dispatch("getOrderItens", order.id)
+        this.$store.dispatch("setOrderName", order.id)
 
         if (!this.rightSidebar) {
           this.toggleRightSidebar()

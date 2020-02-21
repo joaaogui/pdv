@@ -44,14 +44,10 @@
         />
       </v-col>
     </v-row>
-    <div @click="toggleContentOverlay" class="mb-2 blue-overlay-button centered-container">
-      Fazer Pedido
-    </div>
-
     <div @click="toggleRightSidebar" class="blue-button vertically-centered-container">
       <v-row>
         <v-col cols="6">
-          Fechar Conta
+          Pagar Pedido
         </v-col>
         <v-col class="bottom-content-values" cols="6">
           R$ {{totalPrice | money}}

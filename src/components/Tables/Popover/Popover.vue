@@ -11,7 +11,7 @@
           <Orders class="orders" :app="true"/>
         </v-tab-item>
       </v-tabs>
-      <BottomContent/>
+      <BottomContent :app="tab"/>
     </v-card>
   </v-container>
 </template>

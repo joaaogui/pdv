@@ -67,6 +67,9 @@ export default function(){
 
           return Math.floor(Math.random() * (max - min + 1)) + min
         },
+        name(i) {
+          return `Rafael Rascovit ${i}`
+        },
         tables() {
           let min = 1
           let max = 20

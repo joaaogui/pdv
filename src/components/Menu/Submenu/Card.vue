@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card v-if="backButton" @click="goTo" class="card centered-container">
-      <v-icon large>mdi-arrow-left</v-icon>
-    </v-card>
+<!--    <v-card v-if="backButton" @click="goTo" class="card centered-container">-->
+<!--      <v-icon large>mdi-arrow-left</v-icon>-->
+<!--    </v-card>-->
     <v-card @click="addToOrder" class="card">
       <div class="header">
         {{category.name}}

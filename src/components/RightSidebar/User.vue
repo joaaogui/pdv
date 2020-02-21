@@ -6,7 +6,7 @@
             <v-avatar size="40" color="grey" class="mr-3 ml-3">
               <v-icon dark size="32">mdi-account</v-icon>
             </v-avatar>
-            <v-list-item-title class="right-sidebar-list-title">Rafael Rascovit</v-list-item-title>
+            <v-list-item-title class="right-sidebar-list-title">{{orderName}}</v-list-item-title>
           </template>
           <UserActions/>
         </v-list-group>
@@ -18,7 +18,12 @@
 
   export default {
     name: 'User',
-    components: {UserActions}
+    components: {UserActions},
+    computed: {
+      orderName() {
+        return this.$store.state.order.name
+      }
+    }
   }
 </script>
 

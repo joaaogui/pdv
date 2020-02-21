@@ -14,6 +14,9 @@
     components: {
       Order,
     },
+    data: () => ({
+      timeout: null
+    }),
     computed: {
       orders() {
         return this.$store.state.orders
@@ -22,8 +25,18 @@
         return this.$store.state.rightSidebar
       }
     },
-    created() {
-      this.$store.dispatch("getOrders")
+    mounted() {
+      this.refreshData()
+    },
+    destroyed() {
+      clearTimeout(this.timeout)
+    },
+    methods: {
+      refreshData() {
+        let x = 1
+        this.$store.dispatch("getOrders")
+        this.timeout = setTimeout(this.refreshData, x * 1000)
+      }
     }
   }
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <v-card v-if="backButton" @click="startNewOrder" class="card centered-container">
-    <v-icon x-large>mdi-plus</v-icon>
-  </v-card>
-  <v-card v-else class="card">
+<!--  <v-card v-if="backButton" @click="startNewOrder" class="card centered-container">-->
+<!--    <v-icon x-large>mdi-plus</v-icon>-->
+<!--  </v-card>-->
+  <v-card class="card">
     <div class="header">
       <v-row no-gutters>
         <v-col class="header-text" cols="8">
@@ -15,12 +15,23 @@
         </v-col>
       </v-row>
     </div>
-    <v-card-text class="main-content pl-0">
-      #{{order.number}}
+    <v-card-text class="order-name pl-0">
+      {{order.name}}
     </v-card-text>
-    <div class="footer vertically-centered-container">
-      <v-icon :color="iconColor">mdi-table-chair</v-icon>
-      {{order.tables}}
+<!--    <div class="footer vertically-centered-container">-->
+<!--      <v-icon :color="iconColor">mdi-table-chair</v-icon>-->
+<!--      {{order.tables}}-->
+<!--    </div>-->
+    <div class="footer">
+      <v-row no-gutters>
+        <v-col cols="8">
+          <v-icon :color="iconColor">mdi-table-chair</v-icon>
+          {{order.tables}}
+        </v-col>
+        <v-col class="order-number" cols="4">
+          #{{order.number}}
+        </v-col>
+      </v-row>
     </div>
   </v-card>
 </template>
@@ -64,6 +75,10 @@
     padding: 15px;
   }
 
+  .header {
+    padding-bottom: 12px;
+  }
+
   .header-text {
     font-size: 1.125em;
     font-weight: 600;
@@ -77,21 +92,23 @@
     text-align: right;
   }
 
-  .main-content {
-    font-size: 2em;
+  .order-name {
+    font-size: 1.375em;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
     color: $right-sidebar-text-color !important;
+    padding-bottom: 30px;
+  }
+
+  .order-number {
+    text-align: right;
+    font-size: 1.125em;
+    font-weight: bold;
+    color: $right-sidebar-text-color;
   }
 
   .footer {
-    text-align: left;
-    height: 50%;
     font-size: 1.375em;
     font-weight: bold;
-    padding-top: 0;
     color: $right-sidebar-text-color !important;
   }
 </style>

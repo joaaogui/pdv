@@ -50,13 +50,13 @@ export default new Vuex.Store({
       state.couvertPrice = configs.couvertPrice
       state.tipPercentage = configs.tipPercentage
     },
-    setDiscount(state, discount){
+    setDiscount(state, discount) {
       state.discount = discount
     },
-    setCategory(state, category){
+    setCategory(state, category) {
       state.category = category
     },
-    setTip(state, tipPercentage){
+    setTip(state, tipPercentage) {
       state.tipPercentage = tipPercentage
     },
     toggleRightSidebar(state) {
@@ -72,12 +72,11 @@ export default new Vuex.Store({
       state.order.paymentMethod = paymentMethod
     },
     changeOrder(state, order) {
-      state.order.id = order.id
-      state.order.number = order.number
+      state.order = order
     },
     changeTable(state, table) {
-      state.table.id = table.id
-      state.table.number = table.number
+      state.table = table
+      state.order = {}
     },
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
@@ -109,11 +108,11 @@ export default new Vuex.Store({
       state.order.id = ''
       state.order.number = ''
       state.itens = []
-      if (newTable){
+      if (newTable) {
         state.table.number = ''
         state.table.id = ''
       }
-      if (!state.rightSidebar){
+      if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
     }

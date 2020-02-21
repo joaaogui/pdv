@@ -26,17 +26,33 @@
       Table,
       Popover
     },
+    data: () => ({
+      timeout: null
+    }),
     computed: {
       tables() {
         return this.$store.state.tables
       },
-      rightSidebar(){
+      rightSidebar() {
         return this.$store.state.rightSidebar
       }
     },
-    created() {
-      this.$store.dispatch("getTables")
+    mounted() {
+      this.refreshData()
+    },
+    destroyed() {
+      clearTimeout(this.timeout)
+    },
+    methods: {
+      refreshData() {
+        let x = 1
+
+        this.$store.dispatch("getTables")
+
+        this.timeout = setTimeout(this.refreshData, x * 1000)
+      }
     }
+
   }
 </script>
 

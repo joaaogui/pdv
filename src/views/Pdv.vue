@@ -3,17 +3,14 @@
     <RightSidebar v-if="rightSidebar"/>
     <LeftSidebar v-if="leftSidebar"/>
     <Navbar/>
-    <v-content class="main-app ">
-      <v-container fluid class="ma-0 pa-0 container">
-        <router-view/>
-      </v-container>
-      <v-overlay
-        :value="contentOverlay"
-        opacity="0.7"
-      >
-        <PaymentConfirmation/>
-      </v-overlay>
-    </v-content>
+    <div>asdaskdusad</div>
+    <router-view/>
+    <v-overlay
+      :value="contentOverlay"
+      opacity="0.7"
+    >
+      <PaymentConfirmation/>
+    </v-overlay>
     <Footer/>
   </div>
 </template>
