@@ -3,8 +3,11 @@
     <RightSidebar v-if="rightSidebar"/>
     <LeftSidebar v-if="leftSidebar"/>
     <Navbar/>
-    <div>asdaskdusad</div>
-    <router-view/>
+    <v-content>
+      <v-container fluid>
+        <router-view/>
+      </v-container>
+    </v-content>
     <v-overlay
       :value="contentOverlay"
       opacity="0.7"

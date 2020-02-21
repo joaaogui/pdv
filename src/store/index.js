@@ -105,8 +105,7 @@ export default new Vuex.Store({
       }
     },
     startNewOrder(state, newTable = false) {
-      state.order.id = ''
-      state.order.number = ''
+      state.order = {}
       state.itens = []
       if (newTable) {
         state.table.number = ''
@@ -115,6 +114,8 @@ export default new Vuex.Store({
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
+
+      this.$router.push({path: 'menu'})
     }
   },
   getters: {

@@ -33,7 +33,13 @@
       }
     },
     methods: {
+      startNewOrder() {
+        this.$store.commit('startNewOrder', true)
+      },
       changeTable() {
+        if (this.emptyTable){
+          this.startNewOrder()
+        }
         if (this.table.id.toString() === this.tableId){
           this.$store.commit('changeTable', '')
         } else {
