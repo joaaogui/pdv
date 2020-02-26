@@ -7,7 +7,9 @@ trigger:
     include:
       - develop
       - qas
-      - masterpr:
+      - master
+      
+pr:
   branches:
     include:
     - '*'  
