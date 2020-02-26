@@ -5,6 +5,7 @@ import {getTables} from "@/api/tables"
 import {getCategories} from "@/api/categories"
 import {getConfigs} from "@/api/configs"
 import {getOrderItens} from "../api/orders"
+import {login, establishmentlogin} from "../api/login"
 
 Vue.use(Vuex)
 
@@ -31,7 +32,10 @@ export default new Vuex.Store({
     couvertAmount: 0,
     tipPercentage: 0,
     discount: 0,
-    category: ''
+    category: '',
+    establishment: '',
+    establishments: [],
+    token: localStorage.getItem('jwt') || ''
   },
   mutations: {
     setOrders(state, orders) {
@@ -45,6 +49,12 @@ export default new Vuex.Store({
     },
     setItens(state, itens) {
       state.itens = itens
+    },
+    setEstablishment(state, establishment) {
+      state.establishment = establishment
+    },
+    setEstablishments(state, establishments) {
+      state.establishments = establishments
     },
     setConfigs(state, configs) {
       state.couvertPrice = configs.couvertPrice
@@ -187,7 +197,24 @@ export default new Vuex.Store({
       } catch (error) {
         console.log(error)
       }
-    }
+    },
+    async login({commit}, loginData) {
+      try {
+        const response = await login(loginData)
+        commit('setEstablishments', response.data.data.estabelecimentos)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async establishmentLogin({commit}, loginData) {
+      try {
+        console.log(loginData)
+        const response = await establishmentlogin(loginData)
+        commit('setEstablishments', response.data.data.estabelecimentos)
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   modules: {}
 })

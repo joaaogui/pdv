@@ -8,8 +8,9 @@ module.exports = {
     '@vue/standard'
   ],
   rules: {
-    'indent': 'off',
+    "indent": ["off", 2],
     'comma-spacing': 'off',
+    'no-multiple-empty-lines': 'off',
     'quotes': 'off',
     'no-new': 'off',
     'import/first': 'off',
@@ -27,7 +28,7 @@ module.exports = {
     'vue/mustache-interpolation-spacing': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/html-closing-bracket-spacing': 'off',
-    'vue/html-indent': 'warning',
+    'vue/html-indent': 'offing',
     'vue/html-closing-bracket-newline': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',

@@ -20,6 +20,7 @@
           <div>
             <div class="first-text">Acesso ao Onearby Empresa</div>
             <v-text-field
+              v-model="input"
               label="telefone ou email"
               solo
               height="65px"
@@ -27,6 +28,7 @@
               class="rounded-text-field"
             />
             <v-text-field
+              v-model="password"
               label="senha"
               solo
               dense
@@ -59,9 +61,17 @@
 <script>
   export default {
     name: "Login",
+    data: () => ({
+      input: null,
+      password: null
+    }),
     methods: {
       login() {
-        this.$router.push({path: 'pdv'})
+        this.$store.dispatch("login", {input: this.input, password: this.password})
+          .then(() =>
+            this.$router.push({name: 'establishments', params: {input: this.input, password: this.password}})
+          )
+          .catch(err => console.log(err))
       }
     }
   }
