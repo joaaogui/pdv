@@ -1,32 +1,88 @@
-# Node.js with Vue
-# Build a Node.js project that uses Vue.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+variables:
+- group: environment-variables
 
-trigger:
-- master
+trigger: none
+
+pr:
+  branches:
+    include:
+    - '*'  
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 - task: NodeTool@0
-
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+# QAS
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
+    filecontent: 'export default "$(qas_api_url)";'
+  displayName: 'QAS - Create API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
+    filecontent: 'export default "$(qas_auth_api_url)";'
+  displayName: 'QAS - Create Auth API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
+    filecontent: 'export default "$(qas_auth_client_id)";'
+  displayName: 'QAS - Create Auth Client Id config file'
+
 - script: |
     npm install
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'QAS - Build'
 
-- task: AzureRmWebAppDeployment@4
+- task: PublishBuildArtifacts@1
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Enterprise: BizSpark (63336eb5-4f37-4bd5-8700-e6512b5221ae)'
-    appType: 'webAppLinux'
-    WebAppName: 'onearby-dev-pdv'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'NODE|12-lts'
-    StartupCommand: 'npm run serve'
+    PathtoPublish: '$(Build.Repository.LocalPath)/dist'
+    ArtifactName: 'drop_qas'
+    publishLocation: 'Container'
+  displayName: 'QAS - Publish drop'
+
+  # Production
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
+    filecontent: 'export default "$(prd_api_url)";'
+  displayName: 'PRD - Create API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
+    filecontent: 'export default "$(prd_auth_api_url)";'
+  displayName: 'PRD - Create Auth API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
+    filecontent: 'export default "$(prd_auth_client_id)";'
+  displayName: 'PRD - Create Auth Client Id config file'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'PRD - Build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.Repository.LocalPath)/dist'
+    ArtifactName: 'drop_prd'
+    publishLocation: 'Container'
+  displayName: 'PRD - Publish drop'
