@@ -17,6 +17,41 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+# DEV
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
+    filecontent: 'export default "$(dev_api_url)";'
+  displayName: 'DEV - Create API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
+    filecontent: 'export default "$(dev_auth_api_url)";'
+  displayName: 'DEV - Create Auth API Url config file'
+
+- task: file-creator@5
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
+    filecontent: 'export default "$(dev_auth_client_id)";'
+  displayName: 'DEV - Create Auth Client Id config file'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'DEV - Build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.Repository.LocalPath)/dist'
+    ArtifactName: 'drop_dev'
+    publishLocation: 'Container'
+  displayName: 'DEV - Publish drop'
+
 # QAS
 
 - task: file-creator@5
