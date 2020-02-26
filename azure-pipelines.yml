@@ -2,10 +2,12 @@ variables:
 - group: environment-variables
 
 trigger:
-  - develop
-  - qas
-  - master
-pr:
+  batch: true
+  branches:
+    include:
+      - develop
+      - qas
+      - masterpr:
   branches:
     include:
     - '*'  
