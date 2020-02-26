@@ -18,5 +18,7 @@ module.exports = {
     manifestOptions: {
       background_color: '#343d63'
     }
-  }
+  },
+
+  publicPath: "/"
 }
