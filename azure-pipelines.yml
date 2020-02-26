@@ -1,8 +1,10 @@
 variables:
 - group: environment-variables
 
-trigger: none
-
+trigger:
+  - develop
+  - qas
+  - master
 pr:
   branches:
     include:
