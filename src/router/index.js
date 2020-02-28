@@ -4,6 +4,7 @@ import store from '../store'
 
 Vue.use(VueRouter)
 console.log(store)
+console.log(process.env)
 const routes = [
   {
     path: '/',
