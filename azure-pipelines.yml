@@ -1,5 +1,5 @@
 variables:
-- group: environment-variables
+- group: dev-pdv
 
 trigger:
   batch: true
