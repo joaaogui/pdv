@@ -24,13 +24,14 @@
     },
     methods: {
       setEstablishment() {
+        console.log(process.env)
         let data = {
           username: this.$route.params.input,
           password: this.$route.params.password,
           origem: 1,
           grant_type: "password",
           loja_id: this.establishment,
-          client_id: process.env.dev_auth_client_id
+          client_id: process.env.VUE_APP_AUTH_URL
         }
 
         this.$store.commit('setEstablishment', this.establishment)
