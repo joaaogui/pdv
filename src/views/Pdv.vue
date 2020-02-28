@@ -45,9 +45,9 @@
         return this.$store.state.contentOverlay
       }
     },
-    created() {
-      this.$store.dispatch("getConfigs")
-    }
+    // created() {
+    //   this.$store.dispatch("getConfigs")
+    // }
   }
 </script>
 

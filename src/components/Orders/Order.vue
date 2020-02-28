@@ -16,7 +16,7 @@
       </v-row>
     </div>
     <v-card-text class="order-name pl-0">
-      {{order.name}}
+      {{order.userName}}
     </v-card-text>
 <!--    <div class="footer vertically-centered-container">-->
 <!--      <v-icon :color="iconColor">mdi-table-chair</v-icon>-->

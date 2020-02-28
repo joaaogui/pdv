@@ -26,7 +26,7 @@
         return this.$store.state.table.id
       },
       isActiveTable() {
-        return this.$store.state.table.id === this.table.id.toString()
+        return this.$store.state.table.id === this.table.id
       },
       emptyTable() {
         return this.table.itens === 0
@@ -37,14 +37,7 @@
         this.$store.commit('startNewOrder', true)
       },
       changeTable() {
-        if (this.emptyTable){
-          this.startNewOrder()
-        }
-        if (this.table.id.toString() === this.tableId){
-          this.$store.commit('changeTable', '')
-        } else {
           this.$store.commit('changeTable', this.table)
-        }
       },
     }
   }

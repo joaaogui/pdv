@@ -3,6 +3,9 @@
     <v-btn @click="toggleLeftSidebar" icon>
       <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
+    <v-btn @click="logout" icon>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
   </v-navigation-drawer>
 </template>
 
@@ -12,6 +15,9 @@
     methods: {
       toggleLeftSidebar() {
         this.$store.commit('toggleLeftSidebar')
+      },
+      logout() {
+        this.$store.dispatch('logout')
       }
     }
   }

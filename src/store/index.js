@@ -5,37 +5,37 @@ import {getTables} from "@/api/tables"
 import {getCategories} from "@/api/categories"
 import {getConfigs} from "@/api/configs"
 import {getOrderItens} from "../api/orders"
-import {login, establishmentlogin} from "../api/login"
+import {login, establishmentLogin} from "../api/login"
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     orders: [],
     order: {
-      id: '',
-      number: '',
+      id: null,
+      number: null,
       paymentMethod: 'phone'
     },
     rightSidebar: false,
     leftSidebar: false,
     tablePopover: false,
     table: {
-      id: '',
-      number: ''
+      id: null,
+      number: null
     },
     contentOverlay: false,
     tables: [],
     itens: [],
     categories: [],
     couvertPrice: 0,
-    couvertAmount: 0,
-    tipPercentage: 0,
+    couvertAmount: localStorage.getItem('couvertAmount') || 0,
+    tipPercentage: localStorage.getItem('tipPercentage') || 0,
     discount: 0,
     category: '',
     establishment: '',
     establishments: [],
-    token: localStorage.getItem('jwt') || ''
+    token: localStorage.getItem('token') || ''
   },
   mutations: {
     setOrders(state, orders) {
@@ -58,10 +58,20 @@ export default new Vuex.Store({
     },
     setConfigs(state, configs) {
       state.couvertPrice = configs.couvertPrice
+      localStorage.setItem('couvertPrice', configs.couvertPrice)
       state.tipPercentage = configs.tipPercentage
+      localStorage.setItem('tipPercentage', configs.tipPercentage)
     },
     setDiscount(state, discount) {
       state.discount = discount
+    },
+    setToken(state, token) {
+      state.token = token
+      localStorage.setItem('token', token)
+    },
+    removeToken(state) {
+      state.token = ''
+      localStorage.removeItem('token')
     },
     setCategory(state, category) {
       state.category = category
@@ -155,13 +165,15 @@ export default new Vuex.Store({
     },
     totalPrice(state, getters) {
       return getters.itensPrice + getters.tipValue + getters.couvertTotalPrice - state.discount
-    }
+    },
+    isAuthenticated: state => !!state.token,
+
   },
   actions: {
     async getOrders({commit}) {
       try {
         const response = await getOrders()
-        commit('setOrders', response.data.orders)
+        commit('setOrders', response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -169,7 +181,7 @@ export default new Vuex.Store({
     async getTables({commit}) {
       try {
         const response = await getTables()
-        commit('setTables', response.data.tables)
+        commit('setTables', response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -177,7 +189,7 @@ export default new Vuex.Store({
     async getCategories({commit}) {
       try {
         const response = await getCategories()
-        commit('setCategories', response.data.categories)
+        commit('setCategories', response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -185,7 +197,7 @@ export default new Vuex.Store({
     async getConfigs({commit}) {
       try {
         const response = await getConfigs()
-        commit('setConfigs', response.data)
+        commit('setConfigs', response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -193,7 +205,7 @@ export default new Vuex.Store({
     async getOrderItens({commit}, orderId) {
       try {
         const response = await getOrderItens(orderId)
-        commit('setItens', response.data.itens)
+        commit('setItens', response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -206,11 +218,18 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
-    async establishmentLogin({commit}, loginData) {
+    async establishmentLogin({commit, dispatch}, loginData) {
       try {
-        console.log(loginData)
-        const response = await establishmentlogin(loginData)
-        commit('setEstablishments', response.data.data.estabelecimentos)
+        const response = await establishmentLogin(loginData)
+        commit('setToken', response.data.access_token)
+        dispatch("getConfigs")
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async logout({commit}) {
+      try {
+        commit('removeToken')
       } catch (error) {
         console.log(error)
       }
@@ -218,3 +237,5 @@ export default new Vuex.Store({
   },
   modules: {}
 })
+
+export default store

@@ -60,22 +60,20 @@
         try {
           let orders = await getTableOrders(this.tableId)
           if (this.app) {
-            this.orders = orders.data.orders.filter(order => order.origin === 'app')
+            this.orders = orders.data.data.filter(order => order.origin === 'app')
           } else {
-            this.orders = orders.data.orders.filter(order => order.origin === 'restaurant')
+            this.orders = orders.data.data.filter(order => order.origin === 'restaurant')
           }
         } catch (error) {
           console.log(error)
         }
       },
       newOrder() {
-        //  Start new order
         this.$store.commit('startNewOrder')
       },
       changeOrder(order) {
         this.$store.commit('changeOrder', order)
         this.$store.dispatch("getOrderItens", order.id)
-        this.$store.dispatch("setOrderName", order.id)
 
         if (!this.rightSidebar) {
           this.toggleRightSidebar()

@@ -19,43 +19,24 @@
           Pagar Mesa
         </v-col>
         <v-col v-if="totalSpending" class="bottom-content-values centered-container" cols="5">
-         R$ {{totalSpending | money}}
+         R$ {{table.totalSpending | money}}
         </v-col>
       </v-row>
     </div>
   </div>
 </template>
 <script>
-  import {getTable} from "@/api/tables"
-
   export default {
     name: 'BottomContent',
-    data: () => ({
-      table: Object,
-    }),
     props: {
       app: Number
     },
     computed: {
-      tableId() {
-        return this.$store.state.table.id
+      table() {
+        return this.$store.state.table
       },
-      totalSpending() {
-        return this.table.totalSpending
-      }
-    },
-    created() {
-      this.getTable()
     },
     methods: {
-      async getTable() {
-        try {
-          let table = await getTable(this.tableId)
-          this.table = table.data.table
-        } catch (error) {
-          console.log(error)
-        }
-      },
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
       }
