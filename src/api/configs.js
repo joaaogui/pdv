@@ -1,6 +1,6 @@
 import axios from './index'
 
-const endpoint = '/configs'
+const endpoint = 'api/restaurante/configs'
 
 const getConfigs = () => axios.get(endpoint)
 

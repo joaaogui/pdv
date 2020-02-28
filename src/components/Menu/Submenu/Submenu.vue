@@ -27,7 +27,8 @@
       async getCategoryItens() {
         try {
           let itens = await getCategoryItens(this.categoryId)
-          this.itens = itens.data.itens
+          itens = itens.data.data.map(v => ({...v, amount: 1}))
+          this.itens = itens
         } catch (error) {
           console.log(error)
         }

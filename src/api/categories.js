@@ -1,10 +1,10 @@
 import axios from './index'
 
-const endpoint = '/category'
+const endpoint = 'api/restaurante/category'
 
 const getCategories = () => axios.get(endpoint)
 
-const getCategoryItens = (categoryId) => axios.get(`/category/${categoryId}/itens`)
+const getCategoryItens = (categoryId) => axios.get(`api/restaurante/category/${categoryId}/itens`)
 
 export {
   getCategories,

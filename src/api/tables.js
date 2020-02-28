@@ -1,11 +1,11 @@
 import axios from './index'
 
-const endpoint = '/tables'
+const endpoint = 'api/restaurante/tables'
 
 const getTables = () => axios.get(endpoint)
 
 
-const getTableOrders = (tableId) => axios.get(`/table/${tableId}/orders`)
+const getTableOrders = (tableId) => axios.get(`api/restaurante/table/${tableId}/orders`)
 
 export {
   getTables,
