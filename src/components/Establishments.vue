@@ -31,7 +31,7 @@
           origem: 1,
           grant_type: "password",
           loja_id: this.establishment,
-          client_id: process.env.VUE_APP_AUTH_URL
+          client_id: process.env.VUE_APP_CLIENT_ID
         }
 
         this.$store.commit('setEstablishment', this.establishment)
