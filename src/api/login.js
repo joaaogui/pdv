@@ -1,7 +1,7 @@
 import axiosInstance from "axios"
 
 const axios = axiosInstance.create({
-  baseURL: process.env.VUE_APP_BASE_URL,
+  baseURL: process.env.dev_api_url,
 })
 
 
