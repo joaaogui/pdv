@@ -1,12 +1,3 @@
-variables:
-- group: dev-pdv
-- name: VUE_APP_CLIENT_ID
-  value: $(VUE_APP_CLIENT_ID)
-- name: VUE_APP_AUTH_URL
-  value: $(VUE_APP_AUTH_URL)
-- name: VUE_APP_AUTH_URL
-  value: "JOAO CHAMA"
-
 trigger:
   batch: true
   branches:
@@ -31,27 +22,6 @@ steps:
 
 # DEV
 
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
-    filecontent: 'export default "$(dev_api_url)";'
-  displayName: 'DEV - Create API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
-    filecontent: 'export default "$(dev_auth_api_url)";'
-  displayName: 'DEV - Create Auth API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
-    filecontent: 'export default "$(dev_auth_client_id)";'
-  displayName: 'DEV - Create Auth Client Id config file'
-
 - script: |
     npm install
     npm run build
@@ -65,33 +35,6 @@ steps:
   displayName: 'DEV - Publish drop'
 
 # QAS
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
-    filecontent: 'export default "$(qas_api_url)";'
-  displayName: 'QAS - Create API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
-    filecontent: 'export default "$(qas_auth_api_url)";'
-  displayName: 'QAS - Create Auth API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
-    filecontent: 'export default "$(qas_auth_client_id)";'
-  displayName: 'QAS - Create Auth Client Id config file'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'QAS - Build'
-
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.Repository.LocalPath)/dist'
@@ -100,28 +43,6 @@ steps:
   displayName: 'QAS - Publish drop'
 
   # Production
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/api-url.js'
-    filecontent: 'export default "$(prd_api_url)";'
-  displayName: 'PRD - Create API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-api-url.js'
-    filecontent: 'export default "$(prd_auth_api_url)";'
-  displayName: 'PRD - Create Auth API Url config file'
-
-- task: file-creator@5
-  inputs:
-    fileoverwrite: true
-    filepath: '$(Build.Repository.LocalPath)/src/config/auth-client-id.js'
-    filecontent: 'export default "$(prd_auth_client_id)";'
-  displayName: 'PRD - Create Auth Client Id config file'
-
 - script: |
     npm install
     npm run build
