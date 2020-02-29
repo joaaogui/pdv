@@ -1,7 +1,9 @@
 variables:
 - name: VUE_APP_API_URL
   value: $(VUE_APP_API_URL)
-  
+- name: test
+  value: asdasdsa
+
 trigger:
   batch: true
   branches:
