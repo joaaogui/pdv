@@ -1,9 +1,3 @@
-variables:
-- name: VUE_APP_API_URL
-  value: $(VUE_APP_API_URL)
-- name: test
-  value: asdasdsa
-
 trigger:
   batch: true
   branches:
@@ -41,12 +35,6 @@ steps:
   displayName: 'DEV - Publish drop'
 
 # QAS
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'QAS - Build'
-
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.Repository.LocalPath)/dist'
@@ -55,7 +43,6 @@ steps:
   displayName: 'QAS - Publish drop'
 
   # Production
-
 - script: |
     npm install
     npm run build
