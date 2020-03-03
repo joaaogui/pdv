@@ -7,7 +7,10 @@
               <v-icon dark size="32">mdi-account</v-icon>
             </v-avatar>
             <v-list-item-title v-if="orderName" class="right-sidebar-list-title">{{orderName}}</v-list-item-title>
-            <v-list-item-title v-else class="right-sidebar-list-title">Cliente X</v-list-item-title>
+            <v-list-item-title v-else class="right-sidebar-list-title"><v-text-field
+              dense
+              color="blue"
+            /></v-list-item-title>
           </template>
           <UserActions/>
         </v-list-group>

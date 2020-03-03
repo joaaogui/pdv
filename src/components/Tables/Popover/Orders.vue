@@ -1,9 +1,9 @@
 <template>
   <div class="pt-3 orders-list">
+    <v-row @click="newOrder" v-if="!app" no-gutters class="centered-container order">
+      <v-icon>mdi-plus</v-icon>
+    </v-row>
     <div v-for="(order, index) in orders" :key="index">
-      <v-row @click="newOrder" v-if="index===0 && !app" no-gutters class="centered-container order">
-        <v-icon>mdi-plus</v-icon>
-      </v-row>
       <v-row @click="changeOrder(order)" no-gutters class="vertically-centered-container"
              :class="isActiveOrder(order.id) ? 'active-order' : 'order'">
         <v-col class="ma-0 pa-0" cols="2">
@@ -11,7 +11,6 @@
             <v-icon v-if="!app" dark size="32">mdi-account</v-icon>
             <img v-else
                  src="../../../assets/Images/icon.png"
-                 alt="John"
             >
           </v-avatar>
         </v-col>
@@ -70,6 +69,7 @@
       },
       newOrder() {
         this.$store.commit('startNewOrder')
+        this.$router.push('/pdv/menu')
       },
       changeOrder(order) {
         this.$store.commit('changeOrder', order)

@@ -68,9 +68,9 @@
     methods: {
       login() {
         this.$store.dispatch("login", {input: this.input, password: this.password})
-          .then(() =>
+          .then(() => {
             this.$router.push({name: 'establishments', params: {input: this.input, password: this.password}})
-          )
+          })
           .catch(err => console.log(err))
       }
     }
