@@ -13,6 +13,8 @@ module.exports = {
     'no-multiple-empty-lines': 'off',
     'quotes': 'off',
     'no-new': 'off',
+    'no-unused-vars': 'warn',
+    'padded-blocks': 'warn',
     'import/first': 'off',
     'no-trailing-spaces': 'off',
     'space-before-blocks': 'off',

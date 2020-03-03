@@ -1,16 +1,16 @@
 <template>
   <div>
-<!--    <v-card v-if="backButton" @click="goTo" class="card centered-container">-->
-<!--      <v-icon large>mdi-arrow-left</v-icon>-->
-<!--    </v-card>-->
-    <v-card @click="addToOrder" class="card">
+    <v-card v-if="backButton" @click="goTo" class="card centered-container vertically-centered-container">
+      <v-icon large>mdi-arrow-left</v-icon>
+    </v-card>
+    <v-card v-else @click="addToOrder" class="card">
       <div class="header">
         {{category.name}}
       </div>
-      <v-card-text class="main-content">
+      <v-card-text class="main-content centered-container">
         {{item.name}}
       </v-card-text>
-      <div class="footer">
+      <div class="footer centered-container">
         R$ {{item.price | money}}
       </div>
     </v-card>
@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    name: 'Card',
+    name: 'Item',
     props: {
       backButton: Boolean,
       item: Object,
@@ -48,6 +48,7 @@
     margin-right: $submenu-card-margin;
     border-radius: 10px !important;
     padding: 10px;
+    position: relative;
   }
 
   .header {
@@ -62,13 +63,16 @@
     text-align: center;
     font-weight: 500;
     font-size: 1.4em;
-    padding-top: 25%;
-    padding-bottom: 30%;
+    height: 70%;
   }
 
   .footer {
-    text-align: center;
     font-size: 1em;
     color: $right-sidebar-text-color;
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+    width: $menu-card-size - 20;
+    text-align: center;
   }
 </style>

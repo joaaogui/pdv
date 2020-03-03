@@ -1,5 +1,5 @@
 <template>
-  <div class="centered-container">
+  <div class="pl-10 pr-10 centered-container fill-height">
     <v-autocomplete
       v-model="establishment"
       :items="establishments"
@@ -31,8 +31,11 @@
           loja_id: this.establishment,
           client_id: process.env.VUE_APP_CLIENT_ID
         }
-
-        this.$store.commit('setEstablishment', this.establishment)
+        let establishment = {
+          id: this.establishment,
+          name: this.$store.state.establishments.find(i => i.id === this.establishment).nome
+        }
+        this.$store.commit('setEstablishment', establishment)
         this.$store.dispatch('establishmentLogin', data)
         this.$router.push('/pdv/tables')
       }

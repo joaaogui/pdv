@@ -1,19 +1,19 @@
 <template>
   <v-row class="submenu">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(item, index) in itens" :key="index">
-      <Card :item="item" :backButton="index === 0"/>
+      <Item :item="item" :backButton="index === 0"/>
     </v-col>
   </v-row>
 </template>
 
 <script>
-  import Card from './Card'
+  import Item from './Item'
   import {getCategoryItens} from "@/api/categories"
 
   export default {
     name: 'Submenu',
     components: {
-      Card,
+      Item,
     },
     computed: {
       categoryId() {

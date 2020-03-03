@@ -1,18 +1,18 @@
 <template>
   <v-row class="menu" :class="rightSidebar ? 'open-sidebar-content' : '' ">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(category, index) in categories" :key="index">
-      <Card :category="category"/>
+      <Category :category="category"/>
     </v-col>
   </v-row>
 </template>
 
 <script>
-  import Card from './Card'
+  import Category from './Category'
 
   export default {
     name: 'Menu',
     components: {
-      Card,
+      Category,
     },
     computed: {
       categories(){

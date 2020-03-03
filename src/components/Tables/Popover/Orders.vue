@@ -19,7 +19,7 @@
           <v-badge offset-x="-1"
                    offset-y="-1" color="green" dot
           >
-            #{{order.number}}
+            #{{order.id}}
           </v-badge>
         </v-col>
         <v-col class="order-action ma-0 pa-0" cols="2">
@@ -69,7 +69,6 @@
       },
       newOrder() {
         this.$store.commit('startNewOrder')
-        this.$router.push('/pdv/menu')
       },
       changeOrder(order) {
         this.$store.commit('changeOrder', order)

@@ -5,6 +5,7 @@ import store from '../store'
 Vue.use(VueRouter)
 console.log(store)
 console.log(process.env)
+
 const routes = [
   {
     path: '/',
@@ -55,6 +56,11 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (from.name !== 'establishments' && to.name !== 'establishments' && to.name !== 'login' && !store.getters.isAuthenticated) next({ path: '/' })
+  else next()
 })
 
 export default router

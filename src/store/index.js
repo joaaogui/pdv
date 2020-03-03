@@ -5,7 +5,9 @@ import {getTables} from "@/api/tables"
 import {getCategories} from "@/api/categories"
 import {getConfigs} from "@/api/configs"
 import {getOrderItens} from "../api/orders"
-import {login, establishmentLogin} from "../api/login"
+import {verifyAccount, login} from "../api/login"
+import router from '../router'
+
 
 Vue.use(Vuex)
 
@@ -33,8 +35,12 @@ const store = new Vuex.Store({
     tipPercentage: localStorage.getItem('tipPercentage') || 0,
     discount: 0,
     category: '',
-    establishment: '',
+    establishment: {
+      id: null,
+      name: null
+    },
     establishments: [],
+    totalSpending: 0,
     token: localStorage.getItem('token') || ''
   },
   mutations: {
@@ -127,15 +133,12 @@ const store = new Vuex.Store({
     startNewOrder(state, newTable = false) {
       state.order = {}
       state.itens = []
-      if (newTable) {
-        state.table.number = ''
-        state.table.id = ''
-      }
+
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
 
-      this.$router.push({path: 'menu'})
+      router.push({name: 'menu'})
     }
   },
   getters: {
@@ -212,7 +215,7 @@ const store = new Vuex.Store({
     },
     async login({commit}, loginData) {
       try {
-        const response = await login(loginData)
+        const response = await verifyAccount(loginData)
         commit('setEstablishments', response.data.data.estabelecimentos)
       } catch (error) {
         console.log(error)
@@ -220,7 +223,7 @@ const store = new Vuex.Store({
     },
     async establishmentLogin({commit, dispatch}, loginData) {
       try {
-        const response = await establishmentLogin(loginData)
+        const response = await login(loginData)
         commit('setToken', response.data.access_token)
         dispatch("getConfigs")
       } catch (error) {

@@ -2,7 +2,7 @@
   <div @click="setCategory(category)">
     <v-card class="card centered-container">
       <div class="smaller-card centered-container">
-        <v-card-text class="main-content">
+        <v-card-text class="main-content text-capitalize">
           {{category.name}}
         </v-card-text>
       </div>
@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: 'Card',
+    name: 'Category',
     props: {
       category: Object,
     },
