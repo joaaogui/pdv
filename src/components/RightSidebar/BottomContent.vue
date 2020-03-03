@@ -44,7 +44,17 @@
         />
       </v-col>
     </v-row>
-    <div @click="toggleRightSidebar" class="blue-button vertically-centered-container">
+    <div @click="sendOrder" class="mb-2 blue-overlay-button vertically-centered-container">
+      <v-row>
+        <v-col cols="7">
+          Enviar Pedido
+        </v-col>
+        <v-col class="bottom-content-values" cols="5">
+          R$ {{totalPrice | money}}
+        </v-col>
+      </v-row>
+    </div>
+    <div @click="payOrder" class="blue-button mb-2 vertically-centered-container">
       <v-row>
         <v-col cols="6">
           Pagar Pedido
@@ -54,17 +64,25 @@
         </v-col>
       </v-row>
     </div>
+    <div @click="sendOrder" class="blue-button centered-container">
+      <v-row>
+        <div class="horizontally-centered-element">
+          Adicionar a Pedido
+        </div>
+      </v-row>
+    </div>
   </div>
 </template>
 <script>
   import PaymentConfirmation from "../PaymentConfirmation"
+  import {sendOrder} from '@/api/orders'
 
   export default {
     name: 'BottomContent',
     components: {PaymentConfirmation},
     data: () => ({
       tip: '',
-      discount: '12,90'
+      discount: ''
     }),
     created() {
       this.tip = this.tipPercentage
@@ -91,9 +109,41 @@
       },
       totalPrice() {
         return this.$store.getters.totalPrice
+      },
+      itens() {
+        return this.$store.state.itens
+      },
+      orderName() {
+        return this.$store.state.order.name
+      },
+      table() {
+        return this.$store.state.table
+      },
+      establishment() {
+        return this.$store.state.establishment
       }
     },
     methods: {
+
+      async sendOrder() {
+        try {
+
+          let order = {
+            cardId: null,
+            valorCompilado: this.totalPrice,
+            mesa: this.table.number,
+            origemPedido: 1,
+            produtos: this.itens,
+          }
+          let result = await sendOrder(this.establishment.id, order)
+          console.log(result)
+        } catch (error) {
+          console.log(error)
+        }
+      },
+      payOrder() {
+        this.toggleRightSidebar()
+      },
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
       },

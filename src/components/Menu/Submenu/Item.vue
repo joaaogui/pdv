@@ -34,7 +34,16 @@
         this.$router.go(-1)
       },
       addToOrder() {
-        this.$store.commit('addItem', this.item)
+        let item = {
+          id: this.item.id,
+          name: this.item.name,
+          qnt: 1,
+          price: this.item.price,
+          itens: [],
+          alergias: '',
+          observacoes: ''
+        }
+        this.$store.commit('addItem', item)
       }
     }
   }

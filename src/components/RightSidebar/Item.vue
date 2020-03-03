@@ -2,7 +2,7 @@
   <div>
     <v-list-item>
       <v-avatar size="30" class="mr-3 item-amount">
-        <span>{{item.amount}}</span>
+        <span>{{item.qnt}}</span>
       </v-avatar>
       <v-list-item-content>
         {{item.name}}
@@ -22,7 +22,7 @@
               <v-list-item-title v-if="!alergy" @click="alergy = !alergy">Adicionar alergia</v-list-item-title>
               <v-list-item-title v-else @click="alergy = !alergy">Remover alergia</v-list-item-title>
             </v-list-item>
-            <v-list-item v-if="item.amount > 1" @click="removeUnit">
+            <v-list-item v-if="item.qnt > 1" @click="removeUnit">
               Remover uma unidade
             </v-list-item>
             <v-list-item v-else @click="removeItem">
@@ -59,7 +59,7 @@
     }),
     computed: {
       totalPrice(){
-        return (this.item.amount * this.item.price).toFixed(2)
+        return (this.item.qnt * this.item.price).toFixed(2)
       }
     },
     methods: {

@@ -29,7 +29,7 @@
     }),
     computed: {
       orderNumber() {
-        return this.$store.state.order.number
+        return this.$store.state.order.id
       },
       tableNumber() {
         return this.$store.state.table.number

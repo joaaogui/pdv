@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     order: {
       id: null,
       number: null,
+      name: null,
       paymentMethod: 'phone'
     },
     rightSidebar: false,
@@ -36,12 +37,12 @@ const store = new Vuex.Store({
     discount: 0,
     category: '',
     establishment: {
-      id: null,
-      name: null
+      id: localStorage.getItem('establishmentId') || null,
+      name: localStorage.getItem('establishmentName') || null
     },
     establishments: [],
     totalSpending: 0,
-    token: localStorage.getItem('token') || ''
+    token: localStorage.getItem('token') || '',
   },
   mutations: {
     setOrders(state, orders) {
@@ -57,6 +58,8 @@ const store = new Vuex.Store({
       state.itens = itens
     },
     setEstablishment(state, establishment) {
+      localStorage.setItem('establishmentId', establishment.id)
+      localStorage.setItem('establishmentName', establishment.name)
       state.establishment = establishment
     },
     setEstablishments(state, establishments) {
@@ -97,8 +100,14 @@ const store = new Vuex.Store({
     changePaymentMethod(state, paymentMethod) {
       state.order.paymentMethod = paymentMethod
     },
+    setOrderName(state, orderName){
+      state.order.name = orderName
+    },
     changeOrder(state, order) {
       state.order = order
+      if (!state.rightSidebar) {
+        state.rightSidebar = !state.rightSidebar
+      }
     },
     changeTable(state, table) {
       state.table = table
@@ -110,7 +119,7 @@ const store = new Vuex.Store({
     addItem(state, item) {
       let existingItem = state.itens.find(i => i.id === item.id)
       if (existingItem) {
-        existingItem.amount += 1
+        existingItem.qnt += 1
       } else {
         state.itens.push(item)
       }
@@ -120,7 +129,7 @@ const store = new Vuex.Store({
     },
     removeUnit(state, id) {
       let existingItem = state.itens.find(i => i.id === id)
-      existingItem.amount -= 1
+      existingItem.qnt -= 1
     },
     addCouvert(state) {
       state.couvertAmount += 1
@@ -144,14 +153,14 @@ const store = new Vuex.Store({
   getters: {
     itensLength(state) {
       if (state.itens.length) {
-        return state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
+        return state.itens.map(item => item.qnt).reduce((prev, next) => prev + next)
       } else {
         return 0
       }
     },
     itensPrice(state) {
       if (state.itens.length) {
-        return state.itens.map(item => item.price * item.amount).reduce((prev, next) => prev + next)
+        return state.itens.map(item => item.price * item.qnt).reduce((prev, next) => prev + next)
       } else {
         return 0
       }

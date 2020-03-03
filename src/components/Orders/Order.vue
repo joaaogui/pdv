@@ -2,7 +2,7 @@
   <v-card v-if="backButton" @click="startNewOrder" class="card centered-container">
     <v-icon x-large>mdi-plus</v-icon>
   </v-card>
-  <v-card v-else class="card">
+  <v-card v-else @click="changeOrder" class="card">
     <v-row no-gutters>
       <v-col class="header-text" cols="8">
         <div class="horizontally-centered-element vertically-centered-container">{{order.duration}} min</div>
@@ -54,6 +54,9 @@
       },
       startNewOrder() {
         this.$store.commit('startNewOrder', true)
+      },
+      changeOrder() {
+        this.$store.commit('changeOrder', this.order)
       },
     }
   }
