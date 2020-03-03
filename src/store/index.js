@@ -101,7 +101,7 @@ const store = new Vuex.Store({
       state.order.paymentMethod = paymentMethod
     },
     setOrderName(state, orderName){
-      state.order.name = orderName
+      state.order.userName = orderName
     },
     changeOrder(state, order) {
       state.order = order
@@ -119,7 +119,7 @@ const store = new Vuex.Store({
     addItem(state, item) {
       let existingItem = state.itens.find(i => i.id === item.id)
       if (existingItem) {
-        existingItem.qnt += 1
+        existingItem.amount += 1
       } else {
         state.itens.push(item)
       }
@@ -129,7 +129,7 @@ const store = new Vuex.Store({
     },
     removeUnit(state, id) {
       let existingItem = state.itens.find(i => i.id === id)
-      existingItem.qnt -= 1
+      existingItem.amount -= 1
     },
     addCouvert(state) {
       state.couvertAmount += 1
@@ -153,14 +153,14 @@ const store = new Vuex.Store({
   getters: {
     itensLength(state) {
       if (state.itens.length) {
-        return state.itens.map(item => item.qnt).reduce((prev, next) => prev + next)
+        return state.itens.map(item => item.amount).reduce((prev, next) => prev + next)
       } else {
         return 0
       }
     },
     itensPrice(state) {
       if (state.itens.length) {
-        return state.itens.map(item => item.price * item.qnt).reduce((prev, next) => prev + next)
+        return state.itens.map(item => item.price * item.amount).reduce((prev, next) => prev + next)
       } else {
         return 0
       }

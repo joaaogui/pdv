@@ -34,16 +34,7 @@
         this.$router.go(-1)
       },
       addToOrder() {
-        let item = {
-          id: this.item.id,
-          name: this.item.name,
-          qnt: 1,
-          price: this.item.price,
-          itens: [],
-          alergias: '',
-          observacoes: ''
-        }
-        this.$store.commit('addItem', item)
+        this.$store.commit('addItem', this.item)
       }
     }
   }

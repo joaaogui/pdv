@@ -57,6 +57,7 @@
       },
       changeOrder() {
         this.$store.commit('changeOrder', this.order)
+        this.$store.dispatch("getOrderItens", this.order.id)
       },
     }
   }

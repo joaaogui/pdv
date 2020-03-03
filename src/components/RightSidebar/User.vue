@@ -37,7 +37,7 @@
     }),
     computed: {
       orderName() {
-        return this.$store.state.order.name
+        return this.$store.state.order.userName
       }
     },
     methods: {

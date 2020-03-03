@@ -127,7 +127,6 @@
 
       async sendOrder() {
         try {
-
           let order = {
             cardId: null,
             valorCompilado: this.totalPrice,
