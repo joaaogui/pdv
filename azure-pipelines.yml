@@ -22,16 +22,15 @@ steps:
 
 # DEV
 
-- env:
-    VUE_APP_API_URL: $(VUE_APP_API_URL_DEV) 
-    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_DEV) 
-    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_DEV) 
-  script: |
+- script: |
     npm install
     npm run build
   displayName: 'DEV - Build'
-
-
+  env:
+    VUE_APP_API_URL: $(VUE_APP_API_URL_DEV) 
+    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_DEV) 
+    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_DEV)
+  
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.Repository.LocalPath)/dist'
@@ -41,16 +40,15 @@ steps:
 
 # QAS
 
-- env:
-    VUE_APP_API_URL: $(VUE_APP_API_URL_QAS) 
-    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_QAS) 
-    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_QAS)  
-  script: |
+- script: |
     npm install
     npm run build
   displayName: 'QAS - Build'
+  env:
+    VUE_APP_API_URL: $(VUE_APP_API_URL_QAS) 
+    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_QAS) 
+    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_QAS)
   
-
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.Repository.LocalPath)/dist'
@@ -60,14 +58,14 @@ steps:
 
   # Production
 
-- env:
-    VUE_APP_API_URL: $(VUE_APP_API_URL_PRD) 
-    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_PRD) 
-    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_PRD)  
-  script: |
+- script: |
     npm install
     npm run build
   displayName: 'PRD - Build'
+  env:
+    VUE_APP_API_URL: $(VUE_APP_API_URL_PRD) 
+    VUE_APP_AUTH_URL: $(VUE_APP_AUTH_URL_PRD) 
+    VUE_APP_CLIENT_ID: $(VUE_APP_CLIENT_ID_PRD)  
 
 - task: PublishBuildArtifacts@1
   inputs:
