@@ -6,6 +6,7 @@
           <v-avatar size="40" color="grey" class="mr-3 ml-3">
             <v-icon dark size="32">mdi-account</v-icon>
           </v-avatar>
+          {{orderName}}
           <v-list-item-title v-if="orderName" class="right-sidebar-list-title">{{orderName}}</v-list-item-title>
           <v-list-item-title v-else class="right-sidebar-list-title">
             <v-text-field
@@ -13,8 +14,8 @@
               dense
               color="blue"
               :rules="[rules.required]"
-              @submit="setName"
-              :error="!orderName"
+              @keyup="setName"
+              label="Digite o nome do cliente"
             />
           </v-list-item-title>
         </template>
@@ -43,7 +44,7 @@
     methods: {
       setName() {
         this.$store.commit('setOrderName', this.name)
-        console.log(this.$store.state.order.name)
+
       }
     }
   }

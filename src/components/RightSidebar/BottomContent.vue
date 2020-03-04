@@ -44,7 +44,7 @@
         />
       </v-col>
     </v-row>
-    <div @click="sendOrder" class="mb-2 blue-overlay-button vertically-centered-container">
+    <div @click="sendOrder" v-if="status === 'newOrder'" class="mb-2 blue-overlay-button vertically-centered-container">
       <v-row>
         <v-col cols="7">
           Enviar Pedido
@@ -54,7 +54,7 @@
         </v-col>
       </v-row>
     </div>
-    <div @click="payOrder" class="blue-button mb-2 vertically-centered-container">
+    <div @click="payOrder" v-if="status === 'newOrder'" class="blue-button mb-2 vertically-centered-container">
       <v-row>
         <v-col cols="6">
           Pagar Pedido
@@ -64,10 +64,10 @@
         </v-col>
       </v-row>
     </div>
-    <div @click="sendOrder" class="blue-button centered-container">
+    <div @click="sendOrder" v-if="status === 'existingOrder'" class="blue-button centered-container">
       <v-row>
         <div class="horizontally-centered-element">
-          Adicionar a Pedido
+          Adicionar Itens a Pedido
         </div>
       </v-row>
     </div>
@@ -76,6 +76,7 @@
 <script>
   import PaymentConfirmation from "../PaymentConfirmation"
   import {sendOrder} from '@/api/orders'
+  import swal from 'sweetalert2'
 
   export default {
     name: 'BottomContent',
@@ -91,6 +92,9 @@
     computed: {
       contentOverlay() {
         return this.$store.state.contentoverlay
+      },
+      status() {
+        return this.$store.state.status
       },
       itensPrice() {
         return this.$store.getters.itensPrice
@@ -114,7 +118,7 @@
         return this.$store.state.itens
       },
       orderName() {
-        return this.$store.state.order.name
+        return this.$store.state.order
       },
       table() {
         return this.$store.state.table
@@ -124,20 +128,50 @@
       }
     },
     methods: {
-
       async sendOrder() {
-        try {
-          let order = {
-            cardId: null,
-            valorCompilado: this.totalPrice,
-            mesa: this.table.number,
-            origemPedido: 1,
-            produtos: this.itens,
+        console.log(this.orderName)
+        if (this.itens.length !== 0 && this.orderName) {
+          try {
+            let products = []
+            for (let item of this.itens) {
+              products.push({
+                id: item.id,
+                qnt: 1,
+                itens: []
+              })
+            }
+            let order = {
+              cardId: null,
+              valorCompilado: this.totalPrice,
+              mesa: this.table.number,
+              origemPedido: 1,
+              produtos: products,
+            }
+            let result = await sendOrder(this.establishment.id, order)
+            if (result.data.success) {
+              swal.fire({
+                icon: 'success',
+                title: 'Pedido enviado com sucesso!',
+              })
+            } else {
+              swal.fire({
+                icon: 'error',
+                title: result.data.message,
+              })
+            }
+          } catch (error) {
+            console.log(error)
           }
-          let result = await sendOrder(this.establishment.id, order)
-          console.log(result)
-        } catch (error) {
-          console.log(error)
+        } else if (!this.orderName) {
+          swal.fire({
+            icon: 'warning',
+            title: 'Informe o nome do cliente',
+          })
+        } else {
+          swal.fire({
+            icon: 'warning',
+            title: 'O pedido deve conter algum produto',
+          })
         }
       },
       payOrder() {

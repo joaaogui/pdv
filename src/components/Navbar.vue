@@ -15,6 +15,7 @@
 
 <script>
   import variables from '../scss/variables.scss'
+
   export default {
     name: 'Navbar',
     data: () => ({
@@ -22,6 +23,11 @@
     }),
     methods: {
       startNewOrder() {
+        let table = {
+          id: 0,
+          number: 0
+        }
+        this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
       },
       toggleLeftSidebar() {

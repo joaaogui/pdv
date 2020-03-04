@@ -1,5 +1,5 @@
 <template>
-  <v-row class="submenu">
+  <v-row class="submenu" :class="rightSidebar ? 'open-sidebar-content' : '' ">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(item, index) in itens" :key="index">
       <Item :item="item" :backButton="index === 0"/>
     </v-col>
@@ -19,6 +19,9 @@
       categoryId() {
         return this.$store.state.category.id
       },
+      rightSidebar(){
+        return this.$store.state.rightSidebar
+      }
     },
     created() {
       this.getCategoryItens()
@@ -44,7 +47,6 @@
   .submenu {
     padding-left: $main-content-padding;
     margin-bottom: $menu-card-margin;
-    margin-right: 0;
     margin-left: 0;
   }
 </style>

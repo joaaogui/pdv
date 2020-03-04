@@ -20,7 +20,7 @@
       <v-row no-gutters>
         <v-col cols="8">
           <v-icon :color="iconColor">mdi-table-chair</v-icon>
-          {{order.tables}}
+          {{order.number}}
         </v-col>
         <v-col class="order-number" cols="4">
           #{{order.id}}

@@ -60,6 +60,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (from.name !== 'establishments' && to.name !== 'establishments' && to.name !== 'login' && !store.getters.isAuthenticated) next({ path: '/' })
+  else if (store.getters.isAuthenticated && to.name === 'login') next({ path: '/pdv/tables' })
   else next()
 })
 

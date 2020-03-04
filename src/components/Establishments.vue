@@ -41,7 +41,7 @@
       }
     }
   }
-</script>
+</script>0
 
 <style scoped>
 

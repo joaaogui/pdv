@@ -11,7 +11,7 @@
       <div class="content">
         <User/>
         <ItemList/>
-        <Payment/>
+<!--        <Payment/>-->
       </div>
       <BottomContent/>
     </v-container>

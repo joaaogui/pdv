@@ -43,10 +43,14 @@ const store = new Vuex.Store({
     establishments: [],
     totalSpending: 0,
     token: localStorage.getItem('token') || '',
+    status: ''
   },
   mutations: {
     setOrders(state, orders) {
       state.orders = orders
+    },
+    setStatus(state, status) {
+      state.status = status
     },
     setTables(state, tables) {
       state.tables = tables
@@ -108,6 +112,7 @@ const store = new Vuex.Store({
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
+      router.push({name: 'menu'})
     },
     changeTable(state, table) {
       state.table = table
@@ -116,13 +121,16 @@ const store = new Vuex.Store({
     toggleContentOverlay(state) {
       state.contentOverlay = !state.contentOverlay
     },
-    addItem(state, item) {
-      let existingItem = state.itens.find(i => i.id === item.id)
-      if (existingItem) {
-        existingItem.amount += 1
-      } else {
-        state.itens.push(item)
-      }
+    addItem(state, originalItem) {
+      // let existingItem = state.itens.find(i => i.id === item.id)
+      // if (existingItem) {
+      //   existingItem.amount += 1
+      // } else {
+      //   state.itens.push(item)
+      // }
+      // console.log(originalItem)
+        state.itens.push(originalItem)
+
     },
     removeItem(state, id) {
       state.itens = state.itens.filter(i => i.id !== id)
@@ -142,7 +150,7 @@ const store = new Vuex.Store({
     startNewOrder(state, newTable = false) {
       state.order = {}
       state.itens = []
-
+      state.status = 'newOrder'
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
@@ -218,18 +226,12 @@ const store = new Vuex.Store({
       try {
         const response = await getOrderItens(orderId)
         commit('setItens', response.data.data)
+        commit('setStatus', 'existingOrder')
       } catch (error) {
         console.log(error)
       }
     },
-    async login({commit}, loginData) {
-      try {
-        const response = await verifyAccount(loginData)
-        commit('setEstablishments', response.data.data.estabelecimentos)
-      } catch (error) {
-        console.log(error)
-      }
-    },
+
     async establishmentLogin({commit, dispatch}, loginData) {
       try {
         const response = await login(loginData)
