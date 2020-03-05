@@ -24,23 +24,23 @@ const routes = [
       {
         path: 'tables',
         name: 'tables',
-        component: () => import('../components/Tables/Tables.vue')
+        component: () => import('../components/tables/Tables.vue')
       },
       {
-        path: 'menu',
-        name: 'menu',
-        component: () => import('../components/Menu/Menu.vue')
+        path: 'category',
+        name: 'category',
+        component: () => import('../components/categories/Categories.vue')
       },
       {
-        path: 'menu/:id/submenu',
-        name: 'submenu',
-        component: () => import('../components/Menu/Submenu/Submenu.vue'),
+        path: 'category/:id/itens',
+        name: 'itens',
+        component: () => import('../components/categories/itens/Itens.vue'),
         props: true
       },
       {
         path: 'orders',
         name: 'orders',
-        component: () => import('../components/Orders/Orders.vue')
+        component: () => import('../components/orders/Orders.vue')
       }
     ]
   },

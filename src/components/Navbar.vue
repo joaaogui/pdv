@@ -58,7 +58,7 @@
 
 <style scoped lang="scss">
   .navbar {
-    background-color: $navbar-color;
+    background-color: $navbar-color !important;
   }
 
   .establishment-name {

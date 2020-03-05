@@ -1,6 +1,6 @@
 <template>
   <v-row
-    class="submenu"
+    class="itens"
     :class="rightSidebar ? 'open-sidebar-content' : '' "
   >
     <v-col
@@ -22,7 +22,7 @@
   import { getCategoryItens } from '@/api/categories'
 
   export default {
-    name: 'Submenu',
+    name: 'Itens',
     components: {
       Item
     },
@@ -55,7 +55,7 @@
 </script>
 
 <style scoped lang="scss">
-  .submenu {
+  .itens {
     padding-left: $main-content-padding;
     margin-bottom: $menu-card-margin;
     margin-left: 0;

@@ -1,6 +1,6 @@
 <template>
   <v-row
-    class="menu"
+    class="category"
     :class="rightSidebar ? 'open-sidebar-content' : '' "
   >
     <v-col
@@ -18,7 +18,7 @@
   import Category from './Category'
 
   export default {
-    name: 'Menu',
+    name: 'Categories',
     components: {
       Category
     },
@@ -37,7 +37,7 @@
 </script>
 
 <style scoped lang="scss">
-  .menu {
+  .category {
     padding-left: $main-content-padding;
     margin-bottom: $menu-card-margin;
     margin-left: 0;

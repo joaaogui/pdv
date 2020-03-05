@@ -1,18 +1,5 @@
 import axiosInstance from 'axios'
-
-const axios = axiosInstance.create({
-  baseURL: process.env.VUE_APP_API_URL
-})
-
-axios.interceptors.response.use(function (response) {
-  if (response.data.success) {
-    return response
-  } else {
-    throw new Error(response.data.message)
-  }
-}, function (error) {
-  return Promise.reject(error)
-})
+import axios from './index'
 
 const verifyAccount = ({ input, password }) => axios.get(`autorizacao/verificar?email=${input}&senha=${password}`)
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'

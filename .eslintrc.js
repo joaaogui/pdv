@@ -13,7 +13,10 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-new': 'off',
     'vue/mustache-interpolation-spacing': 'off',
-    'vue/no-unused-components': 'warn'
+    'vue/no-unused-components': 'warn',
+    'no-multiple-empty-lines': 'warn',
+    'vue/html-closing-bracket-spacing': 'off',
+    'space-before-function-paren': 'off'
 
   },
   parserOptions: {

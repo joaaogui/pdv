@@ -117,7 +117,7 @@ const store = new Vuex.Store({
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
-      router.push({ name: 'menu' })
+      router.push({ name: 'category' })
     },
     changeTable (state, table) {
       state.table = table
@@ -158,7 +158,7 @@ const store = new Vuex.Store({
         state.rightSidebar = !state.rightSidebar
       }
 
-      router.push({ name: 'menu' })
+      router.push({ name: 'category' })
     }
   },
   getters: {

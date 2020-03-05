@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <RightSidebar v-if="rightSidebar" />
-    <LeftSidebar v-if="leftSidebar" />
-    <Navbar />
+  <div class="pdv fill-height">
+    <RightSidebar v-if="rightSidebar"/>
+    <LeftSidebar v-if="leftSidebar"/>
+    <Navbar/>
     <v-content>
       <v-container fluid>
-        <router-view />
+        <router-view/>
       </v-container>
     </v-content>
     <v-overlay
       :value="contentOverlay"
       opacity="0.7"
     >
-      <PaymentConfirmation />
+      <PaymentConfirmation/>
     </v-overlay>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
 <script>
   import Footer from '../components/Footer'
-  import RightSidebar from '../components/RightSidebar/RightSidebar'
+  import RightSidebar from '../components/rightSidebar/RightSidebar'
   import LeftSidebar from '../components/LeftSidebar'
   import Navbar from '../components/Navbar'
   import PaymentConfirmation from '../components/PaymentConfirmation'
@@ -35,13 +35,13 @@
       Navbar
     },
     computed: {
-      rightSidebar () {
+      rightSidebar() {
         return this.$store.state.rightSidebar
       },
-      leftSidebar () {
+      leftSidebar() {
         return this.$store.state.leftSidebar
       },
-      contentOverlay () {
+      contentOverlay() {
         return this.$store.state.contentOverlay
       }
     }
@@ -51,6 +51,8 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .pdv {
+    background-color: #f5f6fa;
+  }
 </style>

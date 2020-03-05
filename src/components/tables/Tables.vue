@@ -1,6 +1,6 @@
 <template>
   <v-row
-    v-if="tables || tables.length === 0"
+    v-if="tables"
     class="tables"
     :class="rightSidebar ? 'open-sidebar-content' : ''"
   >
@@ -27,7 +27,7 @@
     </v-col>
   </v-row>
   <div
-    class="testing-border fill-height"
+    class="horizontally-centered-element"
     v-else
     style="font-size: 50px"
   >

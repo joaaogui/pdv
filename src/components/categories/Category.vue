@@ -21,7 +21,7 @@
     methods: {
       setCategory (category) {
         this.$store.commit('setCategory', category)
-        this.$router.push({ path: `/pdv/menu/${category.id}/submenu` })
+        this.$router.push({ path: `/pdv/category/${category.id}/itens` })
       }
     }
   }

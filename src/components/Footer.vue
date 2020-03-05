@@ -39,7 +39,7 @@
       deactivatedGray: variables.deactivatedGray,
       shortcuts: [
         { text: 'Mesas', icon: 'mdi-table-chair', path: '/pdv/tables' },
-        { text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/pdv/menu' },
+        { text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/pdv/category' },
         { text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/pdv/orders' }
       ]
     })

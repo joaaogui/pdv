@@ -5,10 +5,10 @@
         fluid
         class="ma-0 pa-0 app container"
       >
-        <router-view />
+        <router-view/>
       </v-container>
     </v-content>
-    <Footer />
+    <Footer/>
   </v-app>
 </template>
 

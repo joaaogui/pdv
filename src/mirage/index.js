@@ -108,7 +108,7 @@ export default function () {
     routes () {
       this.namespace = ''
 
-      // Tables
+      // tables
       this.get('/tables')
       this.get('/tables/:id')
       this.post('/tables')
@@ -119,7 +119,7 @@ export default function () {
         return table.order
       })
 
-      // Orders
+      // orders
       this.get('/orders')
       this.get('/orders/:id')
       this.post('/orders')
@@ -130,7 +130,7 @@ export default function () {
         return order.iten
       })
 
-      // Menu
+      // categories
       this.get('/category')
       this.get('/category/:id')
       this.post('/category')
