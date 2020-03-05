@@ -1,13 +1,24 @@
 <template>
-  <v-card @click="changeTable" v-on="on" :class="isActiveTable ? 'active-card' : 'card'" :ripple="false">
-    <TimeCard :duration="table.duration" v-if="!emptyTable"/>
+  <v-card
+    @click="changeTable"
+    v-on="on"
+    :class="isActiveTable ? 'active-card' : 'card'"
+    :ripple="false"
+  >
+    <TimeCard
+      :duration="table.duration"
+      v-if="!emptyTable"
+    />
     <div class="main-content">
-      {{table.number}}
+      {{ table.number }}
     </div>
-    <div class="footer" v-if="!emptyTable">
-      {{table.itens}} itens
+    <div
+      class="footer"
+      v-if="!emptyTable"
+    >
+      {{ table.itens }} itens
       <br>
-      {{table.orders}} pedidos
+      {{ table.orders }} pedidos
     </div>
   </v-card>
 </template>
@@ -16,29 +27,29 @@
 
   export default {
     name: 'Card',
-    components: {TimeCard},
+    components: { TimeCard },
     props: {
       table: Object,
       on: Object
     },
     computed: {
-      tableId() {
+      tableId () {
         return this.$store.state.table.id
       },
-      isActiveTable() {
+      isActiveTable () {
         return this.$store.state.table.id === this.table.id
       },
-      emptyTable() {
+      emptyTable () {
         return this.table.itens === 0
       }
     },
     methods: {
-      startNewOrder() {
+      startNewOrder () {
         this.$store.commit('startNewOrder', true)
       },
-      changeTable() {
-          this.$store.commit('changeTable', this.table)
-      },
+      changeTable () {
+        this.$store.commit('changeTable', this.table)
+      }
     }
   }
 </script>

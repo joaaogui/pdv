@@ -3,12 +3,12 @@
     <v-card class="card centered-container">
       <div class="smaller-card centered-container">
         <v-card-text class="main-content text-capitalize">
-          {{category.name}}
+          {{ category.name }}
         </v-card-text>
       </div>
     </v-card>
-    <div class="shadow"/>
-    <div class="smaller-shadow"/>
+    <div class="shadow" />
+    <div class="smaller-shadow" />
   </div>
 </template>
 
@@ -16,12 +16,12 @@
   export default {
     name: 'Category',
     props: {
-      category: Object,
+      category: Object
     },
     methods: {
-      setCategory(category) {
+      setCategory (category) {
         this.$store.commit('setCategory', category)
-        this.$router.push({path: `/pdv/menu/${category.id}/submenu`})
+        this.$router.push({ path: `/pdv/menu/${category.id}/submenu` })
       }
     }
   }
@@ -52,7 +52,7 @@
     background-color: white;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     margin-left: 4px;
     position: relative;
     z-index: 1;
@@ -64,7 +64,7 @@
     background-color: white;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     margin-left: 9px;
     position: relative;
     z-index: 0;

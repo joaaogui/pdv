@@ -1,11 +1,14 @@
 <template>
   <v-app>
     <v-content class="pa-0">
-      <v-container fluid class="ma-0 pa-0 app container">
-        <router-view/>
+      <v-container
+        fluid
+        class="ma-0 pa-0 app container"
+      >
+        <router-view />
       </v-container>
     </v-content>
-    <Footer/>
+    <Footer />
   </v-app>
 </template>
 

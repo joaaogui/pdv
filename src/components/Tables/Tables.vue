@@ -1,6 +1,15 @@
 <template>
-  <v-row v-if="tables || tables.length === 0" class="tables" :class="rightSidebar ? 'open-sidebar-content' : ''">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="(table, index) in tables" :key="index">
+  <v-row
+    v-if="tables || tables.length === 0"
+    class="tables"
+    :class="rightSidebar ? 'open-sidebar-content' : ''"
+  >
+    <v-col
+      class="ma-0 pa-0"
+      cols="auto"
+      v-for="(table, index) in tables"
+      :key="index"
+    >
       <v-menu
         :close-on-content-click="false"
         :nudge-width="200"
@@ -8,13 +17,22 @@
         offset-x
       >
         <template v-slot:activator="{ on }">
-          <Table :table="table" :on="on"/>
+          <Table
+            :table="table"
+            :on="on"
+          />
         </template>
-        <Popover/>
+        <Popover />
       </v-menu>
     </v-col>
   </v-row>
-  <div class="testing-border fill-height" v-else style="font-size: 50px">{{error}</div>
+  <div
+    class="testing-border fill-height"
+    v-else
+    style="font-size: 50px"
+  >
+    {{error}}
+  </div>
 </template>
 
 <script>
@@ -31,27 +49,27 @@
       timeout: null
     }),
     computed: {
-      tables() {
+      tables () {
         return this.$store.state.tables
       },
-      rightSidebar() {
+      rightSidebar () {
         return this.$store.state.rightSidebar
       },
-      error() {
+      error () {
         return this.$store.state.error
       }
     },
-    mounted() {
+    mounted () {
       this.refreshData()
     },
-    destroyed() {
+    destroyed () {
       clearTimeout(this.timeout)
     },
     methods: {
-      refreshData() {
+      refreshData () {
         let x = 1
 
-        this.$store.dispatch("getTables")
+        this.$store.dispatch('getTables')
 
         this.timeout = setTimeout(this.refreshData, x * 1000)
       }

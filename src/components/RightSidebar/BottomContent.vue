@@ -1,11 +1,23 @@
 <template>
   <div class="bottom-content">
-    <v-row no-gutters class="bottom-content-lines">
-      <v-col cols="7">Subtotal</v-col>
-      <v-col class="bottom-content-values" cols="5">R$ {{itensPrice | money}}</v-col>
+    <v-row
+      no-gutters
+      class="bottom-content-lines"
+    >
+      <v-col cols="7">
+        Subtotal
+      </v-col>
+      <v-col
+        class="bottom-content-values"
+        cols="5"
+      >
+        R$ {{ itensPrice | money }}
+      </v-col>
     </v-row>
-    <v-row no-gutters class="bottom-content-lines pb-0">
-
+    <v-row
+      no-gutters
+      class="bottom-content-lines pb-0"
+    >
       <v-col cols="5">
         Taxa de serviço
       </v-col>
@@ -20,19 +32,32 @@
           @keyup="setTip"
         />
       </v-col>
-      <v-col class="bottom-content-values" cols="5">R$ {{tipValue | money}}</v-col>
+      <v-col
+        class="bottom-content-values"
+        cols="5"
+      >
+        R$ {{ tipValue | money }}
+      </v-col>
     </v-row>
-<!--    <v-row no-gutters class="bottom-content-lines">-->
-<!--      <v-col cols="8">Couvert Artístico</v-col>-->
-<!--      <v-col class="bottom-content-values" cols="4">-->
-<!--        <v-icon @click="removeCouvert">mdi-minus</v-icon>-->
-<!--        {{couvertAmount}}-->
-<!--        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>-->
-<!--      </v-col>-->
-<!--    </v-row>-->
-    <v-row no-gutters class="bottom-content-lines">
-      <v-col cols="8">Desconto</v-col>
-      <v-col class="bottom-content-values" cols="4">
+    <!--    <v-row no-gutters class="bottom-content-lines">-->
+    <!--      <v-col cols="8">Couvert Artístico</v-col>-->
+    <!--      <v-col class="bottom-content-values" cols="4">-->
+    <!--        <v-icon @click="removeCouvert">mdi-minus</v-icon>-->
+    <!--        {{couvertAmount}}-->
+    <!--        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>-->
+    <!--      </v-col>-->
+    <!--    </v-row>-->
+    <v-row
+      no-gutters
+      class="bottom-content-lines"
+    >
+      <v-col cols="8">
+        Desconto
+      </v-col>
+      <v-col
+        class="bottom-content-values"
+        cols="4"
+      >
         <v-text-field
           v-model="discount"
           class="mt-0"
@@ -44,95 +69,110 @@
         />
       </v-col>
     </v-row>
-    <div @click="sendOrder" v-if="status === 'newOrder'" class="mb-2 blue-overlay-button vertically-centered-container">
+    <div
+      @click="sendOrder"
+      v-if="status === 'newOrder'"
+      class="mb-2 blue-overlay-button vertically-centered-container"
+    >
       <v-row>
         <v-col cols="7">
           Enviar Pedido
         </v-col>
-        <v-col class="bottom-content-values" cols="5">
-          R$ {{totalPrice | money}}
+        <v-col
+          class="bottom-content-values"
+          cols="5"
+        >
+          R$ {{ totalPrice | money }}
         </v-col>
       </v-row>
     </div>
-    <div @click="addToOrder" v-if="status === 'existingOrder'" class="mb-2 blue-button centered-container">
+    <div
+      @click="addToOrder"
+      v-if="status === 'existingOrder'"
+      class="mb-2 blue-button centered-container"
+    >
       <v-row>
         <div class="horizontally-centered-element">
           Adicionar Itens a Pedido
         </div>
       </v-row>
     </div>
-    <div @click="payOrder" v-if="status === 'existingOrder' || status === 'newOrder'"
-         class="blue-button mb-2 vertically-centered-container">
+    <div
+      @click="payOrder"
+      v-if="status === 'existingOrder' || status === 'newOrder'"
+      class="blue-button mb-2 vertically-centered-container"
+    >
       <v-row>
         <v-col cols="6">
           Pagar Pedido
         </v-col>
-        <v-col class="bottom-content-values" cols="6">
-          R$ {{totalPrice | money}}
+        <v-col
+          class="bottom-content-values"
+          cols="6"
+        >
+          R$ {{ totalPrice | money }}
         </v-col>
       </v-row>
     </div>
   </div>
 </template>
 <script>
-  import PaymentConfirmation from "../PaymentConfirmation"
-  import {sendOrder, payOrder} from '@/api/orders'
+  import { payOrder, sendOrder } from '@/api/orders'
   import swal from 'sweetalert2'
 
   export default {
     name: 'BottomContent',
-    components: {PaymentConfirmation},
     data: () => ({
       tip: '',
       discount: ''
     }),
-    created() {
+    created () {
       this.tip = this.tipPercentage
       this.discount = this.discountValue
     },
     computed: {
-      contentOverlay() {
+      contentOverlay () {
         return this.$store.state.contentoverlay
       },
-      status() {
+      status () {
         return this.$store.state.status
       },
-      itensPrice() {
+      itensPrice () {
         return this.$store.getters.itensPrice
       },
-      tipValue() {
+      tipValue () {
         return this.$store.getters.tipValue
       },
-      tipPercentage() {
+      tipPercentage () {
         return this.$store.state.tipPercentage
       },
-      couvertAmount() {
+      couvertAmount () {
         return this.$store.state.couvertAmount
       },
-      discountValue() {
+      discountValue () {
         return this.$store.state.discount
       },
-      totalPrice() {
+      totalPrice () {
         return this.$store.getters.totalPrice
       },
-      itens() {
+      itens () {
         return this.$store.state.itens
       },
-      orderName() {
+      orderName () {
         return this.$store.state.order
       },
-      table() {
+      table () {
         return this.$store.state.table
       },
-      order() {
+      order () {
         return this.$store.state.order
       },
-      establishment() {
+      establishment () {
         return this.$store.state.establishment
       }
     },
     methods: {
-      async sendOrder() {
+      async sendOrder () {
         if (this.itens.length !== 0 && this.orderName) {
           try {
             let products = []
@@ -156,28 +196,28 @@
               this.toggleRightSidebar()
               swal.fire({
                 icon: 'success',
-                title: 'Pedido enviado com sucesso!',
+                title: 'Pedido enviado com sucesso!'
               })
             } else {
               swal.fire({
                 icon: 'error',
-                title: result.data.message,
+                title: result.data.message
               })
             }
           } catch (error) {
             swal.fire({
               icon: 'error',
-              title: error.message,
+              title: error.message
             })
           }
         } else {
           swal.fire({
             icon: 'warning',
-            title: 'O pedido deve conter algum produto',
+            title: 'O pedido deve conter algum produto'
           })
         }
       },
-      async payOrder() {
+      async payOrder () {
         try {
           let order = {
             cardId: null,
@@ -188,7 +228,7 @@
           if (result.data.success) {
             swal.fire({
               icon: 'success',
-              title: 'Pagamento enviado com sucesso!',
+              title: 'Pagamento enviado com sucesso!'
             })
           } else {
             console.log(result)
@@ -198,14 +238,14 @@
         } catch (error) {
           swal.fire({
             icon: 'error',
-            title: error.message,
+            title: error.message
           })
         }
       },
-      async addToOrder() {
+      async addToOrder () {
         try {
           let products = []
-          let itensToAdd = this.itens.filter(item => !("orderId" in item))
+          let itensToAdd = this.itens.filter(item => !('orderId' in item))
           for (let item of itensToAdd) {
             products.push({
               id: item.id,
@@ -226,31 +266,29 @@
             this.toggleRightSidebar()
             swal.fire({
               icon: 'success',
-              title: 'Itens adicionados com sucesso!',
+              title: 'Itens adicionados com sucesso!'
             })
           }
         } catch (error) {
           console.log(error.message)
-
         }
-
       },
-      toggleRightSidebar() {
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
       },
-      toggleContentOverlay() {
+      toggleContentOverlay () {
         this.$store.commit('toggleContentOverlay')
       },
-      addCouvert() {
+      addCouvert () {
         this.$store.commit('addCouvert')
       },
-      removeCouvert() {
+      removeCouvert () {
         this.$store.commit('removeCouvert')
       },
-      setTip() {
+      setTip () {
         this.$store.commit('setTip', this.tip)
       },
-      setDiscount() {
+      setDiscount () {
         this.$store.commit('setDiscount', this.discount)
       }
     }

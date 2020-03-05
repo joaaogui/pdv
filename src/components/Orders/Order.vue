@@ -1,29 +1,55 @@
 <template>
-  <v-card v-if="backButton" @click="startNewOrder" class="card centered-container">
-    <v-icon x-large>mdi-plus</v-icon>
+  <v-card
+    v-if="backButton"
+    @click="startNewOrder"
+    class="card centered-container"
+  >
+    <v-icon x-large>
+      mdi-plus
+    </v-icon>
   </v-card>
-  <v-card v-else @click="changeOrder" class="card">
+  <v-card
+    v-else
+    @click="changeOrder"
+    class="card"
+  >
     <v-row no-gutters>
-      <v-col class="header-text" cols="8">
-        <div class="horizontally-centered-element vertically-centered-container">{{order.duration}} min</div>
+      <v-col
+        class="header-text"
+        cols="8"
+      >
+        <div class="horizontally-centered-element vertically-centered-container">
+          {{ order.duration }} min
+        </div>
       </v-col>
-      <v-col class="circle horizontally-centered-element" cols="4">
-        <v-avatar size="40" :color="orderBadgeColor">
-          {{order.itens}}
+      <v-col
+        class="circle horizontally-centered-element"
+        cols="4"
+      >
+        <v-avatar
+          size="40"
+          :color="orderBadgeColor"
+        >
+          {{ order.itens }}
         </v-avatar>
       </v-col>
     </v-row>
     <v-card-text class="order-name vertically-centered-container pl-0">
-      {{order.userName}}
+      {{ order.userName }}
     </v-card-text>
     <div class="footer">
       <v-row no-gutters>
         <v-col cols="8">
-          <v-icon :color="iconColor">mdi-table-chair</v-icon>
-          {{order.number}}
+          <v-icon :color="iconColor">
+            mdi-table-chair
+          </v-icon>
+          {{ order.number }}
         </v-col>
-        <v-col class="order-number" cols="4">
-          #{{order.id}}
+        <v-col
+          class="order-number"
+          cols="4"
+        >
+          #{{ order.id }}
         </v-col>
       </v-row>
     </div>
@@ -37,22 +63,22 @@
     name: 'Order',
     props: {
       order: Object,
-      backButton: Boolean,
+      backButton: Boolean
     },
     data: () => ({
       orderBadgeColor: variables.pinkyRed,
       iconColor: variables.rightSidebarTextColor
     }),
     computed: {
-      item() {
+      item () {
         return this.$route.params.item
       }
     },
     methods: {
-      goTo() {
+      goTo () {
         this.$router.go(-1)
       },
-      startNewOrder() {
+      startNewOrder () {
         let table = {
           id: 0,
           number: 0
@@ -60,10 +86,10 @@
         this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
       },
-      changeOrder() {
+      changeOrder () {
         this.$store.commit('changeOrder', this.order)
-        this.$store.dispatch("getOrderItens", this.order.id)
-      },
+        this.$store.dispatch('getOrderItens', this.order.id)
+      }
     }
   }
 </script>
@@ -78,7 +104,6 @@
     padding: 15px;
     position: relative;
   }
-
 
   .header-text {
     font-size: 1.125em;

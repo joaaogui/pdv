@@ -1,30 +1,78 @@
 <template>
   <div class="pt-3 orders-list">
-    <v-row @click="newOrder" v-if="!app" no-gutters class="centered-container order">
+    <v-row
+      @click="newOrder"
+      v-if="!app"
+      no-gutters
+      class="centered-container order"
+    >
       <v-icon>mdi-plus</v-icon>
     </v-row>
-    <div v-for="(order, index) in orders" :key="index">
-      <v-row @click="changeOrder(order)" no-gutters class="vertically-centered-container"
-             :class="isActiveOrder(order.id) ? 'active-order' : 'order'">
-        <v-col class="ma-0 pa-0" cols="2">
-          <v-avatar size="40" color="grey">
-            <v-icon v-if="!app" dark size="32">mdi-account</v-icon>
-            <img v-else
-                 src="../../../assets/Images/icon.png"
+    <div
+      v-for="(order, index) in orders"
+      :key="index"
+    >
+      <v-row
+        @click="changeOrder(order)"
+        no-gutters
+        class="vertically-centered-container"
+        :class="isActiveOrder(order.id) ? 'active-order' : 'order'"
+      >
+        <v-col
+          class="ma-0 pa-0"
+          cols="2"
+        >
+          <v-avatar
+            size="40"
+            color="grey"
+          >
+            <v-icon
+              v-if="!app"
+              dark
+              size="32"
+            >
+              mdi-account
+            </v-icon>
+            <img
+              v-else
+              src="../../../assets/Images/icon.png"
+              alt=""
             >
           </v-avatar>
         </v-col>
 
-        <v-col class="pl-2" :class="isActiveOrder(order.id) ? 'white-order-text' : 'order-text'" cols="8">
-          <v-badge offset-x="-1"
-                   offset-y="-1" color="green" dot
+        <v-col
+          class="pl-2"
+          :class="isActiveOrder(order.id) ? 'white-order-text' : 'order-text'"
+          cols="8"
+        >
+          <v-badge
+            offset-x="-1"
+            offset-y="-1"
+            color="green"
+            dot
           >
-            #{{order.id}}
+            #{{ order.id }}
           </v-badge>
         </v-col>
-        <v-col class="order-action ma-0 pa-0" cols="2">
-          <v-icon large v-if="isActiveOrder(order.id)" color="white">mdi-chevron-left</v-icon>
-          <v-icon large v-else :color="rightSidebarTextColor">mdi-chevron-right</v-icon>
+        <v-col
+          class="order-action ma-0 pa-0"
+          cols="2"
+        >
+          <v-icon
+            large
+            v-if="isActiveOrder(order.id)"
+            color="white"
+          >
+            mdi-chevron-left
+          </v-icon>
+          <v-icon
+            large
+            v-else
+            :color="rightSidebarTextColor"
+          >
+            mdi-chevron-right
+          </v-icon>
         </v-col>
       </v-row>
     </div>
@@ -32,30 +80,30 @@
 </template>
 <script>
   import variables from '../../../scss/variables.scss'
-  import {getTableOrders} from "@/api/tables"
+  import { getTableOrders } from '@/api/tables'
 
   export default {
     name: 'Orders',
     data: () => ({
       rightSidebarTextColor: variables.rightSidebarTextColor,
-      orders: [],
+      orders: []
     }),
     props: {
       app: Boolean
     },
     computed: {
-      tableId() {
+      tableId () {
         return this.$store.state.table.id
       },
-      rightSidebar() {
+      rightSidebar () {
         return this.$store.state.rightSidebar
       }
     },
-    created() {
+    created () {
       this.getTableOrders()
     },
     methods: {
-      async getTableOrders() {
+      async getTableOrders () {
         try {
           let orders = await getTableOrders(this.tableId)
           if (this.app) {
@@ -67,23 +115,23 @@
           console.log(error)
         }
       },
-      newOrder() {
+      newOrder () {
         this.$store.commit('startNewOrder')
       },
-      changeOrder(order) {
+      changeOrder (order) {
         this.$store.commit('changeOrder', order)
-        this.$store.dispatch("getOrderItens", order.id)
+        this.$store.dispatch('getOrderItens', order.id)
 
         if (!this.rightSidebar) {
           this.toggleRightSidebar()
         }
       },
-      isActiveOrder(orderId) {
+      isActiveOrder (orderId) {
         return this.$store.state.order.id === orderId
       },
-      toggleRightSidebar() {
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
-      },
+      }
     }
   }
 </script>

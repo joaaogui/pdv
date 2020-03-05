@@ -20,5 +20,5 @@ module.exports = {
     }
   },
 
-  publicPath: "/"
+  publicPath: '/'
 }

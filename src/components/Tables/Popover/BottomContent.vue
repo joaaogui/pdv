@@ -1,28 +1,28 @@
 <template>
   <div class="bottom-content">
-<!--    <div>-->
-<!--      <v-row no-gutters class="bottom-content-lines">-->
-<!--        <v-col cols="8">Consumação Total Da Mesa:</v-col>-->
-<!--        <v-col class="bottom-content-values" cols="4">R$ 189,60</v-col>-->
-<!--      </v-row>-->
-<!--      <v-row no-gutters class="bottom-content-lines">-->
-<!--        <v-col cols="8">Taxas:</v-col>-->
-<!--        <v-col class="bottom-content-values" cols="4">R$ 19,60</v-col>-->
-<!--      </v-row>-->
-<!--    </div>-->
-<!--    <div @click="toggleRightSidebar" v-if="app" class="blue-button vertically-centered-container" :class="app ? 'app-button' : ''">-->
-<!--      <v-row>-->
-<!--        <v-col v-if="app" cols="7">-->
-<!--          Pagar App-->
-<!--        </v-col>-->
-<!--        <v-col v-else cols="7">-->
-<!--          Pagar Mesa-->
-<!--        </v-col>-->
-<!--        <v-col v-if="totalSpending" class="bottom-content-values centered-container" cols="5">-->
-<!--         R$ {{totalSpending | money}}-->
-<!--        </v-col>-->
-<!--      </v-row>-->
-<!--    </div>-->
+    <!--    <div>-->
+    <!--      <v-row no-gutters class="bottom-content-lines">-->
+    <!--        <v-col cols="8">Consumação Total Da Mesa:</v-col>-->
+    <!--        <v-col class="bottom-content-values" cols="4">R$ 189,60</v-col>-->
+    <!--      </v-row>-->
+    <!--      <v-row no-gutters class="bottom-content-lines">-->
+    <!--        <v-col cols="8">Taxas:</v-col>-->
+    <!--        <v-col class="bottom-content-values" cols="4">R$ 19,60</v-col>-->
+    <!--      </v-row>-->
+    <!--    </div>-->
+    <!--    <div @click="toggleRightSidebar" v-if="app" class="blue-button vertically-centered-container" :class="app ? 'app-button' : ''">-->
+    <!--      <v-row>-->
+    <!--        <v-col v-if="app" cols="7">-->
+    <!--          Pagar App-->
+    <!--        </v-col>-->
+    <!--        <v-col v-else cols="7">-->
+    <!--          Pagar Mesa-->
+    <!--        </v-col>-->
+    <!--        <v-col v-if="totalSpending" class="bottom-content-values centered-container" cols="5">-->
+    <!--         R$ {{totalSpending | money}}-->
+    <!--        </v-col>-->
+    <!--      </v-row>-->
+    <!--    </div>-->
   </div>
 </template>
 <script>
@@ -32,12 +32,12 @@
       app: Number
     },
     computed: {
-      table() {
+      table () {
         return this.$store.state.table
-      },
+      }
     },
     methods: {
-      toggleRightSidebar() {
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
       }
     }

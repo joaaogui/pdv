@@ -1,6 +1,13 @@
 <template>
-  <v-navigation-drawer fixed permanent class="left-sidebar">
-    <v-row no-gutters class="bottom-content-lines">
+  <v-navigation-drawer
+    fixed
+    permanent
+    class="left-sidebar"
+  >
+    <v-row
+      no-gutters
+      class="bottom-content-lines"
+    >
       <v-col cols="10">
         <v-list-item>
           <v-list-item-content>
@@ -19,15 +26,28 @@
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col class="bottom-content-values centered-container" cols="2">
-        <v-btn @click="toggleLeftSidebar" icon>
-          <v-icon size="30">mdi-arrow-left</v-icon>
+      <v-col
+        class="bottom-content-values centered-container"
+        cols="2"
+      >
+        <v-btn
+          @click="toggleLeftSidebar"
+          icon
+        >
+          <v-icon size="30">
+            mdi-arrow-left
+          </v-icon>
         </v-btn>
       </v-col>
     </v-row>
     <template v-slot:append>
-      <div @click="logout" class="pa-2">
-        <v-btn block>Logout</v-btn>
+      <div
+        @click="logout"
+        class="pa-2"
+      >
+        <v-btn block>
+          Logout
+        </v-btn>
       </div>
     </template>
   </v-navigation-drawer>
@@ -39,27 +59,27 @@
     data: () => ({
       establishmentId: null
     }),
-    created() {
+    created () {
       this.establishmentId = this.establishment.id
     },
     computed: {
-      establishment() {
+      establishment () {
         return this.$store.state.establishment
       },
-      establishments() {
+      establishments () {
         return this.$store.state.establishments
       }
     },
     methods: {
-      toggleLeftSidebar() {
+      toggleLeftSidebar () {
         this.$store.commit('toggleLeftSidebar')
       },
-      logout() {
+      logout () {
         this.$store.dispatch('logout')
-        this.$router.go({name: 'login'})
+        this.$router.go()
         localStorage.clear()
       },
-      setEstablishment() {
+      setEstablishment () {
         this.$store.commit('setEstablishment', this.$store.state.establishments.find(i => i.id === this.establishmentId))
         this.toggleLeftSidebar()
       }

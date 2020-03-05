@@ -19,21 +19,21 @@
 
 <script>
   export default {
-    name: "Establishments",
+    name: 'Establishments',
     data: () => ({
       establishmentId: null
     }),
     computed: {
-      establishments() {
+      establishments () {
         return this.$store.state.establishments
       }
     },
     methods: {
-      setEstablishment() {
+      setEstablishment () {
         let data = {
           username: this.$route.params.input,
           password: this.$route.params.password,
-          grant_type: "password",
+          grant_type: 'password',
           loja_id: this.establishmentId,
           client_id: process.env.VUE_APP_CLIENT_ID
         }

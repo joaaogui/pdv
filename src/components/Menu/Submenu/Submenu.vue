@@ -1,45 +1,56 @@
 <template>
-  <v-row class="submenu" :class="rightSidebar ? 'open-sidebar-content' : '' ">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="(item, index) in itens" :key="index">
-      <Item :item="item" :backButton="index === 0"/>
+  <v-row
+    class="submenu"
+    :class="rightSidebar ? 'open-sidebar-content' : '' "
+  >
+    <v-col
+      class="ma-0 pa-0"
+      cols="auto"
+      v-for="(item, index) in itens"
+      :key="index"
+    >
+      <Item
+        :item="item"
+        :back-button="index === 0"
+      />
     </v-col>
   </v-row>
 </template>
 
 <script>
   import Item from './Item'
-  import {getCategoryItens} from "@/api/categories"
+  import { getCategoryItens } from '@/api/categories'
 
   export default {
     name: 'Submenu',
     components: {
-      Item,
+      Item
     },
     computed: {
-      categoryId() {
+      categoryId () {
         return this.$store.state.category.id
       },
-      rightSidebar(){
+      rightSidebar () {
         return this.$store.state.rightSidebar
       }
     },
-    created() {
+    created () {
       this.getCategoryItens()
     },
     methods: {
-      async getCategoryItens() {
+      async getCategoryItens () {
         try {
           let itens = await getCategoryItens(this.categoryId)
-          itens = itens.data.data.map(v => ({...v, amount: 1}))
+          itens = itens.data.data.map(v => ({ ...v, amount: 1 }))
           this.itens = itens
         } catch (error) {
           console.log(error)
         }
-      },
+      }
     },
     data: () => ({
       itens: []
-    }),
+    })
   }
 </script>
 

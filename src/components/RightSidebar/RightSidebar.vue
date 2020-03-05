@@ -6,14 +6,16 @@
     class="right-sidebar"
     permanent
   >
-    <v-container fluid class="ma-0 pa-0 main-container">
-      <TableOrderInfo/>
+    <v-container
+      fluid
+      class="ma-0 pa-0 main-container"
+    >
+      <TableOrderInfo />
       <div class="content">
-        <User/>
-        <ItemList/>
-<!--        <Payment/>-->
+        <User />
+        <ItemList />
       </div>
-      <BottomContent/>
+      <BottomContent />
     </v-container>
   </v-navigation-drawer>
 </template>
@@ -28,10 +30,10 @@
 
   export default {
     name: 'Sidebar',
-    components: {Payment, ItemList, User, TableOrderInfo, BottomContent},
+    components: { ItemList, User, TableOrderInfo, BottomContent },
     data: () => ({
-      rightSidebarWidth: variables.rightSidebarWidth,
-    }),
+      rightSidebarWidth: variables.rightSidebarWidth
+    })
   }
 </script>
 

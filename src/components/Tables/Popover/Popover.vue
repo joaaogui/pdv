@@ -1,17 +1,30 @@
 <template>
-  <v-container fluid class="popover-container">
+  <v-container
+    fluid
+    class="popover-container"
+  >
     <v-card class="popover-main-card">
-      <v-tabs v-model="tab" fixed-tabs class="mb-1">
+      <v-tabs
+        v-model="tab"
+        fixed-tabs
+        class="mb-1"
+      >
         <v-tab>Restaurante</v-tab>
         <v-tab>App Onearby</v-tab>
         <v-tab-item>
-          <Orders class="orders" :app="false"/>
+          <Orders
+            class="orders"
+            :app="false"
+          />
         </v-tab-item>
         <v-tab-item>
-          <Orders class="orders" :app="true"/>
+          <Orders
+            class="orders"
+            :app="true"
+          />
         </v-tab-item>
       </v-tabs>
-      <BottomContent :app="tab"/>
+      <BottomContent :app="tab" />
     </v-card>
   </v-container>
 </template>
@@ -22,10 +35,10 @@
 
   export default {
     name: 'Popover',
-    components: {Orders, BottomContent},
+    components: { Orders, BottomContent },
     data: () => ({
-      tab: null,
-    }),
+      tab: null
+    })
 
   }
 </script>

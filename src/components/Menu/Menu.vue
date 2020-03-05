@@ -1,7 +1,15 @@
 <template>
-  <v-row class="menu" :class="rightSidebar ? 'open-sidebar-content' : '' ">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="(category, index) in categories" :key="index">
-      <Category :category="category"/>
+  <v-row
+    class="menu"
+    :class="rightSidebar ? 'open-sidebar-content' : '' "
+  >
+    <v-col
+      class="ma-0 pa-0"
+      cols="auto"
+      v-for="(category, index) in categories"
+      :key="index"
+    >
+      <Category :category="category" />
     </v-col>
   </v-row>
 </template>
@@ -12,18 +20,18 @@
   export default {
     name: 'Menu',
     components: {
-      Category,
+      Category
     },
     computed: {
-      categories(){
+      categories () {
         return this.$store.state.categories
       },
-      rightSidebar(){
+      rightSidebar () {
         return this.$store.state.rightSidebar
       }
     },
-    created() {
-      this.$store.dispatch("getCategories")
+    created () {
+      this.$store.dispatch('getCategories')
     }
   }
 </script>

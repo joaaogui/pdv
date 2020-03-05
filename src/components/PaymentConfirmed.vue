@@ -2,13 +2,29 @@
   <div class="open-sidebar-content">
     <div class="confirmation centered-container">
       <div class="upper-text mb-7 ">
-        <v-icon class="horizontally-centered-element" size="90" :color="pastelGreen">mdi-check</v-icon>
+        <v-icon
+          class="horizontally-centered-element"
+          size="90"
+          :color="pastelGreen"
+        >
+          mdi-check
+        </v-icon>
         <div> Pagamento efetuado com sucesso!</div>
       </div>
     </div>
     <div class="buttons bottom-content">
-      <div @click="toggleContentOverlay" class="button blue-overlay-button centered-container mr-3">Enviar nota fiscal</div>
-      <div @click="toggleContentOverlay" class="button blue-button centered-container">Finalizar atendimento</div>
+      <div
+        @click="toggleContentOverlay"
+        class="button blue-overlay-button centered-container mr-3"
+      >
+        Enviar nota fiscal
+      </div>
+      <div
+        @click="toggleContentOverlay"
+        class="button blue-button centered-container"
+      >
+        Finalizar atendimento
+      </div>
     </div>
   </div>
 </template>
@@ -17,9 +33,9 @@
   import variables from '@/scss/variables.scss'
 
   export default {
-    name: "PaymentConfirmed",
+    name: 'PaymentConfirmed',
     data: () => ({
-      pastelGreen: variables.pastelGreen,
+      pastelGreen: variables.pastelGreen
     })
   }
 </script>

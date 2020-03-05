@@ -64,7 +64,6 @@
 }
 
 .blue-button {
-  padding: 15px;
   height: 65px;
   color: white;
   background-color: $strong-blue;
@@ -72,14 +71,12 @@
   font-size: 1.125em;
   font-weight: bold;
   cursor: pointer;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding: 15px 25px;
   width: 100%;
 }
 
 .blue-overlay-button {
   border: 2px solid $strong-blue;
-  padding: 15px;
   height: 65px;
   color: $strong-blue;
   background-color: white;
@@ -87,8 +84,7 @@
   font-size: 1.125em;
   font-weight: bold;
   cursor: pointer;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding: 15px 25px;
   width: 100%;
 }
 

@@ -41,7 +41,7 @@ const routes = [
         path: 'orders',
         name: 'orders',
         component: () => import('../components/Orders/Orders.vue')
-      },
+      }
     ]
   },
 
@@ -49,7 +49,7 @@ const routes = [
     path: '/payment-confirmed',
     name: 'payment-confirmed',
     component: () => import('../components/PaymentConfirmed.vue')
-  },
+  }
 ]
 
 const router = new VueRouter({
@@ -57,9 +57,13 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (from.name !== 'establishments' && to.name !== 'establishments' && to.name !== 'login' && !store.getters.isAuthenticated) next({ path: '/' })
-  else if (store.getters.isAuthenticated && to.name === 'login') next({ path: '/pdv/tables' })
-  else next()
+  if (from.name !== 'establishments' && to.name !== 'establishments' && to.name !== 'login' && !store.getters.isAuthenticated) {
+    next({ path: '/' })
+  } else if (store.getters.isAuthenticated && to.name === 'login') {
+    next({ path: '/pdv/tables' })
+  } else {
+    next()
+  }
 })
 
 export default router

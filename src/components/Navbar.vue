@@ -1,11 +1,24 @@
 <template>
   <div>
-    <v-app-bar app :height="navbarHeight" class="navbar">
+    <v-app-bar
+      app
+      :height="navbarHeight"
+      class="navbar"
+    >
       <div class="hamburguer-background centered-container">
-        <v-app-bar-nav-icon x-large color="white" @click="toggleLeftSidebar"/>
+        <v-app-bar-nav-icon
+          x-large
+          color="white"
+          @click="toggleLeftSidebar"
+        />
       </div>
-      <div class="ml-4 establishment-name">{{establishment.name}}</div>
-      <div @click="startNewOrder" class="new-order-button centered-container">
+      <div class="ml-4 establishment-name">
+        {{ establishment.name }}
+      </div>
+      <div
+        @click="startNewOrder"
+        class="new-order-button centered-container"
+      >
         <div class="text">
           Novo pedido
         </div>
@@ -23,12 +36,12 @@
       navbarHeight: variables.navbarHeight
     }),
     computed: {
-      establishment(){
+      establishment () {
         return this.$store.state.establishment
       }
     },
     methods: {
-      startNewOrder() {
+      startNewOrder () {
         let table = {
           id: 0,
           number: 0
@@ -36,7 +49,7 @@
         this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
       },
-      toggleLeftSidebar() {
+      toggleLeftSidebar () {
         this.$store.commit('toggleLeftSidebar')
       }
     }
@@ -48,11 +61,12 @@
     background-color: $navbar-color;
   }
 
-  .establishment-name{
-   color: white;
+  .establishment-name {
+    color: white;
     font-size: 1.5em;
     font-weight: bold;
   }
+
   .new-order-button {
     position: absolute;
     right: 0;

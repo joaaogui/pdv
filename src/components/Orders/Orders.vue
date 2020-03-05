@@ -1,7 +1,18 @@
 <template>
-  <v-row class="orders" :class="rightSidebar ? 'open-sidebar-content' : '' ">
-    <v-col class="ma-0 pa-0" cols="auto" v-for="(order, i) in orders" :key="i">
-      <Order :order="order" :backButton="i === 0"/>
+  <v-row
+    class="orders"
+    :class="rightSidebar ? 'open-sidebar-content' : '' "
+  >
+    <v-col
+      class="ma-0 pa-0"
+      cols="auto"
+      v-for="(order, i) in orders"
+      :key="i"
+    >
+      <Order
+        :order="order"
+        :back-button="i === 0"
+      />
     </v-col>
   </v-row>
 </template>
@@ -12,29 +23,29 @@
   export default {
     name: 'Orders',
     components: {
-      Order,
+      Order
     },
     data: () => ({
       timeout: null
     }),
     computed: {
-      orders() {
+      orders () {
         return this.$store.state.orders
       },
-      rightSidebar(){
+      rightSidebar () {
         return this.$store.state.rightSidebar
       }
     },
-    mounted() {
+    mounted () {
       this.refreshData()
     },
-    destroyed() {
+    destroyed () {
       clearTimeout(this.timeout)
     },
     methods: {
-      refreshData() {
+      refreshData () {
         let x = 1
-        this.$store.dispatch("getOrders")
+        this.$store.dispatch('getOrders')
         this.timeout = setTimeout(this.refreshData, x * 1000)
       }
     }

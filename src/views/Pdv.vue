@@ -1,20 +1,20 @@
 <template>
   <div>
-    <RightSidebar v-if="rightSidebar"/>
-    <LeftSidebar v-if="leftSidebar"/>
-    <Navbar/>
+    <RightSidebar v-if="rightSidebar" />
+    <LeftSidebar v-if="leftSidebar" />
+    <Navbar />
     <v-content>
       <v-container fluid>
-        <router-view/>
+        <router-view />
       </v-container>
     </v-content>
     <v-overlay
       :value="contentOverlay"
       opacity="0.7"
     >
-      <PaymentConfirmation/>
+      <PaymentConfirmation />
     </v-overlay>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -23,28 +23,28 @@
   import RightSidebar from '../components/RightSidebar/RightSidebar'
   import LeftSidebar from '../components/LeftSidebar'
   import Navbar from '../components/Navbar'
-  import PaymentConfirmation from "../components/PaymentConfirmation"
+  import PaymentConfirmation from '../components/PaymentConfirmation'
 
   export default {
-    name: "Pdv",
+    name: 'Pdv',
     components: {
       PaymentConfirmation,
       Footer,
       RightSidebar,
       LeftSidebar,
-      Navbar,
+      Navbar
     },
     computed: {
-      rightSidebar() {
+      rightSidebar () {
         return this.$store.state.rightSidebar
       },
-      leftSidebar() {
+      leftSidebar () {
         return this.$store.state.leftSidebar
       },
-      contentOverlay() {
+      contentOverlay () {
         return this.$store.state.contentOverlay
       }
-    },
+    }
     // created() {
     //   this.$store.dispatch("getConfigs")
     // }

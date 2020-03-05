@@ -1,23 +1,21 @@
 <template>
   <div class="open-sidebar-content">
-    <div class="testing-border modal">
-
-    </div>
+    <div class="testing-border modal" />
   </div>
 </template>
 
 <script>
   export default {
-    name: "PaymentConfirmation",
+    name: 'PaymentConfirmation',
     methods: {
-      goTo() {
+      goTo () {
         this.toggleContentOverlay()
-        this.$router.push({path: `/payment-confirmed`})
+        this.$router.push({ path: `/payment-confirmed` })
       },
-      toggleRightSidebar() {
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
       },
-      toggleContentOverlay() {
+      toggleContentOverlay () {
         this.$store.commit('toggleContentOverlay')
       }
     }

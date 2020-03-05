@@ -1,22 +1,40 @@
 <template>
   <div>
-    <div class="payment-text">Forma de pagamento</div>
+    <div class="payment-text">
+      Forma de pagamento
+    </div>
     <div class="icons horizontally-centered-element centered-container">
-      <div class="centered-container" @click="changePaymentMethod('phone')"
-           :class="paymentMethod === 'phone' ? 'active-icon' : 'icon'">
-        <v-icon large>mdi-cellphone</v-icon>
+      <div
+        class="centered-container"
+        @click="changePaymentMethod('phone')"
+        :class="paymentMethod === 'phone' ? 'active-icon' : 'icon'"
+      >
+        <v-icon large>
+          mdi-cellphone
+        </v-icon>
       </div>
-      <div class="icon centered-container" @click="changePaymentMethod('card')"
-           :class="paymentMethod === 'card' ? 'active-icon' : 'icon'">
-        <v-icon large>mdi-credit-card</v-icon>
+      <div
+        class="icon centered-container"
+        @click="changePaymentMethod('card')"
+        :class="paymentMethod === 'card' ? 'active-icon' : 'icon'"
+      >
+        <v-icon large>
+          mdi-credit-card
+        </v-icon>
       </div>
-      <div class="icon centered-container" @click="changePaymentMethod('cash')"
-           :class="paymentMethod === 'cash' ? 'active-icon' : 'icon'">
-        <v-icon large>mdi-cash</v-icon>
+      <div
+        class="icon centered-container"
+        @click="changePaymentMethod('cash')"
+        :class="paymentMethod === 'cash' ? 'active-icon' : 'icon'"
+      >
+        <v-icon large>
+          mdi-cash
+        </v-icon>
       </div>
     </div>
-    <div class="text-box">O cliente será notificado e
-      o valor de <b>R$ {{totalPrice | money}}</b> será cobrado
+    <div class="text-box">
+      O cliente será notificado e
+      o valor de <b>R$ {{ totalPrice | money }}</b> será cobrado
       no cartão de crédito.
     </div>
   </div>
@@ -26,15 +44,15 @@
   export default {
     name: 'Payment',
     computed: {
-      paymentMethod() {
+      paymentMethod () {
         return this.$store.state.order.paymentMethod
       },
-      totalPrice() {
+      totalPrice () {
         return this.$store.getters.totalPrice
       }
     },
     methods: {
-      changePaymentMethod(paymentMethod) {
+      changePaymentMethod (paymentMethod) {
         this.$store.commit('changePaymentMethod', paymentMethod)
       }
     }

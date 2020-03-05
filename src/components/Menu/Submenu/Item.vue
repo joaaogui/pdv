@@ -1,17 +1,27 @@
 <template>
   <div>
-    <v-card v-if="backButton" @click="goTo" class="card centered-container vertically-centered-container">
-      <v-icon large>mdi-arrow-left</v-icon>
+    <v-card
+      v-if="backButton"
+      @click="goTo"
+      class="card centered-container vertically-centered-container"
+    >
+      <v-icon large>
+        mdi-arrow-left
+      </v-icon>
     </v-card>
-    <v-card v-else @click="addToOrder" class="card">
+    <v-card
+      v-else
+      @click="addToOrder"
+      class="card"
+    >
       <div class="header">
-        {{category.name}}
+        {{ category.name }}
       </div>
       <v-card-text class="main-content centered-container">
-        {{item.name}}
+        {{ item.name }}
       </v-card-text>
       <div class="footer centered-container">
-        R$ {{item.price | money}}
+        R$ {{ item.price | money }}
       </div>
     </v-card>
   </div>
@@ -22,18 +32,18 @@
     name: 'Item',
     props: {
       backButton: Boolean,
-      item: Object,
+      item: Object
     },
     computed: {
-      category() {
+      category () {
         return this.$store.state.category
-      },
+      }
     },
     methods: {
-      goTo() {
+      goTo () {
         this.$router.go(-1)
       },
-      addToOrder() {
+      addToOrder () {
         this.$store.commit('addItem', this.item)
       }
     }

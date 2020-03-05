@@ -1,18 +1,46 @@
 <template>
-  <v-row no-gutters class="table-number-order-container vertically-centered-container">
-    <v-col cols="8" class="table-number-order-element ">
+  <v-row
+    no-gutters
+    class="table-number-order-container vertically-centered-container"
+  >
+    <v-col
+      cols="8"
+      class="table-number-order-element "
+    >
       <div class="table-number vertically-centered-container">
-        <v-icon large :color="rightSidebarTextColor">mdi-table-chair</v-icon>
-        <span class="ml-1" v-if="tableNumber">{{tableNumber}}</span>
-        <span class="ml-1" v-else>-</span>
+        <v-icon
+          large
+          :color="rightSidebarTextColor"
+        >
+          mdi-table-chair
+        </v-icon>
+        <span
+          class="ml-1"
+          v-if="tableNumber"
+        >{{ tableNumber }}</span>
+        <span
+          class="ml-1"
+          v-else
+        >-</span>
       </div>
     </v-col>
     <v-col cols="4">
-      <div class="order" @click="toggleRightSidebar">
-        <v-badge v-if="orderNumber" color="green" dot>
-          #{{orderNumber}}
+      <div
+        class="order"
+        @click="toggleRightSidebar"
+      >
+        <v-badge
+          v-if="orderNumber"
+          color="green"
+          dot
+        >
+          #{{ orderNumber }}
         </v-badge>
-        <v-badge v-else color="green" dot>
+        <v-badge
+          v-else
+          color="green"
+          dot
+        >
           # -
         </v-badge>
       </div>
@@ -28,15 +56,15 @@
       rightSidebarTextColor: variables.rightSidebartextColor
     }),
     computed: {
-      orderNumber() {
+      orderNumber () {
         return this.$store.state.order.id
       },
-      tableNumber() {
+      tableNumber () {
         return this.$store.state.table.number
       }
     },
     methods: {
-      toggleRightSidebar(){
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
       }
     }

@@ -1,7 +1,10 @@
 <template>
-  <v-card class="container" :class="delayedTable ? 'delayed' : 'normal'">
+  <v-card
+    class="container"
+    :class="delayedTable ? 'delayed' : 'normal'"
+  >
     <div class="text">
-      {{duration}} <br> min
+      {{ duration }} <br> min
     </div>
   </v-card>
 </template>
@@ -10,10 +13,10 @@
   export default {
     name: 'TimeCard',
     props: {
-      duration: Number,
+      duration: Number
     },
     computed: {
-      delayedTable (){
+      delayedTable () {
         return this.duration > 30
       }
     }

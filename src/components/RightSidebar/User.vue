@@ -1,13 +1,37 @@
 <template>
   <v-card>
-    <v-list flat class="list">
-      <v-list-group :ripple="false" flat active-class="active-class">
+    <v-list
+      flat
+      class="list"
+    >
+      <v-list-group
+        :ripple="false"
+        flat
+        active-class="active-class"
+      >
         <template v-slot:activator>
-          <v-avatar size="40" color="grey" class="mr-3 ml-3">
-            <v-icon dark size="32">mdi-account</v-icon>
+          <v-avatar
+            size="40"
+            color="grey"
+            class="mr-3 ml-3"
+          >
+            <v-icon
+              dark
+              size="32"
+            >
+              mdi-account
+            </v-icon>
           </v-avatar>
-          <v-list-item-title v-if="orderName" class="right-sidebar-list-title">{{orderName}}</v-list-item-title>
-          <v-list-item-title v-else class="right-sidebar-list-title">
+          <v-list-item-title
+            v-if="orderName"
+            class="right-sidebar-list-title"
+          >
+            {{ orderName }}
+          </v-list-item-title>
+          <v-list-item-title
+            v-else
+            class="right-sidebar-list-title"
+          >
             <v-text-field
               v-model="name"
               dense
@@ -18,32 +42,31 @@
             />
           </v-list-item-title>
         </template>
-        <UserActions/>
+        <UserActions />
       </v-list-group>
     </v-list>
   </v-card>
 </template>
 <script>
-  import UserActions from "./UserActions"
+  import UserActions from './UserActions'
 
   export default {
     name: 'User',
-    components: {UserActions},
+    components: { UserActions },
     data: () => ({
       rules: {
-        required: value => !!value || 'Obrigatório.',
+        required: value => !!value || 'Obrigatório.'
       },
       name: ''
     }),
     computed: {
-      orderName() {
+      orderName () {
         return this.$store.state.order.userName
       }
     },
     methods: {
-      setName() {
+      setName () {
         this.$store.commit('setOrderName', this.name)
-
       }
     }
   }
