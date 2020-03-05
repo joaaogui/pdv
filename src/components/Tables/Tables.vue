@@ -1,5 +1,5 @@
 <template>
-  <v-row class="tables" :class="rightSidebar ? 'open-sidebar-content' : ''">
+  <v-row v-if="tables || tables.length === 0" class="tables" :class="rightSidebar ? 'open-sidebar-content' : ''">
     <v-col class="ma-0 pa-0" cols="auto" v-for="(table, index) in tables" :key="index">
       <v-menu
         :close-on-content-click="false"
@@ -14,6 +14,7 @@
       </v-menu>
     </v-col>
   </v-row>
+  <div class="testing-border fill-height" v-else style="font-size: 50px">{{error}</div>
 </template>
 
 <script>
@@ -35,6 +36,9 @@
       },
       rightSidebar() {
         return this.$store.state.rightSidebar
+      },
+      error() {
+        return this.$store.state.error
       }
     },
     mounted() {

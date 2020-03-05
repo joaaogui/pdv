@@ -8,7 +8,7 @@
       </div>
     </v-col>
     <v-col cols="4">
-      <div class="order">
+      <div class="order" @click="toggleRightSidebar">
         <v-badge v-if="orderNumber" color="green" dot>
           #{{orderNumber}}
         </v-badge>
@@ -34,6 +34,11 @@
       tableNumber() {
         return this.$store.state.table.number
       }
+    },
+    methods: {
+      toggleRightSidebar(){
+        this.$store.commit('toggleRightSidebar')
+      }
     }
   }
 </script>
@@ -56,6 +61,7 @@
   }
 
   .order {
+    cursor: pointer;
     text-align: right;
     margin-left: auto;
     margin-right: 0;

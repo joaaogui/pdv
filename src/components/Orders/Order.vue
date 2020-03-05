@@ -53,6 +53,11 @@
         this.$router.go(-1)
       },
       startNewOrder() {
+        let table = {
+          id: 0,
+          number: 0
+        }
+        this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
       },
       changeOrder() {

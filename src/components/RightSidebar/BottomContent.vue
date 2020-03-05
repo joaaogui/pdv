@@ -22,14 +22,14 @@
       </v-col>
       <v-col class="bottom-content-values" cols="5">R$ {{tipValue | money}}</v-col>
     </v-row>
-    <v-row no-gutters class="bottom-content-lines">
-      <v-col cols="8">Couvert Artístico</v-col>
-      <v-col class="bottom-content-values" cols="4">
-        <v-icon @click="removeCouvert">mdi-minus</v-icon>
-        {{couvertAmount}}
-        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>
-      </v-col>
-    </v-row>
+<!--    <v-row no-gutters class="bottom-content-lines">-->
+<!--      <v-col cols="8">Couvert Artístico</v-col>-->
+<!--      <v-col class="bottom-content-values" cols="4">-->
+<!--        <v-icon @click="removeCouvert">mdi-minus</v-icon>-->
+<!--        {{couvertAmount}}-->
+<!--        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>-->
+<!--      </v-col>-->
+<!--    </v-row>-->
     <v-row no-gutters class="bottom-content-lines">
       <v-col cols="8">Desconto</v-col>
       <v-col class="bottom-content-values" cols="4">
@@ -54,7 +54,15 @@
         </v-col>
       </v-row>
     </div>
-    <div @click="payOrder" v-if="status === 'newOrder'" class="blue-button mb-2 vertically-centered-container">
+    <div @click="addToOrder" v-if="status === 'existingOrder'" class="mb-2 blue-button centered-container">
+      <v-row>
+        <div class="horizontally-centered-element">
+          Adicionar Itens a Pedido
+        </div>
+      </v-row>
+    </div>
+    <div @click="payOrder" v-if="status === 'existingOrder' || status === 'newOrder'"
+         class="blue-button mb-2 vertically-centered-container">
       <v-row>
         <v-col cols="6">
           Pagar Pedido
@@ -64,18 +72,11 @@
         </v-col>
       </v-row>
     </div>
-    <div @click="sendOrder" v-if="status === 'existingOrder'" class="blue-button centered-container">
-      <v-row>
-        <div class="horizontally-centered-element">
-          Adicionar Itens a Pedido
-        </div>
-      </v-row>
-    </div>
   </div>
 </template>
 <script>
   import PaymentConfirmation from "../PaymentConfirmation"
-  import {sendOrder} from '@/api/orders'
+  import {sendOrder, payOrder} from '@/api/orders'
   import swal from 'sweetalert2'
 
   export default {
@@ -123,6 +124,9 @@
       table() {
         return this.$store.state.table
       },
+      order() {
+        return this.$store.state.order
+      },
       establishment() {
         return this.$store.state.establishment
       }
@@ -149,6 +153,7 @@
             }
             let result = await sendOrder(this.establishment.id, order)
             if (result.data.success) {
+              this.toggleRightSidebar()
               swal.fire({
                 icon: 'success',
                 title: 'Pedido enviado com sucesso!',
@@ -160,7 +165,10 @@
               })
             }
           } catch (error) {
-            console.log(error)
+            swal.fire({
+              icon: 'error',
+              title: error.message,
+            })
           }
         } else {
           swal.fire({
@@ -169,8 +177,63 @@
           })
         }
       },
-      payOrder() {
-        this.toggleRightSidebar()
+      async payOrder() {
+        try {
+          let order = {
+            cardId: null,
+            idPedido: this.order.id,
+            OrigemCheckout: 1
+          }
+          let result = await payOrder(this.establishment.id, order)
+          if (result.data.success) {
+            swal.fire({
+              icon: 'success',
+              title: 'Pagamento enviado com sucesso!',
+            })
+          } else {
+            console.log(result)
+          }
+          console.log(result)
+          this.toggleRightSidebar()
+        } catch (error) {
+          swal.fire({
+            icon: 'error',
+            title: error.message,
+          })
+        }
+      },
+      async addToOrder() {
+        try {
+          let products = []
+          let itensToAdd = this.itens.filter(item => !("orderId" in item))
+          for (let item of itensToAdd) {
+            products.push({
+              id: item.id,
+              qnt: 1,
+              itens: []
+            })
+          }
+          let order = {
+            cardId: null,
+            valorCompilado: itensToAdd.map(item => item.price * item.amount).reduce((prev, next) => prev + next),
+            mesa: this.table.number,
+            origemPedido: 1,
+            produtos: products,
+            nomeCliente: this.order.userName
+          }
+          let result = await sendOrder(this.establishment.id, order)
+          if (result.data.success) {
+            this.toggleRightSidebar()
+            swal.fire({
+              icon: 'success',
+              title: 'Itens adicionados com sucesso!',
+            })
+          }
+        } catch (error) {
+          console.log(error.message)
+
+        }
+
       },
       toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')

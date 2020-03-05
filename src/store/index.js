@@ -43,7 +43,8 @@ const store = new Vuex.Store({
     establishments: JSON.parse(localStorage.getItem('establishments')) || [],
     totalSpending: 0,
     token: localStorage.getItem('token') || '',
-    status: ''
+    status: '',
+    error: '',
   },
   mutations: {
     setOrders(state, orders) {
@@ -93,6 +94,9 @@ const store = new Vuex.Store({
     },
     setTip(state, tipPercentage) {
       state.tipPercentage = tipPercentage
+    },
+    setError(state, error) {
+      state.error = error
     },
     toggleRightSidebar(state) {
       state.rightSidebar = !state.rightSidebar
@@ -204,7 +208,9 @@ const store = new Vuex.Store({
         const response = await getTables()
         commit('setTables', response.data.data)
       } catch (error) {
-        console.log(error)
+        commit('setError', error.message)
+
+        console.log(error.message)
       }
     },
     async getCategories({commit}) {
