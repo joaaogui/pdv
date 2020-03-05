@@ -129,7 +129,6 @@
     },
     methods: {
       async sendOrder() {
-        console.log(this.orderName)
         if (this.itens.length !== 0 && this.orderName) {
           try {
             let products = []
@@ -146,6 +145,7 @@
               mesa: this.table.number,
               origemPedido: 1,
               produtos: products,
+              nomeCliente: 'TESTE DO PDV'
             }
             let result = await sendOrder(this.establishment.id, order)
             if (result.data.success) {
@@ -162,11 +162,6 @@
           } catch (error) {
             console.log(error)
           }
-        } else if (!this.orderName) {
-          swal.fire({
-            icon: 'warning',
-            title: 'Informe o nome do cliente',
-          })
         } else {
           swal.fire({
             icon: 'warning',

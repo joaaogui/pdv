@@ -1,13 +1,19 @@
 <template>
-  <div class="pl-10 pr-10 centered-container fill-height">
-    <v-autocomplete
-      v-model="establishment"
-      :items="establishments"
-      item-text="nome"
-      item-value="id"
-      label="Estabelecimentos"
-      @change="setEstablishment"
-    ></v-autocomplete>
+  <div class="centered-container fill-height">
+    <div>
+      <div class="text-center">
+        Selecione o seu estabelecimento abaixo
+      </div>
+      <v-autocomplete
+        class="establishmentText"
+        v-model="establishmentId"
+        :items="establishments"
+        item-text="nome"
+        item-value="id"
+        label="Estabelecimentos"
+        @change="setEstablishment"
+      />
+    </div>
   </div>
 </template>
 
@@ -15,7 +21,7 @@
   export default {
     name: "Establishments",
     data: () => ({
-      establishment: null
+      establishmentId: null
     }),
     computed: {
       establishments() {
@@ -28,14 +34,10 @@
           username: this.$route.params.input,
           password: this.$route.params.password,
           grant_type: "password",
-          loja_id: this.establishment,
+          loja_id: this.establishmentId,
           client_id: process.env.VUE_APP_CLIENT_ID
         }
-        let establishment = {
-          id: this.establishment,
-          name: this.$store.state.establishments.find(i => i.id === this.establishment).nome
-        }
-        this.$store.commit('setEstablishment', establishment)
+        this.$store.commit('setEstablishment', this.$store.state.establishments.find(i => i.id === this.establishmentId))
         this.$store.dispatch('establishmentLogin', data)
         this.$router.push('/pdv/tables')
       }
@@ -43,7 +45,9 @@
   }
 </script>0
 
-<style scoped>
-
+<style scoped lang="scss">
+  .establishmentText {
+    color: $right-sidebar-text-color
+  }
 </style>
 -

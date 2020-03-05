@@ -5,14 +5,23 @@
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="establishmentName">
-              {{establishment.name}}
+              <v-autocomplete
+                hide-details
+                class="establishmentText"
+                v-model="establishmentId"
+                :items="establishments"
+                item-text="nome"
+                item-value="id"
+                label="Estabelecimento"
+                @change="setEstablishment"
+              />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-col>
       <v-col class="bottom-content-values centered-container" cols="2">
         <v-btn @click="toggleLeftSidebar" icon>
-          <v-icon size="40">mdi-arrow-left</v-icon>
+          <v-icon size="30">mdi-arrow-left</v-icon>
         </v-btn>
       </v-col>
     </v-row>
@@ -27,10 +36,19 @@
 <script>
   export default {
     name: 'LeftSidebar',
+    data: () => ({
+      establishmentId: null
+    }),
+    created() {
+      this.establishmentId = this.establishment.id
+    },
     computed: {
-     establishment(){
-       return this.$store.state.establishment
-     }
+      establishment() {
+        return this.$store.state.establishment
+      },
+      establishments() {
+        return this.$store.state.establishments
+      }
     },
     methods: {
       toggleLeftSidebar() {
@@ -38,7 +56,12 @@
       },
       logout() {
         this.$store.dispatch('logout')
-        this.$router.push({name: 'login'})
+        this.$router.go({name: 'login'})
+        localStorage.clear()
+      },
+      setEstablishment() {
+        this.$store.commit('setEstablishment', this.$store.state.establishments.find(i => i.id === this.establishmentId))
+        this.toggleLeftSidebar()
       }
     }
   }

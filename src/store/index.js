@@ -17,7 +17,7 @@ const store = new Vuex.Store({
     order: {
       id: null,
       number: null,
-      name: null,
+      userName: null,
       paymentMethod: 'phone'
     },
     rightSidebar: false,
@@ -40,7 +40,7 @@ const store = new Vuex.Store({
       id: localStorage.getItem('establishmentId') || null,
       name: localStorage.getItem('establishmentName') || null
     },
-    establishments: [],
+    establishments: JSON.parse(localStorage.getItem('establishments')) || [],
     totalSpending: 0,
     token: localStorage.getItem('token') || '',
     status: ''
@@ -62,12 +62,14 @@ const store = new Vuex.Store({
       state.itens = itens
     },
     setEstablishment(state, establishment) {
+      state.establishment.id = establishment.id
+      state.establishment.name = establishment.nome
       localStorage.setItem('establishmentId', establishment.id)
-      localStorage.setItem('establishmentName', establishment.name)
-      state.establishment = establishment
+      localStorage.setItem('establishmentName', establishment.nome)
     },
     setEstablishments(state, establishments) {
       state.establishments = establishments
+      localStorage.setItem('establishments', JSON.stringify(establishments))
     },
     setConfigs(state, configs) {
       state.couvertPrice = configs.couvertPrice
@@ -128,7 +130,6 @@ const store = new Vuex.Store({
       // } else {
       //   state.itens.push(item)
       // }
-      // console.log(originalItem)
         state.itens.push(originalItem)
 
     },
