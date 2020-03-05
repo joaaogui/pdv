@@ -4,7 +4,7 @@
       <v-col cols="12">
         <div class="centered-container mt-4 mb-4">
           <img
-            src="../assets/Images/ONE.svg"
+            src="../assets/images/ONE.svg"
             height="45px"
             alt=""
           >

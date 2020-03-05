@@ -79,7 +79,7 @@
     position: relative;
     margin-top: $table-card-margin;
     margin-right: $table-card-margin;
-    background-image: url("../../assets/Images/Table.svg");
+    background-image: url("../../assets/images/Table.svg");
     color: $right-sidebar-text-color
   }
 
@@ -93,7 +93,7 @@
     position: relative;
     margin-top: $table-card-margin;
     margin-right: $table-card-margin;
-    background-image: url("../../assets/Images/BlueTable.svg");
+    background-image: url("../../assets/images/BlueTable.svg");
     color: white;
   }
 </style>

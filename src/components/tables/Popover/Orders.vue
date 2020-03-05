@@ -35,7 +35,7 @@
             </v-icon>
             <img
               v-else
-              src="../../../assets/Images/icon.png"
+              src="../../../assets/images/icon.png"
               alt=""
             >
           </v-avatar>
