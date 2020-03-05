@@ -132,7 +132,7 @@
     },
     computed: {
       contentOverlay () {
-        return this.$store.state.contentoverlay
+        return this.$store.state.contentOverlay
       },
       status () {
         return this.$store.state.status

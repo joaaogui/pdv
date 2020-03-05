@@ -26,7 +26,6 @@
   import TableOrderInfo from './TableOrderInfo'
   import User from './User'
   import ItemList from './ItemList'
-  import Payment from './Payment'
 
   export default {
     name: 'Sidebar',
