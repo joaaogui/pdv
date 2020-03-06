@@ -48,6 +48,7 @@
         }
         this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
+        this.$router.push({ name: 'category' })
       },
       toggleLeftSidebar () {
         this.$store.commit('toggleLeftSidebar')

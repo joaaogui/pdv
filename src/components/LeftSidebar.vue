@@ -82,6 +82,7 @@
       setEstablishment () {
         this.$store.commit('setEstablishment', this.$store.state.establishments.find(i => i.id === this.establishmentId))
         this.toggleLeftSidebar()
+        this.$router.go()
       }
     }
   }

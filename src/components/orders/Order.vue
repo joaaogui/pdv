@@ -85,6 +85,7 @@
         }
         this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
+        this.$router.push({ name: 'category' })
       },
       changeOrder () {
         this.$store.commit('changeOrder', this.order)

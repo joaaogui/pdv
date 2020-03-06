@@ -6,7 +6,7 @@
     >
       <v-list-group
         :ripple="false"
-        :value="true"
+        :value="titleRow"
         flat
         class="sublist"
         active-class="active-class"
@@ -30,12 +30,18 @@
           >
             Itens
           </v-list-item-title>
+          <v-avatar
+            size="40"
+            class="mr-3 ml-3 all-item-amount"
+          >
+            <v-icon @click="addToOrder">mdi-plus</v-icon>
+          </v-avatar>
         </template>
         <div
           v-for="(item, index) in itens"
           :key="index"
         >
-          <Item :item="item" />
+          <Item :item="item"/>
         </div>
       </v-list-group>
     </v-list>
@@ -47,25 +53,29 @@
 
   export default {
     name: 'ItemList',
-    components: { Item },
+    components: {Item},
+    data: () => ({
+      titleRow: true
+    }),
     computed: {
-      itens () {
+      itens() {
         return this.$store.state.itens
       },
-      itensLength () {
+      itensLength() {
         return this.$store.getters.itensLength
+      }
+    },
+    methods: {
+      addToOrder() {
+        this.titleRow = true
+        this.$router.push({name: 'category'})
+        this.titleRow = true
       }
     }
   }
 </script>
 
 <style scoped>
-
-  .v-list-item--active {
-    color: white
-
-  }
-
   .all-item-amount {
     border: solid 1px #d3d3d3;
     font-size: 1.3em;

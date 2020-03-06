@@ -16,7 +16,9 @@ module.exports = {
     'vue/no-unused-components': 'warn',
     'no-multiple-empty-lines': 'warn',
     'vue/html-closing-bracket-spacing': 'off',
-    'space-before-function-paren': 'off'
+    'space-before-function-paren': 'off',
+    'object-curly-spacing': 'off',
+    'vue/singleline-html-element-content-newline': 'off'
 
   },
   parserOptions: {

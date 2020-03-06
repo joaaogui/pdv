@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import Popover from './Popover/Popover'
+  import Popover from './popover/Popover'
   import Table from './Table'
 
   export default {

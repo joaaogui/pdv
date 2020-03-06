@@ -117,7 +117,6 @@ const store = new Vuex.Store({
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
-      router.push({ name: 'category' })
     },
     changeTable (state, table) {
       state.table = table
@@ -157,7 +156,6 @@ const store = new Vuex.Store({
       if (!state.rightSidebar) {
         state.rightSidebar = !state.rightSidebar
       }
-
       router.push({ name: 'category' })
     }
   },
@@ -207,8 +205,6 @@ const store = new Vuex.Store({
         commit('setTables', response.data.data)
       } catch (error) {
         commit('setError', error.message)
-
-        console.log(error.message)
       }
     },
     async getCategories ({ commit }) {

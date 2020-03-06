@@ -231,9 +231,11 @@
               title: 'Pagamento enviado com sucesso!'
             })
           } else {
-            console.log(result)
+            swal.fire({
+              icon: 'error',
+              title: result.data.message
+            })
           }
-          console.log(result)
           this.toggleRightSidebar()
         } catch (error) {
           swal.fire({
@@ -259,7 +261,8 @@
             mesa: this.table.number,
             origemPedido: 1,
             produtos: products,
-            nomeCliente: this.order.userName
+            nomeCliente: this.order.userName,
+            idPedido: this.order.id
           }
           let result = await sendOrder(this.establishment.id, order)
           if (result.data.success) {
@@ -268,9 +271,17 @@
               icon: 'success',
               title: 'Itens adicionados com sucesso!'
             })
+          } else {
+            swal.fire({
+              icon: 'error',
+              title: result.data.message
+            })
           }
         } catch (error) {
-          console.log(error.message)
+          swal.fire({
+            icon: 'error',
+            title: error.message
+          })
         }
       },
       toggleRightSidebar () {
