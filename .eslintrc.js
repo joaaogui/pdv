@@ -18,7 +18,9 @@ module.exports = {
     'vue/html-closing-bracket-spacing': 'off',
     'space-before-function-paren': 'off',
     'object-curly-spacing': 'off',
-    'vue/singleline-html-element-content-newline': 'off'
+    'vue/singleline-html-element-content-newline': 'off',
+    'quotes': 'warn',
+    'vue/valid-v-for': 'warn',
 
   },
   parserOptions: {

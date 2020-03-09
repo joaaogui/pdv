@@ -35,16 +35,21 @@
       item: Object
     },
     computed: {
-      category () {
+      category() {
         return this.$store.state.category
       }
     },
     methods: {
-      goTo () {
+      goTo() {
         this.$router.go(-1)
       },
-      addToOrder () {
-        this.$store.commit('addItem', this.item)
+      addToOrder() {
+        console.log(this.item.caracteristics)
+        if (this.item.caracteristics.length) {
+          this.$router.push({name: 'caracteristics', params: {item: this.item}})
+        } else {
+          this.$store.commit('addItem', this.item)
+        }
       }
     }
   }

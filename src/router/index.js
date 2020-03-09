@@ -38,6 +38,12 @@ const routes = [
         props: true
       },
       {
+        path: 'category/:id/itens/caracteristics',
+        name: 'caracteristics',
+        component: () => import('../components/categories/itens/Caracteristics.vue'),
+        props: true
+      },
+      {
         path: 'orders',
         name: 'orders',
         component: () => import('../components/orders/Orders.vue')
