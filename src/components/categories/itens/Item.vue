@@ -44,9 +44,9 @@
         this.$router.go(-1)
       },
       addToOrder() {
-        console.log(this.item.caracteristics)
         if (this.item.caracteristics.length) {
           this.$router.push({name: 'caracteristics', params: {item: this.item}})
+          this.$store.commit('addItem', this.item)
         } else {
           this.$store.commit('addItem', this.item)
         }

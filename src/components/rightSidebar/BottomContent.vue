@@ -39,14 +39,14 @@
         R$ {{ tipValue | money }}
       </v-col>
     </v-row>
-    <!--    <v-row no-gutters class="bottom-content-lines">-->
-    <!--      <v-col cols="8">Couvert Artístico</v-col>-->
-    <!--      <v-col class="bottom-content-values" cols="4">-->
-    <!--        <v-icon @click="removeCouvert">mdi-minus</v-icon>-->
-    <!--        {{couvertAmount}}-->
-    <!--        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>-->
-    <!--      </v-col>-->
-    <!--    </v-row>-->
+    <v-row no-gutters class="bottom-content-lines">
+      <v-col cols="8">Couvert Artístico</v-col>
+      <v-col class="bottom-content-values" cols="4">
+        <v-icon @click="removeCouvert">mdi-minus</v-icon>
+        {{couvertAmount}}
+        <v-icon @click="addCouvert" color="blue">mdi-plus</v-icon>
+      </v-col>
+    </v-row>
     <v-row
       no-gutters
       class="bottom-content-lines"
@@ -117,7 +117,7 @@
   </div>
 </template>
 <script>
-  import { payOrder, sendOrder } from '@/api/orders'
+  import {payOrder, sendOrder} from '@/api/orders'
   import swal from 'sweetalert2'
 
   export default {
@@ -126,61 +126,71 @@
       tip: '',
       discount: ''
     }),
-    created () {
+    created() {
       this.tip = this.tipPercentage
       this.discount = this.discountValue
     },
     computed: {
-      contentOverlay () {
+      contentOverlay() {
         return this.$store.state.contentOverlay
       },
-      status () {
+      status() {
         return this.$store.state.status
       },
-      itensPrice () {
+      itensPrice() {
         return this.$store.getters.itensPrice
       },
-      tipValue () {
+      tipValue() {
         return this.$store.getters.tipValue
       },
-      tipPercentage () {
+      tipPercentage() {
         return this.$store.state.tipPercentage
       },
-      couvertAmount () {
+      couvertAmount() {
         return this.$store.state.couvertAmount
       },
-      discountValue () {
+      discountValue() {
         return this.$store.state.discount
       },
-      totalPrice () {
+      totalPrice() {
         return this.$store.getters.totalPrice
       },
-      itens () {
+      itens() {
         return this.$store.state.itens
       },
-      orderName () {
+      orderName() {
         return this.$store.state.order
       },
-      table () {
+      table() {
         return this.$store.state.table
       },
-      order () {
+      order() {
         return this.$store.state.order
       },
-      establishment () {
+      establishment() {
         return this.$store.state.establishment
       }
     },
     methods: {
-      async sendOrder () {
+      async sendOrder() {
         if (this.itens.length !== 0 && this.orderName) {
           try {
             let products = []
             for (let item of this.itens) {
+              let options = []
+              if (item.itens.length) {
+                for (let option of item.itens) {
+                  options.push({
+                    id: option.id,
+                    qnt: 1
+                  })
+                }
+              }
+
               products.push({
                 id: item.id,
                 qnt: 1,
-                itens: []
+                itens: options
               })
             }
             let order = {
@@ -217,7 +227,7 @@
           })
         }
       },
-      async payOrder () {
+      async payOrder() {
         try {
           let order = {
             cardId: null,
@@ -244,7 +254,7 @@
           })
         }
       },
-      async addToOrder () {
+      async addToOrder() {
         try {
           let products = []
           let itensToAdd = this.itens.filter(item => !('orderId' in item))
@@ -284,22 +294,22 @@
           })
         }
       },
-      toggleRightSidebar () {
+      toggleRightSidebar() {
         this.$store.commit('toggleRightSidebar')
       },
-      toggleContentOverlay () {
+      toggleContentOverlay() {
         this.$store.commit('toggleContentOverlay')
       },
-      addCouvert () {
+      addCouvert() {
         this.$store.commit('addCouvert')
       },
-      removeCouvert () {
+      removeCouvert() {
         this.$store.commit('removeCouvert')
       },
-      setTip () {
+      setTip() {
         this.$store.commit('setTip', this.tip)
       },
-      setDiscount () {
+      setDiscount() {
         this.$store.commit('setDiscount', this.discount)
       }
     }

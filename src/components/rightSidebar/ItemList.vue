@@ -83,10 +83,11 @@
 
   .list {
     width: 100%;
+    max-height: 100%;
   }
 
   .sublist {
-    max-height: 350px;
+    max-height: 100%;
     overflow: auto;
   }
 

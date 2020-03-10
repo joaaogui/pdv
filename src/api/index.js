@@ -11,8 +11,9 @@ axios.interceptors.response.use(function (response) {
   if (response.data.success) {
     return response
   } else {
-    if (response.data.friendlyMessage) {
-      throw new Error(response.data.friendlyMessage)
+    if (response.data.friendlyMessage.length) {
+      let message = response.data.friendlyMessage.join('. ')
+      throw new Error(message)
     } else {
       throw new Error(response.data.message)
     }

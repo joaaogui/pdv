@@ -88,6 +88,44 @@
           row-height="20"
         />
       </div>
+
+      <div v-if="options">
+        <div class="observation-title">
+          Adicionais
+        </div>
+
+        <div v-for="(option, index) in options" :key="index">
+          <v-list-item class="pa-0">
+            <v-avatar
+              size="30"
+              class="mr-3 item-amount"
+            >
+              <span>99</span>
+            </v-avatar>
+            <v-list-item-content>
+              {{option.name}}
+            </v-list-item-content>
+            <v-list-item-icon v-if="option.price">
+              + R$ {{ option.price | money }}
+              <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                  <v-icon
+                    v-on="on"
+                    color="indigo"
+                  >
+                    mdi-dots-vertical
+                  </v-icon>
+                </template>
+                <v-list>
+                  <v-list-item @click="removeOption">
+                    Remover
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-list-item-icon>
+          </v-list-item>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -102,16 +140,22 @@
       alergy: false
     }),
     computed: {
-      totalPrice () {
+      totalPrice() {
         return (this.item.amount * this.item.price).toFixed(2)
+      },
+      options() {
+        return this.item.itens
       }
     },
     methods: {
-      removeUnit () {
+      removeUnit() {
         this.$store.commit('removeUnit', this.item.id)
       },
-      removeItem () {
+      removeItem() {
         this.$store.commit('removeItem', this.item.id)
+      },
+      removeOption() {
+        console.log("sdfasdd")
       }
     }
   }
@@ -123,7 +167,7 @@
 
   .input {
     margin-left: 58px;
-    margin-right: 58px;
+    margin-right: 16px;
   }
 
   .observation-title {
