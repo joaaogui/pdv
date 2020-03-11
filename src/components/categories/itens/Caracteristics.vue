@@ -1,28 +1,42 @@
 <template>
-  <div class="caracteristics" :class="rightSidebar ? 'open-sidebar-content' : '' ">
+  <div
+    class="caracteristics"
+    :class="rightSidebar ? 'open-sidebar-content' : '' "
+  >
     <v-row no-gutters>
       <v-col cols="2">
         <v-card
           @click="goTo"
-          class="card  centered-container"
+          class="card centered-container"
         >
           <v-icon large>
             mdi-arrow-left
           </v-icon>
         </v-card>
       </v-col>
-      <v-col cols="10" class="item-name vertically-centered-container">
+      <v-col
+        cols="10"
+        class="item-name vertically-centered-container"
+      >
         {{item.name}}
       </v-col>
     </v-row>
-    <div v-for="(caracteristic, index) in item.caracteristics" :key="index">
-      <v-row no-gutters class="caracteristic-name ">
-        {{caracteristic.name}}<span v-if="caracteristic.mandatory" class="required">*</span>
+    <div
+      v-for="(caracteristic, index) in item.caracteristics"
+      :key="index"
+    >
+      <v-row
+        no-gutters
+        class="caracteristic-name "
+      >
+        {{caracteristic.name}}
+        <span v-if="caracteristic.mandatory" class="required">*</span>
       </v-row>
       <v-row no-gutters>
         <v-card
-          v-for="(option, index) in caracteristic.options" :key="index"
-          @click="addItemCaracteristic(option)"
+          v-for="(option, index) in caracteristic.options"
+          :key="index"
+          @click="addItemCaracteristic(option, caracteristic)"
           class="big-option mr-3"
         >
           <div class="header">
@@ -31,8 +45,11 @@
           <v-card-text class="main-content centered-container">
             {{option.name}}
           </v-card-text>
-          <div v-if="option.price" class="footer centered-container">
-           + R$ {{ option.price | money }}
+          <div
+            v-if="option.price"
+            class="footer centered-container"
+          >
+            + R$ {{ option.price | money }}
           </div>
         </v-card>
       </v-row>
@@ -41,22 +58,75 @@
 </template>
 
 <script>
+  import swal from 'sweetalert2'
+
   export default {
-    name: "caracteristics",
+
+    name: 'Caracteristics',
+    data: () => ({
+      requiredCaracteristics: {},
+      unrequiredCaracteristics: {}
+    }),
     computed: {
       item() {
         return this.$route.params.item
       },
-      rightSidebar () {
+      rightSidebar() {
         return this.$store.state.rightSidebar
+      },
+      requiredAmount() {
+        return this.item.caracteristics.filter(caracteristic => caracteristic.mandatory).length
+      },
+      requiredFilled() {
+        return this.requiredAmount === Object.keys(this.requiredCaracteristics).length
       }
+    },
+    created() {
+      console.log(this.item.caracteristics.filter(caracteristic => caracteristic.mandatory).length)
     },
     methods: {
       goTo() {
-        this.$router.go(-1)
+        if (this.requiredFilled) {
+          this.$router.go(-1)
+        } else {
+          swal.fire({
+            icon: 'warning',
+            title: 'Existem opções obrigatórias não preenchidas. Caso retorne, o produto não será adicionado ao produto.',
+            showCancelButton: true,
+            confirmButtonText: 'Permanecer na página',
+            cancelButtonText: 'Retornar'
+          }).then((result) => {
+            if (!result.value) {
+              this.$router.go(-1)
+            }
+          })
+        }
       },
-      addItemCaracteristic(option) {
-        this.$store.commit('addOption', option)
+      addItemCaracteristic(option, caracteristic) {
+        console.log(caracteristic)
+        if (caracteristic.mandatory) {
+          if (caracteristic.type === 'SelecaoPadrao') {
+            this.requiredCaracteristics[caracteristic.name] = option
+          } else {
+            if (!(caracteristic.name in this.requiredCaracteristics)) {
+              this.requiredCaracteristics[caracteristic.name] = []
+              this.requiredCaracteristics[caracteristic.name].push(option)
+            } else {
+              this.requiredCaracteristics[caracteristic.name].push(option)
+            }
+          }
+        } else {
+          if (caracteristic.type === 'SelecaoPadrao') {
+            this.unrequiredCaracteristics[caracteristic.name] = option
+          } else {
+            if (!(caracteristic.name in this.unrequiredCaracteristics)) {
+              this.unrequiredCaracteristics[caracteristic.name] = []
+              this.unrequiredCaracteristics[caracteristic.name].push(option)
+            } else {
+              this.unrequiredCaracteristics[caracteristic.name].push(option)
+            }
+          }
+        }
       }
     }
   }
@@ -128,6 +198,7 @@
     font-weight: 600;
     color: #828799;
   }
+
   .header {
     font-size: 1em;
     font-weight: bold;

@@ -36,21 +36,23 @@
       navbarHeight: variables.navbarHeight
     }),
     computed: {
-      establishment () {
+      establishment() {
         return this.$store.state.establishment
       }
     },
     methods: {
-      startNewOrder () {
+      startNewOrder() {
         let table = {
           id: 0,
           number: 0
         }
         this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
-        this.$router.push({ name: 'category' })
+        if (this.$route.name !== 'category') {
+          this.$router.push({name: 'category'})
+        }
       },
-      toggleLeftSidebar () {
+      toggleLeftSidebar() {
         this.$store.commit('toggleLeftSidebar')
       }
     }
