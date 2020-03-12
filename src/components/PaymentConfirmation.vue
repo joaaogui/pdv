@@ -1,26 +1,40 @@
 <template>
   <div class="open-sidebar-content">
-    <div class="upper-text mb-7">Deseja realizar o pagamento ?</div>
-    <div class="buttons">
-      <div @click="toggleContentOverlay" class="cancel-button centered-container mr-3">Cancelar</div>
-      <div @click="goTo" class="confirm-button centered-container">Confirmar Pagamento</div>
+    <div class="upper-text mb-7">
+      Deseja realizar o pagamento ?
     </div>
-    <div class="bottom-text mt-7">Os produtos em andamento neste pedido ainda aparecerão na lista de entrega.</div>
+    <div class="buttons">
+      <div
+        @click="toggleContentOverlay"
+        class="cancel-button centered-container mr-3"
+      >
+        Cancelar
+      </div>
+      <div
+        @click="goTo"
+        class="confirm-button centered-container"
+      >
+        Confirmar Pagamento
+      </div>
+    </div>
+    <div class="bottom-text mt-7">
+      Os produtos em andamento neste pedido ainda aparecerão na lista de entrega.
+    </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "PaymentConfirmation",
+    name: 'PaymentConfirmation',
     methods: {
-      goTo() {
+      goTo () {
         this.toggleContentOverlay()
-        this.$router.push({path: `/payment-confirmed`})
+        this.$router.push({ path: `/payment-confirmed` })
       },
-      toggleRightSidebar() {
+      toggleRightSidebar () {
         this.$store.commit('toggleRightSidebar')
       },
-      toggleContentOverlay() {
+      toggleContentOverlay () {
         this.$store.commit('toggleContentOverlay')
       }
     }

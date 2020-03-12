@@ -1,3 +1,3 @@
-import Vue from "vue"
+import Vue from 'vue'
 
-Vue.filter("money", value => value.toFixed(2))
+Vue.filter('money', value => value.toFixed(2))

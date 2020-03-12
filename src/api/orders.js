@@ -1,15 +1,21 @@
 import axios from './index'
 
-const endpoint = '/orders'
+const endpoint = 'restaurante/orders'
 
 const getOrders = () => axios.get(endpoint)
 
-const getOrder = (orderId) => axios.get(endpoint, {orderId})
+const getOrder = (orderId) => axios.get(endpoint, { orderId })
 
-const getOrderItens = (orderId) => axios.get(`/orders/${orderId}/itens`)
+const getOrderItens = (orderId) => axios.get(`restaurante/order/${orderId}/itens`)
+
+const sendOrder = (idEstabelecimento, order) => axios.put(`restaurante/pedido/${idEstabelecimento}`, order)
+
+const payOrder = (idEstabelecimento, order) => axios.put(`restaurante/pedido/checkout/${idEstabelecimento}`, order)
 
 export {
   getOrders,
   getOrder,
-  getOrderItens
+  getOrderItens,
+  sendOrder,
+  payOrder
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pdv fill-height">
     <RightSidebar v-if="rightSidebar"/>
     <LeftSidebar v-if="leftSidebar"/>
     <Navbar/>
@@ -20,19 +20,19 @@
 
 <script>
   import Footer from '../components/Footer'
-  import RightSidebar from '../components/RightSidebar/RightSidebar'
+  import RightSidebar from '../components/rightSidebar/RightSidebar'
   import LeftSidebar from '../components/LeftSidebar'
   import Navbar from '../components/Navbar'
-  import PaymentConfirmation from "../components/PaymentConfirmation"
+  import PaymentConfirmation from '../components/PaymentConfirmation'
 
   export default {
-    name: "Pdv",
+    name: 'Pdv',
     components: {
       PaymentConfirmation,
       Footer,
       RightSidebar,
       LeftSidebar,
-      Navbar,
+      Navbar
     },
     computed: {
       rightSidebar() {
@@ -44,13 +44,15 @@
       contentOverlay() {
         return this.$store.state.contentOverlay
       }
-    },
-    created() {
-      this.$store.dispatch("getConfigs")
     }
+    // created() {
+    //   this.$store.dispatch("getConfigs")
+    // }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .pdv {
+    background-color: #f5f6fa;
+  }
 </style>

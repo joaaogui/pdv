@@ -1,10 +1,29 @@
 <template>
-  <v-bottom-navigation class="footer" app height="90">
+  <v-bottom-navigation
+    class="footer"
+    app
+    height="90"
+  >
     <div class="footer-buttons">
-      <div v-for="(shortcut, i) in shortcuts" :key="i" class="footer-button centered-container">
-        <v-btn :ripple="false" height="90" width="125" :to="shortcut.path" active-class="footer-button-active">
-          <span class="icon-text">{{shortcut.text}}</span>
-          <v-icon height="20" text-center>{{shortcut.icon}}</v-icon>
+      <div
+        v-for="(shortcut, i) in shortcuts"
+        :key="i"
+        class="footer-button centered-container"
+      >
+        <v-btn
+          :ripple="false"
+          height="90"
+          width="125"
+          :to="shortcut.path"
+          active-class="footer-button-active"
+        >
+          <span class="icon-text">{{ shortcut.text }}</span>
+          <v-icon
+            height="20"
+            text-center
+          >
+            {{ shortcut.icon }}
+          </v-icon>
         </v-btn>
       </div>
     </div>
@@ -13,16 +32,17 @@
 
 <script>
   import variables from '@/scss/variables.scss'
+
   export default {
     name: 'Footer',
     data: () => ({
       deactivatedGray: variables.deactivatedGray,
       shortcuts: [
-        {text: 'Mesas', icon: 'mdi-table-chair', path: '/pdv/tables'},
-        {text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/pdv/menu'},
-        {text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/pdv/orders'}
+        { text: 'Mesas', icon: 'mdi-table-chair', path: '/pdv/tables' },
+        { text: 'Menu', icon: 'mdi-book-open-page-variant', path: '/pdv/category' },
+        { text: 'Pedidos', icon: 'mdi-clipboard-list', path: '/pdv/orders' }
       ]
-    }),
+    })
   }
 </script>
 

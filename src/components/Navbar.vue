@@ -1,10 +1,24 @@
 <template>
   <div>
-    <v-app-bar app :height="navbarHeight" class="navbar">
+    <v-app-bar
+      app
+      :height="navbarHeight"
+      class="navbar"
+    >
       <div class="hamburguer-background centered-container">
-        <v-app-bar-nav-icon x-large color="white" @click="toggleLeftSidebar"/>
+        <v-app-bar-nav-icon
+          x-large
+          color="white"
+          @click="toggleLeftSidebar"
+        />
       </div>
-      <div @click="startNewOrder" class="new-order-button centered-container">
+      <div class="ml-4 establishment-name">
+        {{ establishment.name }}
+      </div>
+      <div
+        @click="startNewOrder"
+        class="new-order-button centered-container"
+      >
         <div class="text">
           Novo pedido
         </div>
@@ -15,14 +29,28 @@
 
 <script>
   import variables from '../scss/variables.scss'
+
   export default {
     name: 'Navbar',
     data: () => ({
       navbarHeight: variables.navbarHeight
     }),
+    computed: {
+      establishment() {
+        return this.$store.state.establishment
+      }
+    },
     methods: {
       startNewOrder() {
+        let table = {
+          id: 0,
+          number: 0
+        }
+        this.$store.commit('changeTable', table)
         this.$store.commit('startNewOrder', true)
+        if (this.$route.name !== 'category') {
+          this.$router.push({name: 'category'})
+        }
       },
       toggleLeftSidebar() {
         this.$store.commit('toggleLeftSidebar')
@@ -33,7 +61,13 @@
 
 <style scoped lang="scss">
   .navbar {
-    background-color: $navbar-color;
+    background-color: $navbar-color !important;
+  }
+
+  .establishment-name {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
   }
 
   .new-order-button {

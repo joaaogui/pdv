@@ -33,6 +33,8 @@ $order-card-height: 180px;
 $popover-height: 600px;
 $popover-orders-height: $popover-height - 200px;
 
+$caracteristics-back-button-height: 80px;
+$caracteristics-back-button-width: 180px;
 
 $strong-blue: #003cff;
 $gray-blue: #586e98;
@@ -47,4 +49,5 @@ $onearby-dark-blue: #29235c;
   navbarHeight: $navbar-height;
   pinkyRed: $pinky-red;
   pastelGreen: $pastel-green;
+  deactivatedGray: $deactivated-gray;
 }
