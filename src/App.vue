@@ -5,12 +5,23 @@
         fluid
         class="ma-0 pa-0 app container"
       >
+        <snackbar/>
         <router-view/>
       </v-container>
     </v-content>
     <Footer/>
   </v-app>
 </template>
+
+<script>
+  import snackbar from '@/components/Snackbar'
+
+  export default {
+    components: {
+      snackbar
+    }
+  }
+</script>
 
 <style lang="scss">
   .app {

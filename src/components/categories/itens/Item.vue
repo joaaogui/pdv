@@ -50,6 +50,7 @@
           let item = {
             id: this.item.id,
             name: this.item.name,
+            amount: this.item.amount,
             price: this.item.price,
             caracteristics: []
           }

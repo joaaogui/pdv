@@ -61,7 +61,6 @@
   import swal from 'sweetalert2'
 
   export default {
-
     name: 'Caracteristics',
     data: () => ({
       requiredCaracteristics: {},
@@ -81,9 +80,6 @@
         return this.requiredAmount === Object.keys(this.requiredCaracteristics).length
       }
     },
-    created() {
-      console.log(this.item.caracteristics.filter(caracteristic => caracteristic.mandatory).length)
-    },
     methods: {
       goTo() {
         if (this.requiredFilled) {
@@ -91,7 +87,8 @@
         } else {
           swal.fire({
             icon: 'warning',
-            title: 'Existem opções obrigatórias não preenchidas. Caso retorne, o produto não será adicionado ao produto.',
+            title: 'Existem opções obrigatórias não preenchidas.',
+            text: 'Caso retorne, o produto não será adicionado ao produto.',
             showCancelButton: true,
             confirmButtonText: 'Permanecer na página',
             cancelButtonText: 'Retornar'
@@ -103,7 +100,6 @@
         }
       },
       addItemCaracteristic(option, caracteristic) {
-        console.log(caracteristic)
         if (caracteristic.mandatory) {
           if (caracteristic.type === 'SelecaoPadrao') {
             this.requiredCaracteristics[caracteristic.name] = option
@@ -127,6 +123,13 @@
             }
           }
         }
+
+        if (this.requiredFilled) {
+          this.showSnackbar('Item Adicionado!')
+        }
+      },
+      showSnackbar(message) {
+        this.$store.commit('showSnackbar', {text: message})
       }
     }
   }

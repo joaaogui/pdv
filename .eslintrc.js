@@ -21,6 +21,7 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'quotes': 'warn',
     'vue/valid-v-for': 'warn',
+    'comma-dangle': 'warn',
 
   },
   parserOptions: {
