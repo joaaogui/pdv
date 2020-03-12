@@ -1,6 +1,7 @@
 <template>
   <v-snackbar
-    top
+    bottom
+    right
     v-model="snackbar.visible"
     :timeout="snackbar.timeout"
     :multi-line="snackbar.multiline === true">

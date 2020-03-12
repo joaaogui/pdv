@@ -123,13 +123,12 @@
             }
           }
         }
-
-        if (this.requiredFilled) {
+        if (this.requiredAmount === Object.keys(this.requiredCaracteristics).length) {
           this.showSnackbar('Item Adicionado!')
         }
       },
       showSnackbar(message) {
-        this.$store.commit('showSnackbar', {text: message})
+        this.$store.commit('showSnackbar', {text: message, timeout: 1000})
       }
     }
   }
